@@ -1,0 +1,10 @@
+Aplicación de Laboratorio Cifradores en Flujo 
+
+Programa FlujoLab (2005)
+Autores: D. Daniel García Urbón y D. Daniel Martínez Canseco
+
+La aplicación en Java se ejecuta desde la carpeta de instalación por defecto c:\Criptolab\CifradoresFlujo, haciendo doble clic en Cifrador.jar.
+Si tiene algún problema, por favor actualice la máquina de Java: http://www.softonic.com/s/maquina-virtual-java.
+
+Madrid, junio de 2008
+Jorge Ramió: profesor tutor de este trabajo.

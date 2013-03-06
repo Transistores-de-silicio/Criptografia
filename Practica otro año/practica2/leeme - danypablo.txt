@@ -1,0 +1,9 @@
+LEEME.TXT
+
+Modo de uso del programa 2.1.py:
+
+Este programa necesita un primer parametro que es el nombre de un fichero, y un segundo parametro (0 para secuencia, 1 para postulados)
+
+Ejemplo:
+	2.1.py secuencia.txt 0
+	2.1.py postulados.txt 1
