@@ -4,6 +4,7 @@
  */
 package criptografia_practica1;
 
+import Excepciones.AoBNoValidasException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -74,5 +75,14 @@ public class Funciones {
         }
         Collections.sort(soluciones);
         return soluciones;
+    }
+    
+    public static ArrayList<BigInteger> curvas_elipticas(BigInteger a, BigInteger b, BigInteger p) throws AoBNoValidasException {
+        if ((a.pow(3).multiply(new BigInteger("4")).add(b.pow(2).multiply(new BigInteger("27")))).compareTo(BigInteger.ZERO)==0) {
+            throw new AoBNoValidasException();
+        }
+        
+        
+        return null;
     }
 }
