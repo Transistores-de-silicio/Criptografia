@@ -71,9 +71,7 @@ public class Funciones {
                 for (int iIndex = 0; iIndex < i.getValue().size(); iIndex++) {
                     for (int jIndex = 0; jIndex < t.get(i.getKey()).size(); jIndex++) {
                         solucion = s.multiply(i.getValue().get(iIndex).add(BigInteger.valueOf(1))).subtract(t.get(i.getKey()).get(jIndex));
-                        if (solucion.compareTo(p) == -1) {
-                            soluciones.add(solucion);
-                        }
+                        if (solucion.compareTo(p) == -1) { soluciones.add(solucion); }
                     }
                 }
             }
