@@ -23,7 +23,7 @@ public class Funciones {
      * @param m
      * @return 
      */
-    public static BigInteger pot_mod(BigInteger a, BigInteger b, BigInteger m) {
+    public static BigInteger potenciaModular(BigInteger a, BigInteger b, BigInteger m) {
         BigInteger result = BigInteger.ONE;
         while (b.compareTo(BigInteger.ZERO) == 1) {
             if (b.mod(BigInteger.valueOf(2)).compareTo(BigInteger.ONE) == 0) { result = result.multiply(a).mod(m); }
@@ -40,7 +40,7 @@ public class Funciones {
      * @param p
      * @return 
      */
-    public static ArrayList<BigInteger> log_dis(BigInteger a, BigInteger c, BigInteger p) {
+    public static ArrayList<BigInteger> logaritmoDiscreto(BigInteger a, BigInteger c, BigInteger p) {
         int aux = (int) Math.sqrt(p.doubleValue());
         BigInteger s = BigInteger.valueOf(aux).add(BigInteger.ONE);
         BigInteger rKey, tKey, solucion;
@@ -48,14 +48,14 @@ public class Funciones {
         HashMap<BigInteger, ArrayList<BigInteger>> r = new HashMap<BigInteger, ArrayList<BigInteger>>();
         HashMap<BigInteger, ArrayList<BigInteger>> t = new HashMap<BigInteger, ArrayList<BigInteger>>();
         for (BigInteger i = BigInteger.ZERO; i.compareTo(s) == -1; i = i.add(BigInteger.ONE)) {
-            rKey = pot_mod(a, s.multiply(i.add(BigInteger.ONE)), p);
+            rKey = potenciaModular(a, s.multiply(i.add(BigInteger.ONE)), p);
             if (r.containsKey(rKey)) { r.get(rKey).add(i); }
             else {
                 rList = new ArrayList<BigInteger>();
                 rList.add(i);
                 r.put(rKey, rList);
             }
-            tKey = c.multiply(pot_mod(a, i, p)).mod(p);
+            tKey = c.multiply(potenciaModular(a, i, p)).mod(p);
             if (t.containsKey(tKey)) { t.get(tKey).add(i); }
             else {
                 tList = new ArrayList<BigInteger>();
@@ -77,12 +77,30 @@ public class Funciones {
         return soluciones;
     }
     
-    public static ArrayList<BigInteger> curvas_elipticas(BigInteger a, BigInteger b, BigInteger p) throws AoBNoValidasException {
+    public static ArrayList<BigInteger[]> puntosCurvasElipticas(BigInteger a, BigInteger b, BigInteger p) throws AoBNoValidasException {
         if ((a.pow(3).multiply(new BigInteger("4")).add(b.pow(2).multiply(new BigInteger("27")))).compareTo(BigInteger.ZERO)==0) {
             throw new AoBNoValidasException();
         }
-        
-        
-        return null;
+        HashMap<BigInteger, BigInteger> x = new HashMap<BigInteger, BigInteger>();
+        HashMap<BigInteger, BigInteger> y = new HashMap<BigInteger, BigInteger>();
+        ArrayList<BigInteger[]> puntosFinales = new ArrayList<BigInteger[]>();
+        BigInteger[] punto;
+        for (BigInteger i = BigInteger.ZERO; i.compareTo(p) == -1; i = i.add(BigInteger.ONE)) {
+            x.put(i, i.pow(3).add(a.multiply(i)).add(b).mod(p));
+            y.put(i, i.pow(2).mod(p));
+        }
+        for(Entry<BigInteger, BigInteger> puntoX : x.entrySet()) {
+            if (y.containsValue(puntoX.getValue())) {
+                for(Entry<BigInteger, BigInteger> puntoY : y.entrySet()) {
+                    if (puntoX.getValue().equals(puntoY.getValue())) {
+                        punto = new BigInteger[2];
+                        punto[0] = puntoX.getKey();
+                        punto[1] = puntoY.getKey();
+                        puntosFinales.add(punto);
+                    }
+                }
+            }
+        }
+        return puntosFinales;
     }
 }
