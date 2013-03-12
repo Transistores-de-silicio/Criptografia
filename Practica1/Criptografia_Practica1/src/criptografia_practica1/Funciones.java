@@ -16,29 +16,32 @@ import java.util.Map.Entry;
  * @author Alex
  */
 public class Funciones {
+
     /**
-     * 
+     *
      * @param a
      * @param b
      * @param m
-     * @return 
+     * @return
      */
     public static BigInteger potenciaModular(BigInteger a, BigInteger b, BigInteger m) {
         BigInteger result = BigInteger.ONE;
         while (b.compareTo(BigInteger.ZERO) == 1) {
-            if (b.mod(BigInteger.valueOf(2)).compareTo(BigInteger.ONE) == 0) { result = result.multiply(a).mod(m); }
+            if (b.mod(BigInteger.valueOf(2)).compareTo(BigInteger.ONE) == 0) {
+                result = result.multiply(a).mod(m);
+            }
             a = a.multiply(a).mod(m);
             b = b.divide(BigInteger.valueOf(2));
         }
         return result;
     }
-    
+
     /**
-     * 
+     *
      * @param a
      * @param c
      * @param p
-     * @return 
+     * @return
      */
     public static ArrayList<BigInteger> logaritmoDiscreto(BigInteger a, BigInteger c, BigInteger p) {
         int aux = (int) Math.sqrt(p.doubleValue());
@@ -63,12 +66,14 @@ public class Funciones {
                 t.put(tKey, tList);
             }
         }
-        for(Entry<BigInteger, ArrayList<BigInteger>> i : r.entrySet()) {
+        for (Entry<BigInteger, ArrayList<BigInteger>> i : r.entrySet()) {
             if (t.containsKey(i.getKey())) {
                 for (int iIndex = 0; iIndex < i.getValue().size(); iIndex++) {
                     for (int jIndex = 0; jIndex < t.get(i.getKey()).size(); jIndex++) {
                         solucion = s.multiply(i.getValue().get(iIndex).add(BigInteger.valueOf(1))).subtract(t.get(i.getKey()).get(jIndex));
-                        if (solucion.compareTo(p) == -1) { soluciones.add(solucion); }
+                        if (solucion.compareTo(p) == -1) {
+                            soluciones.add(solucion);
+                        }
                     }
                 }
             }
@@ -102,5 +107,28 @@ public class Funciones {
             }
         }
         return puntosFinales;
+    }
+
+    public static int[] Encontrar_Punto(int x1, int x2, int y1, int y2,BigInteger a) {
+        int[] re = null;
+
+        if (x1 != x2 && y1 != y2) {
+            int landa = (y2 - y1) / (x2 - x1);
+            int x3 = landa ^ 2 - x1 - x2;
+            int y3 = landa*(x1 - x3) - y1;
+            re= new int[2];
+            re[0] = x3;
+            re[1] = y3;
+            return re;
+        }
+        if (x2 == x1 && y2 == y1 && y1 != 0) {
+            int landa = ((x1^2)*3+a.intValue())/(2*y1);
+            int x3 = landa ^ 2 -(2*x1);
+            int y3 = landa*(x1 - x3) - y1;
+            re = new int[2];
+            re[0] = x3;
+            re[1] = y3;
+        }
+        return re;
     }
 }
