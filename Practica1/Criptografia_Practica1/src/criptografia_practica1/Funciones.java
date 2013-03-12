@@ -107,23 +107,23 @@ public class Funciones {
         return puntosFinales;
     }
 
-    public static int[] Encontrar_Punto(int x1, int x2, int y1, int y2,BigInteger a) {
-        int[] re = null;
+    public static BigInteger[] Encontrar_Punto(BigInteger x1, BigInteger x2, BigInteger y1, BigInteger y2,BigInteger a) {
+        BigInteger[] re = null;
 
         if (x1 != x2 && y1 != y2) {
-            int landa = (y2 - y1) / (x2 - x1);
-            int x3 = landa ^ 2 - x1 - x2;
-            int y3 = landa*(x1 - x3) - y1;
-            re= new int[2];
+            BigInteger landa = (y2.subtract(y1)).divide(x2.subtract(x1));
+            BigInteger x3 = landa.pow(2).subtract(x1).subtract(x2);
+            BigInteger y3 = (landa.multiply(x1.subtract(x3)) ).subtract(y1);
+            re= new BigInteger[2];
             re[0] = x3;
             re[1] = y3;
             return re;
         }
-        if (x2 == x1 && y2 == y1 && y1 != 0) {
-            int landa = ((x1^2)*3+a.intValue())/(2*y1);
-            int x3 = landa ^ 2 -(2*x1);
-            int y3 = landa*(x1 - x3) - y1;
-            re = new int[2];
+        if (x2 == x1 && y2 == y1 && y1 != BigInteger.ZERO) {
+            BigInteger landa = x1.pow(2).multiply(new BigInteger("3")).add(a.divide(y1.multiply(new BigInteger("2"))));
+            BigInteger x3 = landa.pow(2).subtract(x1.multiply(new BigInteger("2")));
+            BigInteger y3 = landa.multiply(x1.subtract(x3)).subtract(y1);
+            re = new BigInteger[2];
             re[0] = x3;
             re[1] = y3;
         }
