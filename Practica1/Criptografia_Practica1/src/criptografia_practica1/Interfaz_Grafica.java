@@ -8,10 +8,11 @@ import Excepciones.AoBNoValidasException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Vector;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -101,13 +102,13 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel12.setText("a");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setText("b");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel14.setText("(mod) m");
 
         aPot.addActionListener(new java.awt.event.ActionListener() {
@@ -116,10 +117,13 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel15.setText("a:");
 
+        jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel16.setText("b:");
 
+        jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel17.setText("m:");
 
         mPot.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +132,7 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
             }
         });
 
+        jLabel18.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel18.setText("Solucion:");
 
         solPot.setEditable(false);
@@ -139,6 +144,7 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel8.setText("Tiempo (ms):");
 
         timePot.setEditable(false);
@@ -153,8 +159,8 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(118, 118, 118))
+                .addComponent(jLabel14)
+                .addGap(140, 140, 140))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -228,10 +234,13 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Potencia modular", jPanel2);
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel1.setText("a:");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText("b:");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel3.setText("p:");
 
         aLog.addActionListener(new java.awt.event.ActionListener() {
@@ -253,21 +262,23 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel4.setText("Solucion:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel5.setText("log");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("a");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel7.setText("b (mod) p");
 
         solLog.setEditable(false);
 
         timeLog.setEditable(false);
 
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel9.setText("Tiempo (ms):");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -315,8 +326,8 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
+                .addComponent(jLabel7)
+                .addGap(118, 118, 118))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,10 +366,13 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Logaritmo Discreto", jPanel1);
 
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel10.setText("a:");
 
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel11.setText("b:");
 
+        jLabel19.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel19.setText("p:");
 
         aCurva.addActionListener(new java.awt.event.ActionListener() {
@@ -380,35 +394,36 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
             }
         });
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel21.setText("y");
 
         timeCurvas.setEditable(false);
 
+        jLabel24.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel24.setText("Tiempo (ms):");
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel23.setText("2");
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel22.setText("=");
 
-        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel25.setText("x");
 
-        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel26.setText("3");
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel28.setText("+");
 
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel27.setText("ax");
 
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel29.setText("+");
 
-        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel30.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel30.setText("b");
 
         jScrollPane1.setEnabled(false);
@@ -425,9 +440,11 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
         punto2.setVisibleRowCount(7);
         jScrollPane2.setViewportView(punto2);
 
+        jLabel20.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel20.setText("Punto 1:");
         jLabel20.setEnabled(false);
 
+        jLabel31.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel31.setText("Punto 2:");
         jLabel31.setEnabled(false);
 
@@ -447,6 +464,7 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
             }
         });
 
+        jLabel32.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel32.setText("Punto:");
         jLabel32.setEnabled(false);
 
@@ -513,6 +531,7 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel26)
+                .addGap(0, 0, 0)
                 .addComponent(jLabel28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel27)
@@ -520,7 +539,7 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
                 .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel30)
-                .addGap(106, 106, 106))
+                .addGap(115, 115, 115))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -685,10 +704,13 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
                 jLabel32.setEnabled(true);
                 punto.setEnabled(true);
                 calcPunto.setEnabled(true);
-                Vector<String> puntosString = new Vector<String>(array.size());
-                for(BigInteger[] punto : array) { puntosString.add("("+punto[0]+", "+punto[1]+")"); }
-                punto1.setListData(puntosString);
-                punto2.setListData(puntosString);
+                ArrayList<String> puntosString = new ArrayList<String>(array.size());
+                puntosString.add(String.valueOf((char)216));
+                for(BigInteger[] punto : array) { puntosString.add("("+punto[0]+","+punto[1]+")"); }
+                punto1.removeAll();
+                punto2.removeAll();
+                punto1.setListData(puntosString.toArray());
+                punto2.setListData(puntosString.toArray());
             }
         } catch (AoBNoValidasException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -702,7 +724,27 @@ public class Interfaz_Grafica extends javax.swing.JFrame {
     }//GEN-LAST:event_calcCurvasActionPerformed
 
     private void calcPuntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcPuntoActionPerformed
-        
+        try {
+            String primerPunto = punto1.getSelectedValue().toString();
+            String segundoPunto = punto2.getSelectedValue().toString();
+            
+            if (primerPunto.charAt(0) == 216 && segundoPunto.charAt(0) == 216) { punto.setText(String.valueOf((char)216)); }
+            else if (primerPunto.charAt(0) == 216 && segundoPunto.charAt(0) != 216) { punto.setText(segundoPunto); }
+            else if (primerPunto.charAt(0) != 216 && segundoPunto.charAt(0) == 216) { punto.setText(primerPunto); }
+            else {
+                BigInteger xPrimerPunto = new BigInteger(primerPunto.substring(primerPunto.indexOf("(")+1, primerPunto.indexOf(",")));
+                BigInteger yPrimerPunto = new BigInteger(primerPunto.substring(primerPunto.indexOf(",")+1, primerPunto.indexOf(")")));
+
+                BigInteger xSegundoPunto = new BigInteger(segundoPunto.substring(segundoPunto.indexOf("(")+1, segundoPunto.indexOf(",")));
+                BigInteger ySegundoPunto = new BigInteger(segundoPunto.substring(segundoPunto.indexOf(",")+1, segundoPunto.indexOf(")")));
+            
+                BigInteger[] puntoFinal = Funciones.encontrarPuntoCurvasElipticas(xPrimerPunto, xSegundoPunto, yPrimerPunto, ySegundoPunto, new BigInteger(aCurva.getText()), new BigInteger(pCurva.getText()));
+                if (puntoFinal == null) { punto.setText(String.valueOf((char)216)); }
+                else { punto.setText("("+puntoFinal[0]+","+puntoFinal[1]+")"); }
+            }
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar dos puntos!!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_calcPuntoActionPerformed
 
     private void puntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntoActionPerformed

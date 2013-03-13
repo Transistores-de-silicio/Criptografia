@@ -107,25 +107,24 @@ public class Funciones {
         return puntosFinales;
     }
 
-    public static BigInteger[] Encontrar_Punto(BigInteger x1, BigInteger x2, BigInteger y1, BigInteger y2,BigInteger a) {
+    public static BigInteger[] encontrarPuntoCurvasElipticas(BigInteger x1, BigInteger x2, BigInteger y1, BigInteger y2,BigInteger a, BigInteger p) {
         BigInteger[] re = null;
-
-        if (x1 != x2 && y1 != y2) {
-            BigInteger landa = (y2.subtract(y1)).divide(x2.subtract(x1));
+        
+        if (x1.compareTo(x2) != 0 && y1.compareTo(y2) != 0) {
+            BigInteger landa = y2.subtract(y1).divide(x2.subtract(x1));
             BigInteger x3 = landa.pow(2).subtract(x1).subtract(x2);
-            BigInteger y3 = (landa.multiply(x1.subtract(x3)) ).subtract(y1);
+            BigInteger y3 = landa.multiply(x1.subtract(x3)).subtract(y1);
             re= new BigInteger[2];
-            re[0] = x3;
-            re[1] = y3;
+            re[0] = x3.mod(p);
+            re[1] = y3.mod(p);
             return re;
-        }
-        if (x2 == x1 && y2 == y1 && y1 != BigInteger.ZERO) {
-            BigInteger landa = x1.pow(2).multiply(new BigInteger("3")).add(a.divide(y1.multiply(new BigInteger("2"))));
+        } else if (x1.compareTo(x2) == 0 && y1.compareTo(y2) == 0 && y1.compareTo(BigInteger.ZERO) != 0) {
+            BigInteger landa = x1.pow(2).multiply(new BigInteger("3")).add(a).divide(y1.multiply(new BigInteger("2")));
             BigInteger x3 = landa.pow(2).subtract(x1.multiply(new BigInteger("2")));
             BigInteger y3 = landa.multiply(x1.subtract(x3)).subtract(y1);
             re = new BigInteger[2];
-            re[0] = x3;
-            re[1] = y3;
+            re[0] = x3.mod(p);
+            re[1] = y3.mod(p);
         }
         return re;
     }
