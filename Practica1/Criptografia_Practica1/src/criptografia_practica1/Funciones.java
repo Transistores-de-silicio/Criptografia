@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package criptografia_practica1;
 
 import Excepciones.AoBNoValidasException;
@@ -11,19 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-/**
- *
- * @author Alex
- */
 public class Funciones {
-
-    /**
-     *
-     * @param a
-     * @param b
-     * @param m
-     * @return
-     */
     public static BigInteger potenciaModular(BigInteger a, BigInteger b, BigInteger m) {
         BigInteger result = BigInteger.ONE;
         while (b.compareTo(BigInteger.ZERO) == 1) {
@@ -36,13 +20,6 @@ public class Funciones {
         return result;
     }
 
-    /**
-     *
-     * @param a
-     * @param c
-     * @param p
-     * @return
-     */
     public static ArrayList<BigInteger> logaritmoDiscreto(BigInteger a, BigInteger c, BigInteger p) {
         int aux = (int) Math.sqrt(p.doubleValue());
         BigInteger s = BigInteger.valueOf(aux).add(BigInteger.ONE);
@@ -111,21 +88,29 @@ public class Funciones {
         BigInteger[] re = null;
         
         if (x1.compareTo(x2) != 0 && y1.compareTo(y2) != 0) {
-            BigInteger landa = y2.subtract(y1).divide(x2.subtract(x1));
-            BigInteger x3 = landa.pow(2).subtract(x1).subtract(x2);
-            BigInteger y3 = landa.multiply(x1.subtract(x3)).subtract(y1);
+            BigInteger landa = y2.subtract(y1).multiply(moduloPotenciaNegativa(x2.subtract(x1), p)).mod(p);
             re= new BigInteger[2];
-            re[0] = x3.mod(p);
-            re[1] = y3.mod(p);
+            re[0] = landa.pow(2).subtract(x1).subtract(x2).mod(p);
+            re[1] = landa.multiply(x1.subtract(re[0])).subtract(y1).mod(p);
             return re;
         } else if (x1.compareTo(x2) == 0 && y1.compareTo(y2) == 0 && y1.compareTo(BigInteger.ZERO) != 0) {
-            BigInteger landa = x1.pow(2).multiply(new BigInteger("3")).add(a).divide(y1.multiply(new BigInteger("2")));
-            BigInteger x3 = landa.pow(2).subtract(x1.multiply(new BigInteger("2")));
-            BigInteger y3 = landa.multiply(x1.subtract(x3)).subtract(y1);
+            BigInteger landa = x1.pow(2).multiply(new BigInteger("3")).add(a).multiply(moduloPotenciaNegativa(y1.multiply(new BigInteger("2")), p)).mod(p);
             re = new BigInteger[2];
-            re[0] = x3.mod(p);
-            re[1] = y3.mod(p);
+            re[0] = landa.pow(2).subtract(x1.multiply(new BigInteger("2"))).mod(p);
+            re[1] = landa.multiply(x1.subtract(re[0])).subtract(y1).mod(p);
         }
         return re;
+    }
+    
+    private static BigInteger moduloPotenciaNegativa(BigInteger divisor, BigInteger p) {
+        boolean encontrado = false;
+        BigInteger resultado = BigInteger.ZERO;
+        for (BigInteger n = BigInteger.ZERO.subtract(BigInteger.ONE); !encontrado; n = n.subtract(BigInteger.ONE)) {
+            if (p.multiply(n).add(BigInteger.ONE).mod(divisor).compareTo(BigInteger.ZERO) == 0) {
+                encontrado = true;
+                resultado = p.multiply(n).add(BigInteger.ONE).divide(divisor);
+            }
+        }
+        return resultado;
     }
 }
