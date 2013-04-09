@@ -4,6 +4,8 @@
  */
 package crip_p2;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alex
@@ -32,9 +34,9 @@ public class Interfaz extends javax.swing.JFrame {
         titulo2Periodicidad = new javax.swing.JLabel();
         sucesionPeriodicidad = new javax.swing.JTextField();
         aceptarPeriodicidad = new javax.swing.JButton();
-        respuestaPeriodicidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         titulo1Periodicidad.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         titulo1Periodicidad.setText("Periodicidad de una");
@@ -43,11 +45,9 @@ public class Interfaz extends javax.swing.JFrame {
         titulo2Periodicidad.setText("sucesión de bits");
 
         aceptarPeriodicidad.setText("Aceptar");
-
-        respuestaPeriodicidad.setEditable(false);
-        respuestaPeriodicidad.addActionListener(new java.awt.event.ActionListener() {
+        aceptarPeriodicidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                respuestaPeriodicidadActionPerformed(evt);
+                aceptarPeriodicidadActionPerformed(evt);
             }
         });
 
@@ -55,10 +55,6 @@ public class Interfaz extends javax.swing.JFrame {
         periodicidad.setLayout(periodicidadLayout);
         periodicidadLayout.setHorizontalGroup(
             periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(periodicidadLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(sucesionPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, periodicidadLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,9 +67,11 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(104, 104, 104))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, periodicidadLayout.createSequentialGroup()
                         .addComponent(aceptarPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(respuestaPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))))
+                        .addGap(159, 159, 159))))
+            .addGroup(periodicidadLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(sucesionPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         periodicidadLayout.setVerticalGroup(
             periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,11 +82,9 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(titulo2Periodicidad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(sucesionPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aceptarPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(respuestaPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48))
+                .addGap(47, 47, 47)
+                .addComponent(aceptarPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
         panel.addTab("Periodicidad", periodicidad);
@@ -107,9 +103,15 @@ public class Interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void respuestaPeriodicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_respuestaPeriodicidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_respuestaPeriodicidadActionPerformed
+    private void aceptarPeriodicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarPeriodicidadActionPerformed
+        String sucesion = sucesionPeriodicidad.getText();
+        if (sucesion.matches("[01]+")) {
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "No es una sucesion de 0s y 1s",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_aceptarPeriodicidadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,7 +151,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton aceptarPeriodicidad;
     private javax.swing.JTabbedPane panel;
     private javax.swing.JPanel periodicidad;
-    private javax.swing.JTextField respuestaPeriodicidad;
     private javax.swing.JTextField sucesionPeriodicidad;
     private javax.swing.JLabel titulo1Periodicidad;
     private javax.swing.JLabel titulo2Periodicidad;
