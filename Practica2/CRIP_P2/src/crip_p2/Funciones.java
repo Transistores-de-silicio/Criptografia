@@ -10,7 +10,7 @@ package crip_p2;
  */
 public class Funciones {
 
-    void periodo(String secuencia) {
+    public static void periodo(String secuencia) {
         int longitud = secuencia.length();
         int minimo = 1;
         int periodo = 0;

@@ -5,6 +5,7 @@
 package crip_p2;
 
 import javax.swing.JOptionPane;
+import crip_p2.Funciones;
 
 /**
  *
@@ -106,7 +107,7 @@ public class Interfaz extends javax.swing.JFrame {
     private void aceptarPeriodicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarPeriodicidadActionPerformed
         String sucesion = sucesionPeriodicidad.getText();
         if (sucesion.matches("[01]+")) {
-            
+            Funciones.periodo(sucesion);
         } else {
             JOptionPane.showMessageDialog(null, "No es una sucesion de 0s y 1s",
                         "Error", JOptionPane.ERROR_MESSAGE);
