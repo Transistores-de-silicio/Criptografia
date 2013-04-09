@@ -10,7 +10,8 @@ package crip_p2;
  */
 public class Funciones {
 
-    public static void periodo(String secuencia) {
+    public static Integer periodo(String secuencia) {
+        Integer longitudPeriodo = null;
         int longitud = secuencia.length();
         int minimo = 1;
         int periodo = 0;
@@ -43,10 +44,8 @@ public class Funciones {
         }
 
         if (salir) {
-            System.out.println("La secuencia tiene un periodo de tamaño :" + periodo);
-        } else {
-            System.out.println("La secuencia no tiene periodo");
+            longitudPeriodo = periodo;
         }
-
+        return longitudPeriodo;
     }
 }

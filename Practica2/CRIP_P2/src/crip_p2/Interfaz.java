@@ -5,7 +5,6 @@
 package crip_p2;
 
 import javax.swing.JOptionPane;
-import crip_p2.Funciones;
 
 /**
  *
@@ -107,7 +106,14 @@ public class Interfaz extends javax.swing.JFrame {
     private void aceptarPeriodicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarPeriodicidadActionPerformed
         String sucesion = sucesionPeriodicidad.getText();
         if (sucesion.matches("[01]+")) {
-            Funciones.periodo(sucesion);
+            Integer longitud = Funciones.periodo(sucesion);
+            if (longitud == null) {
+                JOptionPane.showMessageDialog(null, "No es una sucesion periodica",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Es una sucesión periodica de periodo " + longitud,
+                        "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "No es una sucesion de 0s y 1s",
                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -143,6 +149,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Interfaz().setVisible(true);
             }
