@@ -4,48 +4,40 @@
  */
 package crip_p2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Carlos Basso
  */
 public class Funciones {
 
-    public static Integer periodo(String secuencia) {
+    public static Integer comprobarPeriocidad(String secuencia) {
         Integer longitudPeriodo = null;
-        int longitud = secuencia.length();
-        int minimo = 1;
-        int periodo = 0;
-        int i = 0;
-        int j = minimo;
-        boolean repetir = false;
-        boolean salir = false;
-        int h = 0;
-
-        while (minimo < longitud / 2 && !salir) {
-            while (j < longitud && !repetir) {
-                if (secuencia.charAt(i) != secuencia.charAt(j)) {
-                    repetir = true;
+        boolean iguales = true, salir = false;
+        
+        for (int grupo = 1; grupo <= secuencia.length()/2 && !salir; grupo++) {
+            for (int indParPer = 0; indParPer < grupo && iguales; indParPer++) {
+                for (int indParCom = indParPer + grupo; indParCom < secuencia.length() && iguales; indParCom+=grupo) {
+                    if (secuencia.charAt(indParPer) != secuencia.charAt(indParCom)) {
+                        iguales = false;
+                    }
                 }
-                if (i == minimo) {
-                    periodo = i;
-                }
-                i++;
-                j++;
-
             }
-            if (!repetir) {
+            if (!iguales) { iguales = true; }
+            else { 
                 salir = true;
+                longitudPeriodo = grupo;
             }
-            h++;
-            minimo += 1;
-            i = 0;
-            j = minimo;
-            repetir = false;
         }
-
-        if (salir) {
-            longitudPeriodo = periodo;
-        }
+        
         return longitudPeriodo;
+    }
+
+    public static String lfsr(String polinomio, String sucesion) {
+        String salida = sucesion;
+        
+        
+        return salida;
     }
 }

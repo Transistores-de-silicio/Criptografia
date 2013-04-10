@@ -34,6 +34,18 @@ public class Interfaz extends javax.swing.JFrame {
         titulo2Periodicidad = new javax.swing.JLabel();
         sucesionPeriodicidad = new javax.swing.JTextField();
         aceptarPeriodicidad = new javax.swing.JButton();
+        comentarioPeriodicidad = new javax.swing.JLabel();
+        lfsr = new javax.swing.JPanel();
+        tituloLFSR = new javax.swing.JLabel();
+        comentario1PolinomioLFSR = new javax.swing.JLabel();
+        comentario2LPolinomioFSR = new javax.swing.JLabel();
+        polinomioLFSR = new javax.swing.JTextField();
+        cometarioSucesionLFSR = new javax.swing.JLabel();
+        sucesionLFSR = new javax.swing.JTextField();
+        comentarioSolucionLFSR = new javax.swing.JLabel();
+        solucionLFSR = new javax.swing.JTextField();
+        aceptarLFSR = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -50,6 +62,8 @@ public class Interfaz extends javax.swing.JFrame {
                 aceptarPeriodicidadActionPerformed(evt);
             }
         });
+
+        comentarioPeriodicidad.setText("Introduzca la secuencia de 1s y 0s:");
 
         javax.swing.GroupLayout periodicidadLayout = new javax.swing.GroupLayout(periodicidad);
         periodicidad.setLayout(periodicidadLayout);
@@ -70,8 +84,10 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(159, 159, 159))))
             .addGroup(periodicidadLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(sucesionPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comentarioPeriodicidad)
+                    .addComponent(sucesionPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 27, Short.MAX_VALUE))
         );
         periodicidadLayout.setVerticalGroup(
             periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,14 +96,103 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(titulo1Periodicidad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo2Periodicidad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(comentarioPeriodicidad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sucesionPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(aceptarPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
 
         panel.addTab("Periodicidad", periodicidad);
+
+        tituloLFSR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tituloLFSR.setText("LFSR");
+
+        comentario1PolinomioLFSR.setText("Introduce los grados del polinomio separados por comas:");
+
+        comentario2LPolinomioFSR.setText("(Ej. 5,4,3 para el polinomio D^5+D^4+D^3+1)");
+
+        polinomioLFSR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                polinomioLFSRActionPerformed(evt);
+            }
+        });
+
+        cometarioSucesionLFSR.setText("Introduce la sucesion de 0s y 1s:");
+
+        comentarioSolucionLFSR.setText("La solucion es:");
+
+        solucionLFSR.setEditable(false);
+
+        aceptarLFSR.setText("Aceptar");
+        aceptarLFSR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarLFSRActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Donde guardar el resultado");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout lfsrLayout = new javax.swing.GroupLayout(lfsr);
+        lfsr.setLayout(lfsrLayout);
+        lfsrLayout.setHorizontalGroup(
+            lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lfsrLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comentarioSolucionLFSR)
+                    .addComponent(solucionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(lfsrLayout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(tituloLFSR))
+                    .addGroup(lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(comentario2LPolinomioFSR)
+                        .addComponent(comentario1PolinomioLFSR)
+                        .addComponent(polinomioLFSR)
+                        .addComponent(cometarioSucesionLFSR)
+                        .addComponent(sucesionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lfsrLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(aceptarLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(66, 66, 66))
+        );
+        lfsrLayout.setVerticalGroup(
+            lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lfsrLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tituloLFSR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comentario1PolinomioLFSR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comentario2LPolinomioFSR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(polinomioLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cometarioSucesionLFSR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sucesionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comentarioSolucionLFSR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(solucionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aceptarLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        panel.addTab("LFSR", lfsr);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +211,7 @@ public class Interfaz extends javax.swing.JFrame {
     private void aceptarPeriodicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarPeriodicidadActionPerformed
         String sucesion = sucesionPeriodicidad.getText();
         if (sucesion.matches("[01]+")) {
-            Integer longitud = Funciones.periodo(sucesion);
+            Integer longitud = Funciones.comprobarPeriocidad(sucesion);
             if (longitud == null) {
                 JOptionPane.showMessageDialog(null, "No es una sucesion periodica",
                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -119,6 +224,29 @@ public class Interfaz extends javax.swing.JFrame {
                         "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_aceptarPeriodicidadActionPerformed
+
+    private void polinomioLFSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polinomioLFSRActionPerformed
+        
+    }//GEN-LAST:event_polinomioLFSRActionPerformed
+
+    private void aceptarLFSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarLFSRActionPerformed
+        String polinomio = polinomioLFSR.getText();
+        String sucesion = sucesionLFSR.getText();
+        if (!polinomio.matches("[0-9]+(,[0-9]+)*")){
+            JOptionPane.showMessageDialog(null, "No es un polinomio valido",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!sucesion.matches("[01]+")) {
+            JOptionPane.showMessageDialog(null, "No es una sucesion de 0s y 1s",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String sucesionPseudoAleatoria = Funciones.lfsr(polinomio, sucesion);
+            solucionLFSR.setText(sucesionPseudoAleatoria);
+        }
+    }//GEN-LAST:event_aceptarLFSRActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,11 +284,23 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptarLFSR;
     private javax.swing.JButton aceptarPeriodicidad;
+    private javax.swing.JLabel comentario1PolinomioLFSR;
+    private javax.swing.JLabel comentario2LPolinomioFSR;
+    private javax.swing.JLabel comentarioPeriodicidad;
+    private javax.swing.JLabel comentarioSolucionLFSR;
+    private javax.swing.JLabel cometarioSucesionLFSR;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel lfsr;
     private javax.swing.JTabbedPane panel;
     private javax.swing.JPanel periodicidad;
+    private javax.swing.JTextField polinomioLFSR;
+    private javax.swing.JTextField solucionLFSR;
+    private javax.swing.JTextField sucesionLFSR;
     private javax.swing.JTextField sucesionPeriodicidad;
     private javax.swing.JLabel titulo1Periodicidad;
     private javax.swing.JLabel titulo2Periodicidad;
+    private javax.swing.JLabel tituloLFSR;
     // End of variables declaration//GEN-END:variables
 }
