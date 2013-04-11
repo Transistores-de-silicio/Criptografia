@@ -4,8 +4,6 @@
  */
 package crip_p2;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Carlos Basso
@@ -36,7 +34,26 @@ public class Funciones {
 
     public static String lfsr(String polinomio, String sucesion) {
         String salida = sucesion;
+        String[] pol = polinomio.trim().split(",");
+        int[] polComp = new int[sucesion.length()];
+        boolean primero = true;
+        for (String in : pol) {
+            if (!primero) {
+                polComp[Integer.parseInt(in)] = 1;
+            } else {
+                primero = false;
+                polComp[0] = 1;
+            }
+        }
+        Integer suma = 0;
         
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < sucesion.length(); j++) {
+                suma += polComp[j]*Integer.parseInt(String.valueOf(salida.charAt(i+j)));
+            }
+            salida = salida.concat(String.valueOf(suma%2));
+            suma = 0;
+        }
         
         return salida;
     }

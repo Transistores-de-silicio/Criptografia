@@ -4,6 +4,8 @@
  */
 package crip_p2;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,7 +13,8 @@ import javax.swing.JOptionPane;
  * @author Alex
  */
 public class Interfaz extends javax.swing.JFrame {
-
+    int contadorFicheros = 1;
+    
     /**
      * Creates new form Interfaz
      */
@@ -45,7 +48,6 @@ public class Interfaz extends javax.swing.JFrame {
         comentarioSolucionLFSR = new javax.swing.JLabel();
         solucionLFSR = new javax.swing.JTextField();
         aceptarLFSR = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -133,38 +135,30 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Donde guardar el resultado");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout lfsrLayout = new javax.swing.GroupLayout(lfsr);
         lfsr.setLayout(lfsrLayout);
         lfsrLayout.setHorizontalGroup(
             lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lfsrLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
                 .addGroup(lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comentarioSolucionLFSR)
-                    .addComponent(solucionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(lfsrLayout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(tituloLFSR))
-                    .addGroup(lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(comentario2LPolinomioFSR)
-                        .addComponent(comentario1PolinomioLFSR)
-                        .addComponent(polinomioLFSR)
-                        .addComponent(cometarioSucesionLFSR)
-                        .addComponent(sucesionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(41, 41, 41)
+                        .addGroup(lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comentarioSolucionLFSR)
+                            .addComponent(solucionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(lfsrLayout.createSequentialGroup()
+                                .addGap(137, 137, 137)
+                                .addComponent(tituloLFSR))
+                            .addGroup(lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(comentario2LPolinomioFSR)
+                                .addComponent(comentario1PolinomioLFSR)
+                                .addComponent(polinomioLFSR)
+                                .addComponent(cometarioSucesionLFSR)
+                                .addComponent(sucesionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(lfsrLayout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(aceptarLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lfsrLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(aceptarLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(66, 66, 66))
         );
         lfsrLayout.setVerticalGroup(
             lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,9 +180,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(solucionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(lfsrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(aceptarLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(aceptarLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -241,12 +233,28 @@ public class Interfaz extends javax.swing.JFrame {
         } else {
             String sucesionPseudoAleatoria = Funciones.lfsr(polinomio, sucesion);
             solucionLFSR.setText(sucesionPseudoAleatoria);
+            FileWriter fichero = null;
+            PrintWriter pw;
+            try {
+                fichero = new FileWriter("lfsr" + contadorFicheros + ".txt");
+                pw = new PrintWriter(fichero);
+                pw.println(sucesionPseudoAleatoria);
+                contadorFicheros++;
+                JOptionPane.showMessageDialog(null, "Fichero guardado en: " + System.getProperty("user.dir"),
+                        "OK", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se ha podido guardar el fichero: " +e.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try {
+                    fichero.close();
+                } catch (Exception e2) {
+                    JOptionPane.showMessageDialog(null, "No se ha podido cerrar el fichero: " + e2.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
     }//GEN-LAST:event_aceptarLFSRActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,7 +299,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel comentarioPeriodicidad;
     private javax.swing.JLabel comentarioSolucionLFSR;
     private javax.swing.JLabel cometarioSucesionLFSR;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel lfsr;
     private javax.swing.JTabbedPane panel;
     private javax.swing.JPanel periodicidad;
