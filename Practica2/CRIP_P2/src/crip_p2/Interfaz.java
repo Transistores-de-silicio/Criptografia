@@ -82,6 +82,8 @@ public class Interfaz extends javax.swing.JFrame {
         multipFunMezcla = new javax.swing.JRadioButton();
         aceptarFunMezcla = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        SecuenciaPostulados = new java.awt.TextField();
+        ComprobarPostulados = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -451,15 +453,39 @@ public class Interfaz extends javax.swing.JFrame {
 
         panel.addTab("Función de mezcla", funMezcla);
 
+        SecuenciaPostulados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SecuenciaPostuladosActionPerformed(evt);
+            }
+        });
+
+        ComprobarPostulados.setActionCommand("button");
+        ComprobarPostulados.setLabel("Comprobar");
+        ComprobarPostulados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComprobarPostuladosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(194, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ComprobarPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SecuenciaPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(116, 116, 116))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(SecuenciaPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(ComprobarPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         panel.addTab("Postulados de Golomb", jPanel3);
@@ -672,6 +698,17 @@ public class Interfaz extends javax.swing.JFrame {
         else { multipFunMezcla.setSelected(true); }
     }//GEN-LAST:event_multipFunMezclaActionPerformed
 
+    private void SecuenciaPostuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SecuenciaPostuladosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SecuenciaPostuladosActionPerformed
+
+    private void ComprobarPostuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarPostuladosActionPerformed
+        if(!Funciones.postulado1(SecuenciaPostulados.getText())){
+            JOptionPane.showMessageDialog(null, "no cumple el primer postulado" ,
+                        "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_ComprobarPostuladosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -708,6 +745,8 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button ComprobarPostulados;
+    private java.awt.TextField SecuenciaPostulados;
     private javax.swing.JButton aceptarCompLin;
     private javax.swing.JButton aceptarFunMezcla;
     private javax.swing.JButton aceptarLFSR;

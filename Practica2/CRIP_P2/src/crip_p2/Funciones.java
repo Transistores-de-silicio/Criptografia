@@ -91,7 +91,8 @@ public class Funciones {
         return null;
     
     }
-    private static boolean postulado1(String sucesion) {
+   
+    public static boolean postulado1(String sucesion) {
         int unos = 0, ceros = 0;
         boolean salida;
         /*
@@ -114,7 +115,7 @@ public class Funciones {
         return salida;
                 }
 
-    private static boolean postulado2(String sucesion) {
+    public static boolean postulado2(String sucesion) {
         boolean salida = false;
         ArrayList<Integer> rachas = new ArrayList<Integer>();
         int periodo;
