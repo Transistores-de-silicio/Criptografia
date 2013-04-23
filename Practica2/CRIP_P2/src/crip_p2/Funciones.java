@@ -125,6 +125,7 @@ public class Funciones {
                 }
             }
         }
+    }
 
     private static boolean postulado1(String sucesion, int periodo) {
         int unos = 0, ceros = 0;
@@ -152,9 +153,9 @@ public class Funciones {
     }
 
     private static boolean postulado2(String sucesion, Integer periodo) {
-        boolean salida = false;
+        boolean salida;
         ArrayList<Integer> rachas = new ArrayList<Integer>();
-        char simbolo = sucesion.charAt(0);
+        char simbolo;
         for (int j = 0, cont = 0; j < periodo; j++) {
             //problema en el principio de la cadena
 

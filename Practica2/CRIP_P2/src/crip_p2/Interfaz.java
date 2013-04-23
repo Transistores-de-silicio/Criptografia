@@ -165,7 +165,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(titulo1Periodicidad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo2Periodicidad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(comentarioPeriodicidad1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
@@ -249,7 +249,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(solucionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(aceptarLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         panel.addTab("LFSR", lfsr);
@@ -335,7 +335,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(titulo1CompLin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo2CompLin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(comentario1CompLin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
@@ -450,7 +450,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(multipFunMezcla))
                 .addGap(18, 18, 18)
                 .addComponent(aceptarFunMezcla, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         panel.addTab("Función de mezcla", funMezcla);
