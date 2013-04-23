@@ -12,14 +12,14 @@ import java.util.*;
  */
 public class Funciones {
 
-    public static Integer comprobarPeriocidad(String secuencia) {
+    public static Integer comprobarPeriocidad(String sucesion) {
         Integer longitudPeriodo = null;
         boolean iguales = true, salir = false;
 
         for (int grupo = 1; grupo <= secuencia.length() / 2 && !salir; grupo++) {
             for (int indParPer = 0; indParPer < grupo && iguales; indParPer++) {
                 for (int indParCom = indParPer + grupo; indParCom < secuencia.length() && iguales; indParCom += grupo) {
-                    if (secuencia.charAt(indParPer) != secuencia.charAt(indParCom)) {
+                    if (sucesion.charAt(indParPer) != sucesion.charAt(indParCom)) {
                         iguales = false;
                     }
                 }
@@ -61,6 +61,35 @@ public class Funciones {
         return salida;
     }
 
+    public static Integer complejidadLineal(String sucesion) {
+        final int longitudSucesion = sucesion.length();
+        int[] b = new int[longitudSucesion], c = new int[longitudSucesion], t = new int[longitudSucesion];
+        b[0] = c[0] = 1;
+        int resultado = 0, m = -1, d, N_M;
+        for (int n = 0; n < longitudSucesion; n++) {
+            d = 0;
+            for (int i = 0; i <= resultado; i++) {
+                d ^= c[i] * Integer.parseInt(String.valueOf(sucesion.charAt(n - i)));
+            }
+            if (d == 1) {
+                System.arraycopy(c, 0, t, 0, longitudSucesion);
+                N_M = n - m;
+                for (int j = 0; j < longitudSucesion - N_M; j++) {
+                    c[N_M + j] ^= b[j];
+                }
+                if (resultado <= n / 2) {
+                    resultado = n + 1 - resultado;
+                    m = n;
+                    System.arraycopy(t, 0, b, 0, longitudSucesion);
+                }
+            }
+        }
+        return resultado;
+    }
+
+    public static String funcionDeMezcla(String[] sucesiones) {
+        return null;
+    
     private static boolean postulado1(String sucesion) {
         int unos = 0, ceros = 0;
         boolean salida;

@@ -4,8 +4,14 @@
  */
 package crip_p2;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class Interfaz extends javax.swing.JFrame {
     int contadorFicheros = 1;
+    JFileChooser chooser = new JFileChooser();
     
     /**
      * Creates new form Interfaz
@@ -37,7 +44,11 @@ public class Interfaz extends javax.swing.JFrame {
         titulo2Periodicidad = new javax.swing.JLabel();
         sucesionPeriodicidad = new javax.swing.JTextField();
         aceptarPeriodicidad = new javax.swing.JButton();
-        comentarioPeriodicidad = new javax.swing.JLabel();
+        comentarioPeriodicidad2 = new javax.swing.JLabel();
+        comentarioPeriodicidad1 = new javax.swing.JLabel();
+        archivoPeriodicidad = new javax.swing.JTextField();
+        buscarPeriodicidad = new javax.swing.JButton();
+        descartarFicheroPeriodicidad = new javax.swing.JButton();
         lfsr = new javax.swing.JPanel();
         tituloLFSR = new javax.swing.JLabel();
         comentario1PolinomioLFSR = new javax.swing.JLabel();
@@ -48,6 +59,29 @@ public class Interfaz extends javax.swing.JFrame {
         comentarioSolucionLFSR = new javax.swing.JLabel();
         solucionLFSR = new javax.swing.JTextField();
         aceptarLFSR = new javax.swing.JButton();
+        compLin = new javax.swing.JPanel();
+        titulo1CompLin = new javax.swing.JLabel();
+        titulo2CompLin = new javax.swing.JLabel();
+        comentario1CompLin = new javax.swing.JLabel();
+        archivoCompLin = new javax.swing.JTextField();
+        buscarCompLin = new javax.swing.JButton();
+        descartarFicheroCompLin = new javax.swing.JButton();
+        sucesionCompLin = new javax.swing.JTextField();
+        comentario2CompLin = new javax.swing.JLabel();
+        aceptarCompLin = new javax.swing.JButton();
+        comentario3CompLin = new javax.swing.JLabel();
+        solucionCompLin = new javax.swing.JTextField();
+        funMezcla = new javax.swing.JPanel();
+        titulo1FunMezcla = new javax.swing.JLabel();
+        titulo2FunMezcla = new javax.swing.JLabel();
+        archivoFunMezcla = new javax.swing.JTextField();
+        comentario1FunMezcla = new javax.swing.JLabel();
+        buscarFunMezcla = new javax.swing.JButton();
+        comentario2FunMezcla = new javax.swing.JLabel();
+        sumaFunMezcla = new javax.swing.JRadioButton();
+        multipFunMezcla = new javax.swing.JRadioButton();
+        aceptarFunMezcla = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -65,46 +99,82 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        comentarioPeriodicidad.setText("Introduzca la secuencia de 1s y 0s:");
+        comentarioPeriodicidad2.setText("O introduzca la sucesión de 1s y 0s:");
+
+        comentarioPeriodicidad1.setText("Busque el fichero donde se encuentra la sucesión de bits:");
+
+        archivoPeriodicidad.setEditable(false);
+
+        buscarPeriodicidad.setText("Buscar");
+        buscarPeriodicidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarPeriodicidadActionPerformed(evt);
+            }
+        });
+
+        descartarFicheroPeriodicidad.setText("Descartar");
+        descartarFicheroPeriodicidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descartarFicheroPeriodicidadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout periodicidadLayout = new javax.swing.GroupLayout(periodicidad);
         periodicidad.setLayout(periodicidadLayout);
         periodicidadLayout.setHorizontalGroup(
             periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, periodicidadLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, periodicidadLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(archivoPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarPeriodicidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(descartarFicheroPeriodicidad))
+                    .addComponent(sucesionPeriodicidad, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(periodicidadLayout.createSequentialGroup()
+                        .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comentarioPeriodicidad2)
+                            .addComponent(comentarioPeriodicidad1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(27, 27, 27))
+            .addGroup(periodicidadLayout.createSequentialGroup()
+                .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(periodicidadLayout.createSequentialGroup()
+                        .addGap(103, 103, 103)
                         .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titulo1Periodicidad)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, periodicidadLayout.createSequentialGroup()
                                 .addComponent(titulo2Periodicidad)
-                                .addGap(18, 18, 18)))
-                        .addGap(104, 104, 104))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, periodicidadLayout.createSequentialGroup()
-                        .addComponent(aceptarPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(159, 159, 159))))
-            .addGroup(periodicidadLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comentarioPeriodicidad)
-                    .addComponent(sucesionPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 27, Short.MAX_VALUE))
+                                .addGap(18, 18, 18))))
+                    .addGroup(periodicidadLayout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(aceptarPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         periodicidadLayout.setVerticalGroup(
             periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(periodicidadLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
                 .addComponent(titulo1Periodicidad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo2Periodicidad)
-                .addGap(31, 31, 31)
-                .addComponent(comentarioPeriodicidad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(comentarioPeriodicidad1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(archivoPeriodicidad, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(buscarPeriodicidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(descartarFicheroPeriodicidad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comentarioPeriodicidad2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sucesionPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(aceptarPeriodicidad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(39, 39, 39))
         );
 
         panel.addTab("Periodicidad", periodicidad);
@@ -115,12 +185,6 @@ public class Interfaz extends javax.swing.JFrame {
         comentario1PolinomioLFSR.setText("Introduce los grados del polinomio separados por comas:");
 
         comentario2LPolinomioFSR.setText("(Ej. 5,4,3 para el polinomio D^5+D^4+D^3+1)");
-
-        polinomioLFSR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                polinomioLFSRActionPerformed(evt);
-            }
-        });
 
         cometarioSucesionLFSR.setText("Introduce la sucesion de 0s y 1s:");
 
@@ -186,6 +250,220 @@ public class Interfaz extends javax.swing.JFrame {
 
         panel.addTab("LFSR", lfsr);
 
+        titulo1CompLin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        titulo1CompLin.setText("Complejidad lineal de una");
+
+        titulo2CompLin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        titulo2CompLin.setText("sucesión de bits");
+
+        comentario1CompLin.setText("Busque el fichero donde se encuentra la sucesión de bits:");
+
+        archivoCompLin.setEditable(false);
+
+        buscarCompLin.setText("Buscar");
+        buscarCompLin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarCompLinActionPerformed(evt);
+            }
+        });
+
+        descartarFicheroCompLin.setText("Descartar");
+        descartarFicheroCompLin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descartarFicheroCompLinActionPerformed(evt);
+            }
+        });
+
+        comentario2CompLin.setText("O introduzca la sucesión de 1s y 0s:");
+
+        aceptarCompLin.setText("Aceptar");
+        aceptarCompLin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarCompLinActionPerformed(evt);
+            }
+        });
+
+        comentario3CompLin.setText("Complejidad:");
+
+        solucionCompLin.setEditable(false);
+
+        javax.swing.GroupLayout compLinLayout = new javax.swing.GroupLayout(compLin);
+        compLin.setLayout(compLinLayout);
+        compLinLayout.setHorizontalGroup(
+            compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(compLinLayout.createSequentialGroup()
+                .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(compLinLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(titulo1CompLin))
+                    .addGroup(compLinLayout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(titulo2CompLin)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, compLinLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(compLinLayout.createSequentialGroup()
+                        .addComponent(comentario3CompLin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(solucionCompLin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(aceptarCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(compLinLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(archivoCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarCompLin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(descartarFicheroCompLin))
+                    .addComponent(sucesionCompLin)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, compLinLayout.createSequentialGroup()
+                        .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comentario2CompLin)
+                            .addComponent(comentario1CompLin))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(27, 27, 27))
+        );
+        compLinLayout.setVerticalGroup(
+            compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(compLinLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titulo1CompLin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(titulo2CompLin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(comentario1CompLin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(archivoCompLin, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(buscarCompLin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(descartarFicheroCompLin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comentario2CompLin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sucesionCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aceptarCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comentario3CompLin)
+                    .addComponent(solucionCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
+        );
+
+        panel.addTab("Complejidad lineal", compLin);
+
+        titulo1FunMezcla.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        titulo1FunMezcla.setText("Función de mezcla de dos o más");
+
+        titulo2FunMezcla.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        titulo2FunMezcla.setText("sucesiones de bits");
+
+        archivoFunMezcla.setEditable(false);
+
+        comentario1FunMezcla.setText("Busque el fichero donde se encuentra la sucesión de bits:");
+
+        buscarFunMezcla.setText("Buscar");
+        buscarFunMezcla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarFunMezclaActionPerformed(evt);
+            }
+        });
+
+        comentario2FunMezcla.setText("Función a realizar:");
+
+        sumaFunMezcla.setText("Suma");
+        sumaFunMezcla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumaFunMezclaActionPerformed(evt);
+            }
+        });
+
+        multipFunMezcla.setText("Multiplicación");
+        multipFunMezcla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multipFunMezclaActionPerformed(evt);
+            }
+        });
+
+        aceptarFunMezcla.setText("Aceptar");
+        aceptarFunMezcla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarFunMezclaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout funMezclaLayout = new javax.swing.GroupLayout(funMezcla);
+        funMezcla.setLayout(funMezclaLayout);
+        funMezclaLayout.setHorizontalGroup(
+            funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(funMezclaLayout.createSequentialGroup()
+                .addGroup(funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(funMezclaLayout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(titulo2FunMezcla))
+                    .addGroup(funMezclaLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(titulo1FunMezcla))
+                    .addGroup(funMezclaLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comentario1FunMezcla)
+                            .addComponent(comentario2FunMezcla)
+                            .addGroup(funMezclaLayout.createSequentialGroup()
+                                .addGroup(funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(funMezclaLayout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(sumaFunMezcla)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(multipFunMezcla))
+                                    .addComponent(archivoFunMezcla, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buscarFunMezcla)))))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, funMezclaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(aceptarFunMezcla, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(155, 155, 155))
+        );
+        funMezclaLayout.setVerticalGroup(
+            funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(funMezclaLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(titulo1FunMezcla)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(titulo2FunMezcla)
+                .addGap(18, 18, 18)
+                .addComponent(comentario1FunMezcla)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(archivoFunMezcla, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(buscarFunMezcla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(comentario2FunMezcla)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sumaFunMezcla)
+                    .addComponent(multipFunMezcla))
+                .addGap(18, 18, 18)
+                .addComponent(aceptarFunMezcla, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        panel.addTab("Función de mezcla", funMezcla);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 415, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 296, Short.MAX_VALUE)
+        );
+
+        panel.addTab("Postulados de Golomb", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,32 +472,46 @@ public class Interfaz extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void aceptarPeriodicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarPeriodicidadActionPerformed
-        String sucesion = sucesionPeriodicidad.getText();
+        String sucesion = "";
+        if (archivoPeriodicidad.getText().isEmpty()) {
+            sucesion = sucesionPeriodicidad.getText();
+        } else {
+            FileReader f;
+            try {
+                f = new FileReader(chooser.getSelectedFile());
+                int caracter = f.read();
+                while(caracter != -1) {
+                    sucesion += String.valueOf((char) caracter);
+                    caracter = f.read();
+                }
+                sucesion = sucesion.replaceAll("[ \\t\\n\\x0B\\f\\r]", "");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         if (sucesion.matches("[01]+")) {
             Integer longitud = Funciones.comprobarPeriocidad(sucesion);
             if (longitud == null) {
-                JOptionPane.showMessageDialog(null, "No es una sucesion periodica",
+                JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion periodica",
                         "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Es una sucesión periodica de periodo " + longitud,
                         "Error", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "No es una sucesion de 0s y 1s",
+            JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion de 0s y 1s",
                         "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_aceptarPeriodicidadActionPerformed
-
-    private void polinomioLFSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polinomioLFSRActionPerformed
-        
-    }//GEN-LAST:event_polinomioLFSRActionPerformed
 
     private void aceptarLFSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarLFSRActionPerformed
         String polinomio = polinomioLFSR.getText();
@@ -238,9 +530,9 @@ public class Interfaz extends javax.swing.JFrame {
             try {
                 fichero = new FileWriter("lfsr" + contadorFicheros + ".txt");
                 pw = new PrintWriter(fichero);
-                pw.println(sucesionPseudoAleatoria);
+                pw.print(sucesionPseudoAleatoria);
                 contadorFicheros++;
-                JOptionPane.showMessageDialog(null, "Fichero guardado en: " + System.getProperty("user.dir"),
+                JOptionPane.showMessageDialog(null, "Solucion guardada en: " + System.getProperty("user.dir"),
                         "OK", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "No se ha podido guardar el fichero: " +e.getMessage(),
@@ -255,6 +547,130 @@ public class Interfaz extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_aceptarLFSRActionPerformed
+
+    private void buscarPeriodicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPeriodicidadActionPerformed
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            archivoPeriodicidad.setText(chooser.getSelectedFile().getPath());
+            sucesionPeriodicidad.setEnabled(false);
+            comentarioPeriodicidad2.setEnabled(false);            
+       }
+    }//GEN-LAST:event_buscarPeriodicidadActionPerformed
+
+    private void descartarFicheroPeriodicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartarFicheroPeriodicidadActionPerformed
+        sucesionPeriodicidad.setEnabled(true);
+        comentarioPeriodicidad2.setEnabled(true);  
+        archivoPeriodicidad.setText("");
+    }//GEN-LAST:event_descartarFicheroPeriodicidadActionPerformed
+
+    private void buscarCompLinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarCompLinActionPerformed
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            archivoCompLin.setText(chooser.getSelectedFile().getPath());
+            sucesionCompLin.setEnabled(false);
+            comentario2CompLin.setEnabled(false);            
+       }
+    }//GEN-LAST:event_buscarCompLinActionPerformed
+
+    private void descartarFicheroCompLinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartarFicheroCompLinActionPerformed
+        sucesionCompLin.setEnabled(true);
+        comentario2CompLin.setEnabled(true);  
+        archivoCompLin.setText("");
+    }//GEN-LAST:event_descartarFicheroCompLinActionPerformed
+
+    private void aceptarCompLinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarCompLinActionPerformed
+        String sucesion = "";
+        if (archivoCompLin.getText().isEmpty()) {
+            sucesion = sucesionCompLin.getText();
+        } else {
+            FileReader f;
+            try {
+                f = new FileReader(chooser.getSelectedFile());
+                int caracter = f.read();
+                while(caracter != -1) {
+                    sucesion += String.valueOf((char) caracter);
+                    caracter = f.read();
+                }
+                sucesion = sucesion.replaceAll("[ \\t\\n\\x0B\\f\\r]", "");
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (sucesion.matches("[01]+") && Funciones.comprobarPeriocidad(sucesion) != null) {
+            Integer compLineal = Funciones.complejidadLineal(sucesion);
+            solucionCompLin.setText(compLineal.toString());
+        } else {
+            JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion de 0s y 1s o no es periodica",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_aceptarCompLinActionPerformed
+
+    private void buscarFunMezclaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFunMezclaActionPerformed
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            archivoFunMezcla.setText(chooser.getSelectedFile().getPath());
+       }
+    }//GEN-LAST:event_buscarFunMezclaActionPerformed
+
+    private void aceptarFunMezclaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarFunMezclaActionPerformed
+        String sucesion = "";
+        String[] sucesionesSinTratar = null, sucesiones = null;
+        FileReader f;
+        try {
+            f = new FileReader(chooser.getSelectedFile());
+            int caracter = f.read();
+            while(caracter != -1) {
+                sucesion += String.valueOf((char) caracter);
+                caracter = f.read();
+            }
+            sucesion = sucesion.replaceAll("[ \\t\\x0B\\f\\r]", "");
+            sucesionesSinTratar = sucesion.split("\\n");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int numSucTot = 0, numSuc = 0;
+        boolean error = false;
+        while (numSucTot < sucesionesSinTratar.length && !error) {
+            if (sucesionesSinTratar[numSucTot].matches("[01]+")) {
+                Integer longitud = Funciones.comprobarPeriocidad(sucesion);
+                if (longitud == null) {
+                    
+                } else {
+                    sucesiones[numSuc] = sucesionesSinTratar[numSucTot];
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Hay un error en la " + numSucTot +
+                        "a sucesion intorducida", "Error", JOptionPane.ERROR_MESSAGE);
+                error = true;
+            }
+            numSucTot++;
+        }
+        
+        
+        
+        Integer longitud = Funciones.comprobarPeriocidad(sucesion);
+            if (longitud == null) {
+                JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion periodica",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Es una sucesión periodica de periodo " + longitud,
+                        "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+    }//GEN-LAST:event_aceptarFunMezclaActionPerformed
+
+    private void sumaFunMezclaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaFunMezclaActionPerformed
+        if (sumaFunMezcla.isSelected()) { multipFunMezcla.setSelected(false); }
+        else { sumaFunMezcla.setSelected(true); }
+    }//GEN-LAST:event_sumaFunMezclaActionPerformed
+
+    private void multipFunMezclaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multipFunMezclaActionPerformed
+        if (multipFunMezcla.isSelected()) { sumaFunMezcla.setSelected(false); }
+        else { multipFunMezcla.setSelected(true); }
+    }//GEN-LAST:event_multipFunMezclaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,21 +708,48 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptarCompLin;
+    private javax.swing.JButton aceptarFunMezcla;
     private javax.swing.JButton aceptarLFSR;
     private javax.swing.JButton aceptarPeriodicidad;
+    private javax.swing.JTextField archivoCompLin;
+    private javax.swing.JTextField archivoFunMezcla;
+    private javax.swing.JTextField archivoPeriodicidad;
+    private javax.swing.JButton buscarCompLin;
+    private javax.swing.JButton buscarFunMezcla;
+    private javax.swing.JButton buscarPeriodicidad;
+    private javax.swing.JLabel comentario1CompLin;
+    private javax.swing.JLabel comentario1FunMezcla;
     private javax.swing.JLabel comentario1PolinomioLFSR;
+    private javax.swing.JLabel comentario2CompLin;
+    private javax.swing.JLabel comentario2FunMezcla;
     private javax.swing.JLabel comentario2LPolinomioFSR;
-    private javax.swing.JLabel comentarioPeriodicidad;
+    private javax.swing.JLabel comentario3CompLin;
+    private javax.swing.JLabel comentarioPeriodicidad1;
+    private javax.swing.JLabel comentarioPeriodicidad2;
     private javax.swing.JLabel comentarioSolucionLFSR;
     private javax.swing.JLabel cometarioSucesionLFSR;
+    private javax.swing.JPanel compLin;
+    private javax.swing.JButton descartarFicheroCompLin;
+    private javax.swing.JButton descartarFicheroPeriodicidad;
+    private javax.swing.JPanel funMezcla;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel lfsr;
+    private javax.swing.JRadioButton multipFunMezcla;
     private javax.swing.JTabbedPane panel;
     private javax.swing.JPanel periodicidad;
     private javax.swing.JTextField polinomioLFSR;
+    private javax.swing.JTextField solucionCompLin;
     private javax.swing.JTextField solucionLFSR;
+    private javax.swing.JTextField sucesionCompLin;
     private javax.swing.JTextField sucesionLFSR;
     private javax.swing.JTextField sucesionPeriodicidad;
+    private javax.swing.JRadioButton sumaFunMezcla;
+    private javax.swing.JLabel titulo1CompLin;
+    private javax.swing.JLabel titulo1FunMezcla;
     private javax.swing.JLabel titulo1Periodicidad;
+    private javax.swing.JLabel titulo2CompLin;
+    private javax.swing.JLabel titulo2FunMezcla;
     private javax.swing.JLabel titulo2Periodicidad;
     private javax.swing.JLabel tituloLFSR;
     // End of variables declaration//GEN-END:variables
