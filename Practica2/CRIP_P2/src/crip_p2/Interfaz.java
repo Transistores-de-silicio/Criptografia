@@ -703,9 +703,30 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_SecuenciaPostuladosActionPerformed
 
     private void ComprobarPostuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarPostuladosActionPerformed
-        if(!Funciones.postulado1(SecuenciaPostulados.getText())){
-            JOptionPane.showMessageDialog(null, "no cumple el primer postulado" ,
+        String sucuencia=SecuenciaPostulados.getText();
+        Integer periodo = Funciones.comprobarPeriocidad(sucuencia);
+        if(periodo==null){
+            JOptionPane.showMessageDialog(null, "No es una secuencia periodica" ,
                         "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
+        boolean bandera=true;
+        String cadenaError="";
+        boolean[] postulados=Funciones.golomb(sucuencia,periodo);
+        if(!postulados[0]){
+            cadenaError+="No cumple el primer postulado\n";
+            bandera=false;
+        }
+        if(!postulados[1]){
+            cadenaError+="No cumple el segundo postulado\n";
+            bandera=false;
+        }
+        
+        if(bandera){
+            JOptionPane.showMessageDialog(null, "Se cumplen todos los postulados es una cadena pn-secuencia" ,
+                        "Pstulados", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, cadenaError ,
+                        "Pstulados", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_ComprobarPostuladosActionPerformed
 

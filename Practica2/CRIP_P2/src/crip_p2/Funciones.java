@@ -92,7 +92,7 @@ public class Funciones {
     
     }
    
-    public static boolean postulado1(String sucesion) {
+    private static boolean postulado1(String sucesion) {
         int unos = 0, ceros = 0;
         boolean salida;
         /*
@@ -115,11 +115,9 @@ public class Funciones {
         return salida;
                 }
 
-    public static boolean postulado2(String sucesion) {
+    private static boolean postulado2(String sucesion,Integer periodo) {
         boolean salida = false;
         ArrayList<Integer> rachas = new ArrayList<Integer>();
-        int periodo;
-        periodo = comprobarPeriocidad(sucesion);
         char simbolo = sucesion.charAt(0);
         for (int j = 0, cont = 0; j < periodo; j++) {
             if (j == 0) {
@@ -154,6 +152,11 @@ public class Funciones {
         return veces;
     }
 
-    public static void golomb(String sucesion) {
+    public static boolean[] golomb(String sucesion,Integer periodo) {
+        boolean postulado[]=new boolean[3];
+        postulado[0]=postulado1(sucesion);
+        postulado[1]=postulado2(sucesion,periodo);
+        postulado[2]=false;
+        return postulado;
     }
 }
