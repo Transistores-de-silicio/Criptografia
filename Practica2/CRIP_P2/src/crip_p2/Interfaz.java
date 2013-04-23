@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -164,7 +165,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(titulo1Periodicidad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo2Periodicidad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(comentarioPeriodicidad1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
@@ -248,7 +249,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(solucionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(aceptarLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         panel.addTab("LFSR", lfsr);
@@ -334,7 +335,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(titulo1CompLin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo2CompLin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(comentario1CompLin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
@@ -374,14 +375,15 @@ public class Interfaz extends javax.swing.JFrame {
 
         comentario2FunMezcla.setText("Función a realizar:");
 
-        sumaFunMezcla.setText("Suma");
+        sumaFunMezcla.setSelected(true);
+        sumaFunMezcla.setText("Suma (XOR)");
         sumaFunMezcla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sumaFunMezclaActionPerformed(evt);
             }
         });
 
-        multipFunMezcla.setText("Multiplicación");
+        multipFunMezcla.setText("Multiplicación (AND)");
         multipFunMezcla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 multipFunMezclaActionPerformed(evt);
@@ -409,19 +411,18 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(titulo1FunMezcla))
                     .addGroup(funMezclaLayout.createSequentialGroup()
                         .addGap(69, 69, 69)
-                        .addGroup(funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(comentario1FunMezcla)
                             .addComponent(comentario2FunMezcla)
                             .addGroup(funMezclaLayout.createSequentialGroup()
-                                .addGroup(funMezclaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(funMezclaLayout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addComponent(sumaFunMezcla)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(multipFunMezcla))
-                                    .addComponent(archivoFunMezcla, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(archivoFunMezcla, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buscarFunMezcla)))))
+                                .addComponent(buscarFunMezcla))
+                            .addGroup(funMezclaLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(sumaFunMezcla)
+                                .addGap(18, 18, 18)
+                                .addComponent(multipFunMezcla)))))
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, funMezclaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -449,7 +450,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(multipFunMezcla))
                 .addGap(18, 18, 18)
                 .addComponent(aceptarFunMezcla, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         panel.addTab("Función de mezcla", funMezcla);
@@ -555,7 +556,7 @@ public class Interfaz extends javax.swing.JFrame {
             FileWriter fichero = null;
             PrintWriter pw;
             try {
-                fichero = new FileWriter("lfsr" + contadorFicheros + ".txt");
+                fichero = new FileWriter("lfsr.txt", true);
                 pw = new PrintWriter(fichero);
                 pw.print(sucesionPseudoAleatoria);
                 contadorFicheros++;
@@ -643,7 +644,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void aceptarFunMezclaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarFunMezclaActionPerformed
         String sucesion = "";
-        String[] sucesionesSinTratar = null, sucesiones = null;
+        String[] sucesionesSinTratar = null, sucesiones;
+        ArrayList<String> sucesionesMemDinamica = new ArrayList<String>();
         FileReader f;
         try {
             f = new FileReader(chooser.getSelectedFile());
@@ -659,32 +661,49 @@ public class Interfaz extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int numSucTot = 0, numSuc = 0;
+        int numSuc = 0;
         boolean error = false;
-        while (numSucTot < sucesionesSinTratar.length && !error) {
-            if (sucesionesSinTratar[numSucTot].matches("[01]+")) {
-                Integer longitud = Funciones.comprobarPeriocidad(sucesion);
+        while (numSuc < sucesionesSinTratar.length && !error) {
+            if (sucesionesSinTratar[numSuc].matches("[01]+")) {
+                Integer longitud = Funciones.comprobarPeriocidad(sucesionesSinTratar[numSuc]);
                 if (longitud == null) {
+                    sucesionesMemDinamica.add(sucesionesSinTratar[numSuc] + sucesionesSinTratar[numSuc]);
                 } else {
-                    sucesiones[numSuc] = sucesionesSinTratar[numSucTot];
+                    sucesionesMemDinamica.add(sucesionesSinTratar[numSuc]);
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Hay un error en la " + numSucTot
-                        + "a sucesion intorducida", "Error", JOptionPane.ERROR_MESSAGE);
-                error = true;
-            }
-            numSucTot++;
+            } else { error = true; }
+            numSuc++;
         }
-
-
-
-        Integer longitud = Funciones.comprobarPeriocidad(sucesion);
-        if (longitud == null) {
-            JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion periodica",
+        if (!error) {
+            sucesiones = sucesionesMemDinamica.toArray(new String[sucesionesMemDinamica.size()]);
+            if (sumaFunMezcla.isSelected()) {
+                sucesion = Funciones.funcionDeMezcla(Operaciones.SUMA, sucesiones);
+            } else {
+                sucesion = Funciones.funcionDeMezcla(Operaciones.MULTIPLICACION, sucesiones);
+            }
+            FileWriter fichero = null;
+            PrintWriter pw;
+            try {
+                fichero = new FileWriter("funciones_de_mezcla.txt", true);
+                pw = new PrintWriter(fichero);
+                pw.println(sucesion);
+                contadorFicheros++;
+                JOptionPane.showMessageDialog(null, "Solucion guardada en: " + System.getProperty("user.dir"),
+                        "OK", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se ha podido guardar el fichero: " +e.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try {
+                    fichero.close();
+                } catch (Exception e2) {
+                    JOptionPane.showMessageDialog(null, "No se ha podido cerrar el fichero: " + e2.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Es una sucesión periodica de periodo " + longitud,
-                    "Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Hay un error en la " + numSuc +
+                        "a sucesion intorducida", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_aceptarFunMezclaActionPerformed
 

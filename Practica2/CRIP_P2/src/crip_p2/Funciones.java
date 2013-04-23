@@ -8,10 +8,9 @@ import java.util.*;
 
 /**
  *
- * @author Carlos Basso
+ * @author Alexander Moreno y Carlos Basso
  */
 public class Funciones {
-
     public static Integer comprobarPeriocidad(String secuencia) {
         Integer longitudPeriodo = null;
         boolean iguales = true, salir = false;
@@ -87,10 +86,45 @@ public class Funciones {
         return resultado;
     }
 
-    public static String funcionDeMezcla(String[] sucesiones) {
-        return null;
-
+    public static String funcionDeMezcla(Operaciones op, String[] sucesiones) {
+        Funciones.arreglarFunciones(sucesiones);
+        int longitudSucesion = sucesiones[0].length();
+        char[] sucesion = sucesiones[0].toCharArray();
+        if (op==Operaciones.SUMA) {
+            for (int j = 1; j < sucesiones.length; j++) {
+                for (int i = 0; i < longitudSucesion; i++) {
+                    int num1 = ((int)sucesion[i])-48;
+                    int num2 = ((int)sucesiones[j].charAt(i))-48;
+                    sucesion[i] = (char)((num1 ^ num2)+48);
+                }
+            }
+        } else {
+            for (int j = 1; j < sucesiones.length; j++) {
+                for (int i = 0; i < longitudSucesion; i++) {
+                    int num1 = ((int)sucesion[i])-48;
+                    int num2 = ((int)sucesiones[j].charAt(i))-48;
+                    sucesion[i] = (char)((num1 & num2)+48);
+                }
+            }
+        }
+        return new String(sucesion);
     }
+    
+    private static void arreglarFunciones(String[] sucesiones) {
+        int longMax = 0;
+        for (String sucesion : sucesiones) {
+            if (sucesion.length() > longMax) { longMax = sucesion.length(); }
+        }
+        
+        for (int i = 0; i < sucesiones.length; i++) {
+            if (sucesiones[i].length() < longMax) {
+                int longPer = Funciones.comprobarPeriocidad(sucesiones[i]);
+                String per = sucesiones[i].substring(0, longPer);
+                for (int j = sucesiones[i].length() % longPer; sucesiones[i].length() < longMax; j = (j + 1) % longPer) {
+                    sucesiones[i] = sucesiones[i] + per.charAt(j);
+                }
+            }
+        }
 
     private static boolean postulado1(String sucesion, int periodo) {
         int unos = 0, ceros = 0;
