@@ -12,14 +12,14 @@ import java.util.*;
  */
 public class Funciones {
 
-    public static Integer comprobarPeriocidad(String sucesion) {
+    public static Integer comprobarPeriocidad(String secuencia) {
         Integer longitudPeriodo = null;
         boolean iguales = true, salir = false;
 
         for (int grupo = 1; grupo <= secuencia.length() / 2 && !salir; grupo++) {
             for (int indParPer = 0; indParPer < grupo && iguales; indParPer++) {
                 for (int indParCom = indParPer + grupo; indParCom < secuencia.length() && iguales; indParCom += grupo) {
-                    if (sucesion.charAt(indParPer) != sucesion.charAt(indParCom)) {
+                    if (secuencia.charAt(indParPer) != secuencia.charAt(indParCom)) {
                         iguales = false;
                     }
                 }
@@ -90,6 +90,7 @@ public class Funciones {
     public static String funcionDeMezcla(String[] sucesiones) {
         return null;
     
+    }
     private static boolean postulado1(String sucesion) {
         int unos = 0, ceros = 0;
         boolean salida;
@@ -111,7 +112,7 @@ public class Funciones {
             salida = false;
         }
         return salida;
-    }
+                }
 
     private static boolean postulado2(String sucesion) {
         boolean salida = false;
