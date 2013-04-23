@@ -89,16 +89,16 @@ public class Funciones {
 
     public static String funcionDeMezcla(String[] sucesiones) {
         return null;
-    
+
     }
-   
-    private static boolean postulado1(String sucesion) {
+
+    private static boolean postulado1(String sucesion, int periodo) {
         int unos = 0, ceros = 0;
         boolean salida;
         /*
          * Primer Postulado
          */
-        for (int i = 0; i < sucesion.length(); i++) {
+        for (int i = 0; i < periodo; i++) {
             if (sucesion.charAt(i) == '1') {
                 unos++;
             } else if (sucesion.charAt(i) == '0') {
@@ -107,34 +107,44 @@ public class Funciones {
         }
         if (unos == ceros) {
             salida = true;
-        } else if (unos - ceros == -1 || ceros - unos == -1) {
+        } else if ((unos - ceros) == 1 || (ceros - unos) == 1) {
             salida = true;
         } else {
             salida = false;
         }
+        // System.out.print(unos);
+        // System.out.print(ceros);
         return salida;
-                }
+    }
 
-    private static boolean postulado2(String sucesion,Integer periodo) {
+    private static boolean postulado2(String sucesion, Integer periodo) {
         boolean salida = false;
         ArrayList<Integer> rachas = new ArrayList<Integer>();
         char simbolo = sucesion.charAt(0);
         for (int j = 0, cont = 0; j < periodo; j++) {
-            if (j == 0) {
-                simbolo = sucesion.charAt(j);
+            //problema en el principio de la cadena
+
+            simbolo = sucesion.charAt(j);
+            //cont++;
+            while (simbolo == sucesion.charAt(j)) {
                 cont++;
-            } else if (sucesion.charAt(j) == simbolo) {
-                simbolo = sucesion.charAt(j);
-                rachas.add(cont);
-                cont = 0;
+                j++;
             }
-            if (sucesion.charAt(j) != simbolo) {
-                cont++;
-            }
+            rachas.add(cont);
+            cont=1;
+            //simbolo = sucesion.charAt(j);
         }
+
+        System.out.print(rachas);
         Collections.sort(rachas);
+        System.out.print(rachas);
         if (rachas.size() / 2 == contar(rachas, 1)) {
             salida = true;
+        }
+        if (rachas.size() / 4 == contar(rachas, 2)) {
+            salida = true;
+        } else {
+            salida = false;
         }
         return salida;
     }
@@ -144,7 +154,7 @@ public class Funciones {
         for (int i = 0; i < a.size(); i++) {
             if (a.get(i) == num) {
                 veces++;
-            }else{
+            } else {
                 break;
             }
         }
@@ -152,11 +162,11 @@ public class Funciones {
         return veces;
     }
 
-    public static boolean[] golomb(String sucesion,Integer periodo) {
-        boolean postulado[]=new boolean[3];
-        postulado[0]=postulado1(sucesion);
-        postulado[1]=postulado2(sucesion,periodo);
-        postulado[2]=false;
+    public static boolean[] golomb(String sucesion, Integer periodo) {
+        boolean postulado[] = new boolean[3];
+        postulado[0] = postulado1(sucesion, periodo);
+        postulado[1] = postulado2(sucesion, periodo);
+        postulado[2] = false;
         return postulado;
     }
 }

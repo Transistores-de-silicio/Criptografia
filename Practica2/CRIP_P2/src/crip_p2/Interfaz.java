@@ -19,9 +19,10 @@ import javax.swing.JOptionPane;
  * @author Alex
  */
 public class Interfaz extends javax.swing.JFrame {
+
     int contadorFicheros = 1;
     JFileChooser chooser = new JFileChooser();
-    
+
     /**
      * Creates new form Interfaz
      */
@@ -513,7 +514,7 @@ public class Interfaz extends javax.swing.JFrame {
             try {
                 f = new FileReader(chooser.getSelectedFile());
                 int caracter = f.read();
-                while(caracter != -1) {
+                while (caracter != -1) {
                     sucesion += String.valueOf((char) caracter);
                     caracter = f.read();
                 }
@@ -535,19 +536,19 @@ public class Interfaz extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion de 0s y 1s",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_aceptarPeriodicidadActionPerformed
 
     private void aceptarLFSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarLFSRActionPerformed
         String polinomio = polinomioLFSR.getText();
         String sucesion = sucesionLFSR.getText();
-        if (!polinomio.matches("[0-9]+(,[0-9]+)*")){
+        if (!polinomio.matches("[0-9]+(,[0-9]+)*")) {
             JOptionPane.showMessageDialog(null, "No es un polinomio valido",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error", JOptionPane.ERROR_MESSAGE);
         } else if (!sucesion.matches("[01]+")) {
             JOptionPane.showMessageDialog(null, "No es una sucesion de 0s y 1s",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             String sucesionPseudoAleatoria = Funciones.lfsr(polinomio, sucesion);
             solucionLFSR.setText(sucesionPseudoAleatoria);
@@ -561,14 +562,14 @@ public class Interfaz extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Solucion guardada en: " + System.getProperty("user.dir"),
                         "OK", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "No se ha podido guardar el fichero: " +e.getMessage(),
+                JOptionPane.showMessageDialog(null, "No se ha podido guardar el fichero: " + e.getMessage(),
                         "Error", JOptionPane.ERROR_MESSAGE);
             } finally {
                 try {
                     fichero.close();
                 } catch (Exception e2) {
                     JOptionPane.showMessageDialog(null, "No se ha podido cerrar el fichero: " + e2.getMessage(),
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -579,13 +580,13 @@ public class Interfaz extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             archivoPeriodicidad.setText(chooser.getSelectedFile().getPath());
             sucesionPeriodicidad.setEnabled(false);
-            comentarioPeriodicidad2.setEnabled(false);            
-       }
+            comentarioPeriodicidad2.setEnabled(false);
+        }
     }//GEN-LAST:event_buscarPeriodicidadActionPerformed
 
     private void descartarFicheroPeriodicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartarFicheroPeriodicidadActionPerformed
         sucesionPeriodicidad.setEnabled(true);
-        comentarioPeriodicidad2.setEnabled(true);  
+        comentarioPeriodicidad2.setEnabled(true);
         archivoPeriodicidad.setText("");
     }//GEN-LAST:event_descartarFicheroPeriodicidadActionPerformed
 
@@ -594,13 +595,13 @@ public class Interfaz extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             archivoCompLin.setText(chooser.getSelectedFile().getPath());
             sucesionCompLin.setEnabled(false);
-            comentario2CompLin.setEnabled(false);            
-       }
+            comentario2CompLin.setEnabled(false);
+        }
     }//GEN-LAST:event_buscarCompLinActionPerformed
 
     private void descartarFicheroCompLinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartarFicheroCompLinActionPerformed
         sucesionCompLin.setEnabled(true);
-        comentario2CompLin.setEnabled(true);  
+        comentario2CompLin.setEnabled(true);
         archivoCompLin.setText("");
     }//GEN-LAST:event_descartarFicheroCompLinActionPerformed
 
@@ -613,7 +614,7 @@ public class Interfaz extends javax.swing.JFrame {
             try {
                 f = new FileReader(chooser.getSelectedFile());
                 int caracter = f.read();
-                while(caracter != -1) {
+                while (caracter != -1) {
                     sucesion += String.valueOf((char) caracter);
                     caracter = f.read();
                 }
@@ -629,7 +630,7 @@ public class Interfaz extends javax.swing.JFrame {
             solucionCompLin.setText(compLineal.toString());
         } else {
             JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion de 0s y 1s o no es periodica",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_aceptarCompLinActionPerformed
 
@@ -637,7 +638,7 @@ public class Interfaz extends javax.swing.JFrame {
         int returnVal = chooser.showOpenDialog(chooser);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             archivoFunMezcla.setText(chooser.getSelectedFile().getPath());
-       }
+        }
     }//GEN-LAST:event_buscarFunMezclaActionPerformed
 
     private void aceptarFunMezclaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarFunMezclaActionPerformed
@@ -647,7 +648,7 @@ public class Interfaz extends javax.swing.JFrame {
         try {
             f = new FileReader(chooser.getSelectedFile());
             int caracter = f.read();
-            while(caracter != -1) {
+            while (caracter != -1) {
                 sucesion += String.valueOf((char) caracter);
                 caracter = f.read();
             }
@@ -664,38 +665,43 @@ public class Interfaz extends javax.swing.JFrame {
             if (sucesionesSinTratar[numSucTot].matches("[01]+")) {
                 Integer longitud = Funciones.comprobarPeriocidad(sucesion);
                 if (longitud == null) {
-                    
                 } else {
                     sucesiones[numSuc] = sucesionesSinTratar[numSucTot];
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Hay un error en la " + numSucTot +
-                        "a sucesion intorducida", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Hay un error en la " + numSucTot
+                        + "a sucesion intorducida", "Error", JOptionPane.ERROR_MESSAGE);
                 error = true;
             }
             numSucTot++;
         }
-        
-        
-        
+
+
+
         Integer longitud = Funciones.comprobarPeriocidad(sucesion);
-            if (longitud == null) {
-                JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion periodica",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Es una sucesión periodica de periodo " + longitud,
-                        "Error", JOptionPane.INFORMATION_MESSAGE);
-            }
+        if (longitud == null) {
+            JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion periodica",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Es una sucesión periodica de periodo " + longitud,
+                    "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_aceptarFunMezclaActionPerformed
 
     private void sumaFunMezclaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaFunMezclaActionPerformed
-        if (sumaFunMezcla.isSelected()) { multipFunMezcla.setSelected(false); }
-        else { sumaFunMezcla.setSelected(true); }
+        if (sumaFunMezcla.isSelected()) {
+            multipFunMezcla.setSelected(false);
+        } else {
+            sumaFunMezcla.setSelected(true);
+        }
     }//GEN-LAST:event_sumaFunMezclaActionPerformed
 
     private void multipFunMezclaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multipFunMezclaActionPerformed
-        if (multipFunMezcla.isSelected()) { sumaFunMezcla.setSelected(false); }
-        else { multipFunMezcla.setSelected(true); }
+        if (multipFunMezcla.isSelected()) {
+            sumaFunMezcla.setSelected(false);
+        } else {
+            multipFunMezcla.setSelected(true);
+        }
     }//GEN-LAST:event_multipFunMezclaActionPerformed
 
     private void SecuenciaPostuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SecuenciaPostuladosActionPerformed
@@ -703,30 +709,32 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_SecuenciaPostuladosActionPerformed
 
     private void ComprobarPostuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarPostuladosActionPerformed
-        String sucuencia=SecuenciaPostulados.getText();
+        String sucuencia = SecuenciaPostulados.getText();
         Integer periodo = Funciones.comprobarPeriocidad(sucuencia);
-        if(periodo==null){
-            JOptionPane.showMessageDialog(null, "No es una secuencia periodica" ,
-                        "Error", JOptionPane.INFORMATION_MESSAGE);
-        }
-        boolean bandera=true;
-        String cadenaError="";
-        boolean[] postulados=Funciones.golomb(sucuencia,periodo);
-        if(!postulados[0]){
-            cadenaError+="No cumple el primer postulado\n";
-            bandera=false;
-        }
-        if(!postulados[1]){
-            cadenaError+="No cumple el segundo postulado\n";
-            bandera=false;
-        }
-        
-        if(bandera){
-            JOptionPane.showMessageDialog(null, "Se cumplen todos los postulados es una cadena pn-secuencia" ,
+        if (periodo == null) {
+            JOptionPane.showMessageDialog(null, "No es una secuencia periodica",
+                    "Error", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            boolean bandera = true;
+            String cadenaError = "";
+            boolean[] postulados = Funciones.golomb(sucuencia, periodo);
+            if (!postulados[0]) {
+                cadenaError += "No cumple el primer postulado\n";
+                bandera = false;
+            }
+            if (!postulados[1]) {
+                cadenaError += "No cumple el segundo postulado\n";
+                bandera = false;
+            }
+
+
+            if (bandera) {
+                JOptionPane.showMessageDialog(null, "Se cumplen todos los postulados es una cadena pn-secuencia",
                         "Pstulados", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(null, cadenaError ,
+            } else {
+                JOptionPane.showMessageDialog(null, cadenaError,
                         "Pstulados", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ComprobarPostuladosActionPerformed
 
