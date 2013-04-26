@@ -175,7 +175,7 @@ public class Funciones {
 
                 rachas.add(cont);
                 bloques.add(cont);
-               // System.out.println("metemos racha unos: " + rachas);
+                // System.out.println("metemos racha unos: " + rachas);
                 i = j;
             } else if (sucesion.charAt(i) == '0') {
                 int cont = 0;
@@ -188,7 +188,7 @@ public class Funciones {
 
                 rachas.add(cont);
                 huecos.add(cont);
-               // System.out.println("metemos racha ceros: " + rachas);
+                // System.out.println("metemos racha ceros: " + rachas);
                 i = j;
             }
 
@@ -222,7 +222,7 @@ public class Funciones {
 
         //System.out.print(rachas);
         Collections.sort(rachas);
-       // System.out.println("porcentajes: " + rachas);
+        // System.out.println("porcentajes: " + rachas);
 
         if (2 / rachas.size() == contar(rachas, 1)) {
             salida = true;
@@ -237,34 +237,71 @@ public class Funciones {
 
     private static boolean postulado3(String sucesion, Integer periodo) {
         boolean salida = true;
-        char[] cadena = (sucesion.substring(0, periodo-1)).toCharArray();
+        char[] cadena = (sucesion.substring(0, periodo)).toCharArray();
+        double[] diferencias = new double[periodo-1];
+
         System.out.println(periodo);
-        System.out.println(cadena.length);
+        // System.out.println(cadena.length);
         System.out.println(cadena);
-        char[] cadenarotada=rotar(cadena,periodo);
+
+        char[] cadenarotada = cadena.clone();
+        for (int i = 0; i < periodo-1; i++) {
+            cadenarotada = rotar(cadenarotada);
+            int[] parametros = diferencia(cadena, cadenarotada);
+            System.out.println("parametros:" + parametros[0] + parametros[1] + parametros[2]);
+            diferencias[i] = (parametros[0] - parametros[1]) / (double)parametros[2];
+            System.out.println("diferencia:" +diferencias[i] );
+        }
+        
+        for (int s = 0; s < diferencias.length; s++) {
+            int i = 0;
+            while (i < diferencias.length ) {
+                if (diferencias[s] != diferencias[i] ) {
+                    System.out.print("sale");
+                    return false; 
+                }
+                System.out.print("entra");
+                i++;
+            }
+        }
+
         System.out.println(cadenarotada);
         return salida;
     }
 
-    public static char[] rotar(char[] sucesion, int periodo) {
+    public static char[] rotar(char[] sucesion) {
         char primero = sucesion[0];
         char[] sucesionRotada;
-        int x;
-        
-        if (sucesion.length != periodo-1) {
-            System.err.print("fallo periodo!= a cadena");
-            return null;
-        } else {
-            sucesionRotada = new char[sucesion.length];
-        } 
+        int x;  
+        sucesionRotada = new char[sucesion.length];
 
         for (x = 0; x < sucesion.length - 1; x++) {
             sucesionRotada[x] = sucesion[x + 1];
         }
 
         sucesionRotada[x] = primero;
-       
+
         return sucesionRotada;
+    }
+
+    public static int[] diferencia(char[] sucesion, char[] sucrotada) {
+        int[] salida = new int[3];
+        int diferencias = 0;
+        int similitudes = 0;
+        for (int i = 0; i < sucesion.length; i++) {
+            if (sucesion[i] == sucrotada[i]) {
+                similitudes++;
+
+            } else {
+                diferencias++;
+            }
+        }
+
+        salida[0] = similitudes;
+        salida[1] = diferencias;
+        salida[2] = sucesion.length;
+
+        return salida;
     }
 
     private static int contar(ArrayList<Integer> a, int num) {
@@ -283,7 +320,7 @@ public class Funciones {
     public static boolean[] golomb(String sucesion, Integer periodo) {
         boolean postulado[] = new boolean[3];
         postulado[0] = postulado1(sucesion, periodo);
-        postulado[1] = postulado2(sucesion, periodo);
+        postulado[1] = true;//postulado2(sucesion, periodo);
         postulado[2] = postulado3(sucesion, periodo);
         return postulado;
     }
