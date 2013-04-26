@@ -11,6 +11,7 @@ import java.util.*;
  * @author Alexander Moreno y Carlos Basso
  */
 public class Funciones {
+
     public static Integer comprobarPeriocidad(String secuencia) {
         Integer longitudPeriodo = null;
         boolean iguales = true, salir = false;
@@ -90,32 +91,34 @@ public class Funciones {
         Funciones.arreglarFunciones(sucesiones);
         int longitudSucesion = sucesiones[0].length();
         char[] sucesion = sucesiones[0].toCharArray();
-        if (op==Operaciones.SUMA) {
+        if (op == Operaciones.SUMA) {
             for (int j = 1; j < sucesiones.length; j++) {
                 for (int i = 0; i < longitudSucesion; i++) {
-                    int num1 = ((int)sucesion[i])-48;
-                    int num2 = ((int)sucesiones[j].charAt(i))-48;
-                    sucesion[i] = (char)((num1 ^ num2)+48);
+                    int num1 = ((int) sucesion[i]) - 48;
+                    int num2 = ((int) sucesiones[j].charAt(i)) - 48;
+                    sucesion[i] = (char) ((num1 ^ num2) + 48);
                 }
             }
         } else {
             for (int j = 1; j < sucesiones.length; j++) {
                 for (int i = 0; i < longitudSucesion; i++) {
-                    int num1 = ((int)sucesion[i])-48;
-                    int num2 = ((int)sucesiones[j].charAt(i))-48;
-                    sucesion[i] = (char)((num1 & num2)+48);
+                    int num1 = ((int) sucesion[i]) - 48;
+                    int num2 = ((int) sucesiones[j].charAt(i)) - 48;
+                    sucesion[i] = (char) ((num1 & num2) + 48);
                 }
             }
         }
         return new String(sucesion);
     }
-    
+
     private static void arreglarFunciones(String[] sucesiones) {
         int longMax = 0;
         for (String sucesion : sucesiones) {
-            if (sucesion.length() > longMax) { longMax = sucesion.length(); }
+            if (sucesion.length() > longMax) {
+                longMax = sucesion.length();
+            }
         }
-        
+
         for (int i = 0; i < sucesiones.length; i++) {
             if (sucesiones[i].length() < longMax) {
                 int longPer = Funciones.comprobarPeriocidad(sucesiones[i]);
@@ -155,33 +158,113 @@ public class Funciones {
     private static boolean postulado2(String sucesion, Integer periodo) {
         boolean salida;
         ArrayList<Integer> rachas = new ArrayList<Integer>();
+        ArrayList<Integer> bloques = new ArrayList<Integer>();
+        ArrayList<Integer> huecos = new ArrayList<Integer>();
         char simbolo;
-        for (int j = 0, cont = 0; j < periodo; j++) {
-            //problema en el principio de la cadena
 
-            simbolo = sucesion.charAt(j);
-            //cont++;
-            while (simbolo == sucesion.charAt(j)) {
-                cont++;
-                j++;
+        for (int i = 0; i < periodo;) {
+            //System.out.println(periodo);
+            if (sucesion.charAt(i) == '1') {
+                int cont = 0;
+                int j = i;
+                while ('1' == sucesion.charAt(j) && j < periodo) {
+                    //System.out.println(sucesion.charAt(j)+"==1");
+                    cont++;
+                    j++;
+                }
+
+                rachas.add(cont);
+                bloques.add(cont);
+               // System.out.println("metemos racha unos: " + rachas);
+                i = j;
+            } else if (sucesion.charAt(i) == '0') {
+                int cont = 0;
+                int j = i;
+                while ('0' == sucesion.charAt(j) && j < periodo) {
+                    //System.out.println(sucesion.charAt(j)+"==0");
+                    cont++;
+                    j++;
+                }
+
+                rachas.add(cont);
+                huecos.add(cont);
+               // System.out.println("metemos racha ceros: " + rachas);
+                i = j;
             }
-            rachas.add(cont);
-            cont=1;
-            //simbolo = sucesion.charAt(j);
-        }
 
-        System.out.print(rachas);
+        }
+        if (bloques.size() != huecos.size() || sucesion.length() % 2 != 0) {
+            /*int i = 0, contador = 1;
+             while (i < bloques.size()) {
+             int blo=contar(bloques, contador);
+             int hue=contar(huecos, contador);
+             if (blo != hue) {*/
+            //System.out.println("fallo bloques: " + sucesion.length() % 2);
+            return false;
+            //}
+            //i=blo+i;
+            //contador++;
+            //}
+        }
+        /*for (int j = 0, cont = 0; j <= periodo; j++) {
+         //problema en el principio de la cadena
+
+         simbolo = sucesion.charAt(j);
+         //cont++;
+         while (simbolo == sucesion.charAt(j) || j == periodo) {
+         cont++;
+         j++;
+         }
+         rachas.add(cont);
+         cont = 1;
+         //simbolo = sucesion.charAt(j);
+         }*/
+
+        //System.out.print(rachas);
         Collections.sort(rachas);
-        System.out.print(rachas);
-        if (rachas.size() / 2 == contar(rachas, 1)) {
+       // System.out.println("porcentajes: " + rachas);
+
+        if (2 / rachas.size() == contar(rachas, 1)) {
             salida = true;
         }
-        if (rachas.size() / 4 == contar(rachas, 2)) {
+        if (4 / rachas.size() == contar(rachas, 2)) {
             salida = true;
         } else {
             salida = false;
         }
         return salida;
+    }
+
+    private static boolean postulado3(String sucesion, Integer periodo) {
+        boolean salida = true;
+        char[] cadena = (sucesion.substring(0, periodo-1)).toCharArray();
+        System.out.println(periodo);
+        System.out.println(cadena.length);
+        System.out.println(cadena);
+        char[] cadenarotada=rotar(cadena,periodo);
+        System.out.println(cadenarotada);
+        return salida;
+    }
+
+    public static char[] rotar(char[] sucesion, int periodo) {
+        char primero = sucesion[0];
+        char[] sucesionRotada;
+        int x;
+        
+        if (sucesion.length != periodo-1) {
+            System.err.print("fallo periodo!= a cadena");
+            return null;
+        } else {
+            sucesionRotada = new char[sucesion.length];
+        } 
+
+        for (x = 0; x < sucesion.length - 1; x++) {
+            sucesionRotada[x] = sucesion[x + 1];
+        }
+
+        sucesionRotada[x] = primero;
+       
+        return sucesionRotada;
     }
 
     private static int contar(ArrayList<Integer> a, int num) {
@@ -201,7 +284,7 @@ public class Funciones {
         boolean postulado[] = new boolean[3];
         postulado[0] = postulado1(sucesion, periodo);
         postulado[1] = postulado2(sucesion, periodo);
-        postulado[2] = false;
+        postulado[2] = postulado3(sucesion, periodo);
         return postulado;
     }
 }
