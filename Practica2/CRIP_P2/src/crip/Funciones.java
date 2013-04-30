@@ -238,29 +238,31 @@ public class Funciones {
     private static boolean postulado3(String sucesion, Integer periodo) {
         boolean salida = true;
         char[] cadena = (sucesion.substring(0, periodo)).toCharArray();
-        double[] diferencias = new double[periodo-1];
+        double[] diferencias = new double[periodo - 1];
 
         System.out.println(periodo);
         // System.out.println(cadena.length);
         System.out.println(cadena);
 
         char[] cadenarotada = cadena.clone();
-        for (int i = 0; i < periodo-1; i++) {
+        for (int i = 0; i < periodo - 1; i++) {
             cadenarotada = rotar(cadenarotada);
             int[] parametros = diferencia(cadena, cadenarotada);
+            System.out.println(cadena);
+             System.out.println(cadenarotada);
             System.out.println("parametros:" + parametros[0] + parametros[1] + parametros[2]);
-            diferencias[i] = (parametros[0] - parametros[1]) / (double)parametros[2];
-            System.out.println("diferencia:" +diferencias[i] );
+            diferencias[i] = (parametros[0] - parametros[1]) / (double) parametros[2];
+            System.out.println("diferencia:" + diferencias[i]);
         }
-        
+
         for (int s = 0; s < diferencias.length; s++) {
             int i = 0;
-            while (i < diferencias.length ) {
-                if (diferencias[s] != diferencias[i] ) {
+            while (i < diferencias.length) {
+                if (diferencias[s] != diferencias[i]) {
                     System.out.print("sale");
-                    return false; 
+                    return false;
                 }
-                System.out.print("entra");
+                //System.out.print("entra");
                 i++;
             }
         }
@@ -272,7 +274,7 @@ public class Funciones {
     public static char[] rotar(char[] sucesion) {
         char primero = sucesion[0];
         char[] sucesionRotada;
-        int x;  
+        int x;
         sucesionRotada = new char[sucesion.length];
 
         for (x = 0; x < sucesion.length - 1; x++) {
@@ -320,7 +322,7 @@ public class Funciones {
     public static boolean[] golomb(String sucesion, Integer periodo) {
         boolean postulado[] = new boolean[3];
         postulado[0] = postulado1(sucesion, periodo);
-        postulado[1] = true;//postulado2(sucesion, periodo);
+        postulado[1] = postulado2(sucesion, periodo);
         postulado[2] = postulado3(sucesion, periodo);
         return postulado;
     }
