@@ -14,7 +14,7 @@ public class Funciones {
 
     public static int millerRabin(int impar) {
         int u = 0, s, a;
-        Random aleatorio = new Random();
+        Random aleatorio = new Random(123456789);
         if (impar % 2 == 0) {
             return -1;
         } else {
@@ -33,36 +33,46 @@ public class Funciones {
             }
 
             a = 0;
-            while (a > 2) {
-                a = aleatorio.nextInt((impar - 2));
-            }
-            //Calculamos a^s (mod (numero impar))
-            a = (a ^ s) % impar;
-            if (a == 1 || a == -1) {
-                return 1;
-            } else {
-                for (int i = 1; i < u - 1;) {
-                    a = (a ^ 2) % impar;
-                    if (a == 1) {
-                        return 0;
-                    } else if (a == -1) {
-                        return 1;
-                    } else {
-                        i++;
-                    }
-
+            System.err.println(impar);
+            for (int contador = 0; contador < 70; contador++) {
+                while (1 > a && a < 2) {
+                    System.err.println("dentro:" + a);
+                    a = aleatorio.nextInt((impar - 2));
                 }
-                return 0;
+                System.err.println(a);
+                //Calculamos a^s (mod (numero impar))
+                a = (a ^ s) % impar;
+                if (a == 1 || a == -1) {
+                    //return 1;
+                } else {
+                    for (int i = 1; i < u - 1;) {
+                        a = (a ^ 2) % impar;
+                        if (a == 1) {
+                            return 0;
+                        } else if (a == -1) {
+                            
+                        } else {
+                            i++;
+                        }
+
+                    }
+                    return 0;
+                }
+
             }
+            return 1;
 
         }
-        
+
     }
-    
+
     public static boolean isInteger(String cadena) {
         boolean esEntero = true;
-        try { Integer.parseInt(cadena); }
-        catch (Exception e) { esEntero = false; }
+        try {
+            Integer.parseInt(cadena);
+        } catch (Exception e) {
+            esEntero = false;
+        }
         return esEntero;
     }
 }

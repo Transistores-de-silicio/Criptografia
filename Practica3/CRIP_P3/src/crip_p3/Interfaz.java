@@ -4,6 +4,8 @@
  */
 package crip_p3;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alex
@@ -118,10 +120,19 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_numeroImparActionPerformed
 
     private void millerRabinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_millerRabinActionPerformed
-
+        int numero = 1;
         String cadena = numeroImpar.getText();
         if (Funciones.isInteger(cadena)) {
-            int numero = Integer.parseInt(cadena);
+            numero = Integer.parseInt(cadena);
+        }
+        int primo = Funciones.millerRabin(numero);
+        if (primo == 1) {
+            JOptionPane.showMessageDialog(null, "primo",
+                    "primalidad", JOptionPane.INFORMATION_MESSAGE);
+        }
+         if (primo == 0) {
+            JOptionPane.showMessageDialog(null, "no primo",
+                    "primalidad", JOptionPane.INFORMATION_MESSAGE);
         }
 
 
