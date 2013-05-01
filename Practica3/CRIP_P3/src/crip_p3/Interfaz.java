@@ -28,20 +28,47 @@ public class Interfaz extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        numeroImpar = new javax.swing.JTextField();
+        millerRabin = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        numeroImpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroImparActionPerformed(evt);
+            }
+        });
+
+        millerRabin.setText("Comprobacion Primalidad");
+        millerRabin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                millerRabinActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(numeroImpar)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(217, Short.MAX_VALUE)
+                .addComponent(millerRabin)
+                .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(numeroImpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(millerRabin)
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Test de Miller-Rabin", jPanel1);
@@ -86,6 +113,20 @@ public class Interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void numeroImparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroImparActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroImparActionPerformed
+
+    private void millerRabinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_millerRabinActionPerformed
+
+        String cadena = numeroImpar.getText();
+        if (Funciones.isInteger(cadena)) {
+            int numero = Integer.parseInt(cadena);
+        }
+
+
+    }//GEN-LAST:event_millerRabinActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -125,5 +166,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton millerRabin;
+    private javax.swing.JTextField numeroImpar;
     // End of variables declaration//GEN-END:variables
 }
