@@ -40,7 +40,7 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel = new javax.swing.JTabbedPane();
+        Panel = new javax.swing.JTabbedPane();
         periodicidad = new javax.swing.JPanel();
         titulo1Periodicidad = new javax.swing.JLabel();
         titulo2Periodicidad = new javax.swing.JLabel();
@@ -84,8 +84,10 @@ public class Interfaz extends javax.swing.JFrame {
         multipFunMezcla = new javax.swing.JRadioButton();
         aceptarFunMezcla = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        SecuenciaPostulados = new java.awt.TextField();
-        ComprobarPostulados = new java.awt.Button();
+        tituloPostuados = new javax.swing.JLabel();
+        secuenciaPostulados = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        comprobarPostulados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -181,7 +183,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(39, 39, 39))
         );
 
-        panel.addTab("Periodicidad", periodicidad);
+        Panel.addTab("Periodicidad", periodicidad);
 
         tituloLFSR.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tituloLFSR.setText("LFSR");
@@ -252,7 +254,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        panel.addTab("LFSR", lfsr);
+        Panel.addTab("LFSR", lfsr);
 
         titulo1CompLin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         titulo1CompLin.setText("Complejidad lineal de una");
@@ -354,7 +356,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(39, 39, 39))
         );
 
-        panel.addTab("Complejidad lineal", compLin);
+        Panel.addTab("Complejidad lineal", compLin);
 
         titulo1FunMezcla.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         titulo1FunMezcla.setText("Función de mezcla de dos o más");
@@ -453,19 +455,17 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        panel.addTab("Función de mezcla", funMezcla);
+        Panel.addTab("Función de mezcla", funMezcla);
 
-        SecuenciaPostulados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SecuenciaPostuladosActionPerformed(evt);
-            }
-        });
+        tituloPostuados.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tituloPostuados.setText("Postulados de Golomb");
 
-        ComprobarPostulados.setActionCommand("button");
-        ComprobarPostulados.setLabel("Comprobar");
-        ComprobarPostulados.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Sucesion a comprovar:");
+
+        comprobarPostulados.setText("Comprobar");
+        comprobarPostulados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComprobarPostuladosActionPerformed(evt);
+                comprobarPostuladosActionPerformed(evt);
             }
         });
 
@@ -476,34 +476,43 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(ComprobarPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(87, 87, 87)
+                        .addComponent(tituloPostuados))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(SecuenciaPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(secuenciaPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(comprobarPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
-                .addComponent(SecuenciaPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(ComprobarPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addGap(28, 28, 28)
+                .addComponent(tituloPostuados)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(secuenciaPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comprobarPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
 
-        panel.addTab("Postulados de Golomb", jPanel3);
+        Panel.addTab("Postulados de Golomb", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel)
+            .addComponent(Panel)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
         );
 
         pack();
@@ -726,16 +735,15 @@ public class Interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_multipFunMezclaActionPerformed
 
-    private void SecuenciaPostuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SecuenciaPostuladosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SecuenciaPostuladosActionPerformed
-
-    private void ComprobarPostuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarPostuladosActionPerformed
-        String sucuencia = SecuenciaPostulados.getText();
+    private void comprobarPostuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprobarPostuladosActionPerformed
+        String sucuencia = secuenciaPostulados.getText();
         Integer periodo = Funciones.comprobarPeriocidad(sucuencia);
-        if (periodo == null) {
+        if (!sucuencia.matches("[01]+")) {
+            JOptionPane.showMessageDialog(null, "No es una secuencia de 1s y 0s",
+                 "Error", JOptionPane.INFORMATION_MESSAGE);
+        } else if (periodo == null) {
             JOptionPane.showMessageDialog(null, "No es una secuencia periodica",
-                    "Error", JOptionPane.INFORMATION_MESSAGE);
+                 "Error", JOptionPane.INFORMATION_MESSAGE); 
         } else {
             boolean bandera = true;
             String cadenaError = "";
@@ -762,7 +770,7 @@ public class Interfaz extends javax.swing.JFrame {
                         "Pstulados", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-    }//GEN-LAST:event_ComprobarPostuladosActionPerformed
+    }//GEN-LAST:event_comprobarPostuladosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -800,8 +808,7 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button ComprobarPostulados;
-    private java.awt.TextField SecuenciaPostulados;
+    private javax.swing.JTabbedPane Panel;
     private javax.swing.JButton aceptarCompLin;
     private javax.swing.JButton aceptarFunMezcla;
     private javax.swing.JButton aceptarLFSR;
@@ -824,15 +831,17 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel comentarioSolucionLFSR;
     private javax.swing.JLabel cometarioSucesionLFSR;
     private javax.swing.JPanel compLin;
+    private javax.swing.JButton comprobarPostulados;
     private javax.swing.JButton descartarFicheroCompLin;
     private javax.swing.JButton descartarFicheroPeriodicidad;
     private javax.swing.JPanel funMezcla;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel lfsr;
     private javax.swing.JRadioButton multipFunMezcla;
-    private javax.swing.JTabbedPane panel;
     private javax.swing.JPanel periodicidad;
     private javax.swing.JTextField polinomioLFSR;
+    private javax.swing.JTextField secuenciaPostulados;
     private javax.swing.JTextField solucionCompLin;
     private javax.swing.JTextField solucionLFSR;
     private javax.swing.JTextField sucesionCompLin;
@@ -846,5 +855,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel titulo2FunMezcla;
     private javax.swing.JLabel titulo2Periodicidad;
     private javax.swing.JLabel tituloLFSR;
+    private javax.swing.JLabel tituloPostuados;
     // End of variables declaration//GEN-END:variables
 }
