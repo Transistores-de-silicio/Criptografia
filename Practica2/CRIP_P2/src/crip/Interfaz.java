@@ -73,6 +73,7 @@ public class Interfaz extends javax.swing.JFrame {
         aceptarCompLin = new javax.swing.JButton();
         comentario3CompLin = new javax.swing.JLabel();
         solucionCompLin = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         funMezcla = new javax.swing.JPanel();
         titulo1FunMezcla = new javax.swing.JLabel();
         titulo2FunMezcla = new javax.swing.JLabel();
@@ -167,7 +168,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(titulo1Periodicidad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo2Periodicidad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(comentarioPeriodicidad1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(periodicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
@@ -251,7 +252,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(solucionLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(aceptarLFSR, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         Panel.addTab("LFSR", lfsr);
@@ -289,9 +290,11 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        comentario3CompLin.setText("Complejidad:");
+        comentario3CompLin.setText("Pol. generador:");
 
         solucionCompLin.setEditable(false);
+
+        jLabel2.setText("(Se muestran los íncides del polinomio)");
 
         javax.swing.GroupLayout compLinLayout = new javax.swing.GroupLayout(compLin);
         compLin.setLayout(compLinLayout);
@@ -310,12 +313,6 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(compLinLayout.createSequentialGroup()
-                        .addComponent(comentario3CompLin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(solucionCompLin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(aceptarCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(compLinLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(archivoCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -327,7 +324,18 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comentario2CompLin)
                             .addComponent(comentario1CompLin))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, compLinLayout.createSequentialGroup()
+                        .addComponent(comentario3CompLin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(compLinLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(compLinLayout.createSequentialGroup()
+                                .addComponent(solucionCompLin)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(aceptarCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(27, 27, 27))
         );
         compLinLayout.setVerticalGroup(
@@ -337,7 +345,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(titulo1CompLin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo2CompLin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(comentario1CompLin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(compLinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
@@ -353,7 +361,9 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(aceptarCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comentario3CompLin)
                     .addComponent(solucionCompLin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(29, 29, 29))
         );
 
         Panel.addTab("Complejidad lineal", compLin);
@@ -452,7 +462,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(multipFunMezcla))
                 .addGap(18, 18, 18)
                 .addComponent(aceptarFunMezcla, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         Panel.addTab("Función de mezcla", funMezcla);
@@ -493,7 +503,7 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(tituloPostuados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(secuenciaPostulados, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -512,7 +522,7 @@ public class Interfaz extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
 
         pack();
@@ -570,7 +580,7 @@ public class Interfaz extends javax.swing.JFrame {
             try {
                 fichero = new FileWriter("lfsr.txt", true);
                 pw = new PrintWriter(fichero);
-                pw.print(sucesionPseudoAleatoria);
+                pw.println(sucesionPseudoAleatoria);
                 contadorFicheros++;
                 JOptionPane.showMessageDialog(null, "Solucion guardada en: " + System.getProperty("user.dir"),
                         "OK", JOptionPane.INFORMATION_MESSAGE);
@@ -638,13 +648,8 @@ public class Interfaz extends javax.swing.JFrame {
                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (sucesion.matches("[01]+") && Funciones.comprobarPeriocidad(sucesion) != null) {
-            Integer compLineal = Funciones.complejidadLineal(sucesion);
-            solucionCompLin.setText(compLineal.toString());
-        } else {
-            JOptionPane.showMessageDialog(null, "La sucesion introducida no es una sucesion de 0s y 1s o no es periodica",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        String compLineal = Funciones.complejidadLineal(sucesion);
+        solucionCompLin.setText(compLineal.toString());
     }//GEN-LAST:event_aceptarCompLinActionPerformed
 
     private void buscarFunMezclaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFunMezclaActionPerformed
@@ -836,6 +841,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton descartarFicheroPeriodicidad;
     private javax.swing.JPanel funMezcla;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel lfsr;
     private javax.swing.JRadioButton multipFunMezcla;

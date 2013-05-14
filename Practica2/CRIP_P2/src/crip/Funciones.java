@@ -50,7 +50,8 @@ public class Funciones {
         }
         Integer suma = 0;
 
-        for (int i = 0; i < 100; i++) {
+        int num = (int) Math.pow(sucesion.length()*sucesion.length()+sucesion.length()*sucesion.length(), 2);
+        for (int i = 0; i < num || comprobarPeriocidad(salida) == null; i++) {
             for (int j = 0; j < sucesion.length(); j++) {
                 suma += polComp[j] * Integer.parseInt(String.valueOf(salida.charAt(i + j)));
             }
@@ -61,7 +62,7 @@ public class Funciones {
         return salida;
     }
 
-    public static Integer complejidadLineal(String sucesion) {
+    public static String complejidadLineal(String sucesion) {
         final int longitudSucesion = sucesion.length();
         int[] b = new int[longitudSucesion], c = new int[longitudSucesion], t = new int[longitudSucesion];
         b[0] = c[0] = 1;
@@ -84,7 +85,11 @@ public class Funciones {
                 }
             }
         }
-        return resultado;
+        String polinomio = String.valueOf(resultado);
+        for (int i = resultado-1; i >= 0; i--) {
+            if (c[i] == 1) polinomio = polinomio + "," + String.valueOf(i);
+        }
+        return polinomio;
     }
 
     public static String funcionDeMezcla(Operaciones op, String[] sucesiones) {
