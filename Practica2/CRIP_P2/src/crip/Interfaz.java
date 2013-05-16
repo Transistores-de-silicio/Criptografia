@@ -741,6 +741,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_multipFunMezclaActionPerformed
 
     private void comprobarPostuladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprobarPostuladosActionPerformed
+       
         String sucuencia = secuenciaPostulados.getText();
         Integer periodo = Funciones.comprobarPeriocidad(sucuencia);
         if (!sucuencia.matches("[01]+")) {

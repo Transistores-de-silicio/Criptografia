@@ -50,7 +50,7 @@ public class Funciones {
         }
         Integer suma = 0;
 
-        int num = (int) Math.pow(sucesion.length()*sucesion.length()+sucesion.length()*sucesion.length(), 2);
+        int num = (int) Math.pow(sucesion.length() * sucesion.length() + sucesion.length() * sucesion.length(), 2);
         for (int i = 0; i < num || comprobarPeriocidad(salida) == null; i++) {
             for (int j = 0; j < sucesion.length(); j++) {
                 suma += polComp[j] * Integer.parseInt(String.valueOf(salida.charAt(i + j)));
@@ -86,8 +86,10 @@ public class Funciones {
             }
         }
         String polinomio = String.valueOf(resultado);
-        for (int i = resultado-1; i >= 0; i--) {
-            if (c[i] == 1) polinomio = polinomio + "," + String.valueOf(i);
+        for (int i = resultado - 1; i >= 0; i--) {
+            if (c[i] == 1) {
+                polinomio = polinomio + "," + String.valueOf(i);
+            }
         }
         return polinomio;
     }
@@ -166,13 +168,43 @@ public class Funciones {
         ArrayList<Integer> bloques = new ArrayList<Integer>();
         ArrayList<Integer> huecos = new ArrayList<Integer>();
         char simbolo;
+        /*
+         * Comprobar principio y final de cadena
+         */
 
-        for (int i = 0; i < periodo;) {
+
+        int inicio = 0, fin = periodo;
+        boolean bandera = false;
+        if (sucesion.charAt(periodo) == sucesion.charAt(0)) {
+            //for uno para inicio
+            for (int i = 0; bandera == false;) {
+                if (sucesion.charAt(i) == sucesion.charAt(0)) {
+                    i++;
+                } else {
+                    bandera = true;
+                }
+                inicio = i;
+            }
+
+            //for dos para el final
+            for (int i = 0; bandera == false;) {
+                if (sucesion.charAt(periodo - i) == sucesion.charAt(0)) {
+                    i++;
+                } else {
+                    bandera = true;
+                }
+                fin = i;
+            }
+        }
+        /*
+         * Comprobacion del resto
+         */
+        for (int i = inicio; i < fin;) {
             //System.out.println(periodo);
             if (sucesion.charAt(i) == '1') {
                 int cont = 0;
                 int j = i;
-                while ('1' == sucesion.charAt(j) && j < periodo) {
+                while ('1' == sucesion.charAt(j) && j < fin) {
                     //System.out.println(sucesion.charAt(j)+"==1");
                     cont++;
                     j++;
@@ -185,7 +217,7 @@ public class Funciones {
             } else if (sucesion.charAt(i) == '0') {
                 int cont = 0;
                 int j = i;
-                while ('0' == sucesion.charAt(j) && j < periodo) {
+                while ('0' == sucesion.charAt(j) && j < fin) {
                     //System.out.println(sucesion.charAt(j)+"==0");
                     cont++;
                     j++;
@@ -198,6 +230,7 @@ public class Funciones {
             }
 
         }
+        System.out.println("pasa 1");
         if (bloques.size() != huecos.size() || sucesion.length() % 2 != 0) {
             /*int i = 0, contador = 1;
              while (i < bloques.size()) {
@@ -227,15 +260,19 @@ public class Funciones {
 
         //System.out.print(rachas);
         Collections.sort(rachas);
-        // System.out.println("porcentajes: " + rachas);
-
-        if (2 / rachas.size() == contar(rachas, 1)) {
-            salida = true;
-        }
-        if (4 / rachas.size() == contar(rachas, 2)) {
-            salida = true;
-        } else {
-            salida = false;
+        System.out.println("porcentajes: " + rachas);
+        //insercion del bucle
+        salida = true;
+        int rach = rachas.size();
+        for (int i = 1; rach < 0;) {
+            int cuenta = contar(rachas, i);
+            if ((2 ^ i) / rachas.size() == cuenta) {
+                salida = true;
+            } else {
+                salida = false;
+                break;
+            }
+            rach = rach - cuenta;
         }
         return salida;
     }
@@ -254,7 +291,7 @@ public class Funciones {
             cadenarotada = rotar(cadenarotada);
             int[] parametros = diferencia(cadena, cadenarotada);
             System.out.println(cadena);
-             System.out.println(cadenarotada);
+            System.out.println(cadenarotada);
             System.out.println("parametros:" + parametros[0] + parametros[1] + parametros[2]);
             diferencias[i] = (parametros[0] - parametros[1]) / (double) parametros[2];
             System.out.println("diferencia:" + diferencias[i]);
