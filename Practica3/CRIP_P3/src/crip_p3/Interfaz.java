@@ -7,8 +7,10 @@ package crip_p3;
 import java.math.BigInteger;
 import javax.swing.JOptionPane;
 
+
 /**
  *
+ * @author Carlos Jesus Fernandez Basso
  * @author Alex
  */
 public class Interfaz extends javax.swing.JFrame {

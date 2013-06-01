@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- *
+ * @author Carlos Jesus Fernandez Basso
  * @author Alex
  */
 public class Funciones {
@@ -21,11 +21,11 @@ public class Funciones {
         BigInteger s, a;
         ArrayList<BigInteger> Lista = new ArrayList();
         boolean banderaverdad, salida = true;
-        Random aleatorio = new Random(123456789);
+        Random aleatorio = new Random();
         int primo = 0;
 
         //System.out.println(impar.mod(new BigInteger("2")));
-        if (impar.mod(new BigInteger("2")).equals(new BigInteger("0"))) {
+        if (impar.mod(new BigInteger("2")).equals(new BigInteger("0")) || impar.compareTo(new BigInteger("5")) == -1) {
             return -1;
         } else {
             //Calculamos u, s	(numero impar)-1=(2^u)*s
@@ -46,12 +46,13 @@ public class Funciones {
 
             a = new BigInteger("0");
             // System.err.println(impar);
-            for (int contador = 0; contador < 10; contador++) {
+            for (int contador = 0; contador < 50; contador++) {
+                System.out.println("Lista: " + Lista);
                 banderaverdad = false;
                 salida = true;
                 while (!(a.compareTo(new BigInteger("1")) == 1 && a.compareTo(impar.subtract(new BigInteger("2"))) == -1)) {
                     //System.err.println("dentro:" + a);
-                    a = new BigInteger(100, aleatorio);
+                    a = new BigInteger(impar.intValue(), aleatorio);
                     a = a.mod(impar.subtract(new BigInteger("1")));
                     if (!Lista.isEmpty()) {
                         if (Lista.indexOf(a) != -1) {
@@ -59,8 +60,9 @@ public class Funciones {
                         }
                     }
                     //a=impar.subtract(new BigInteger("1"));
-                    Lista.add(a);
+
                 }
+                Lista.add(a);
                 // System.out.println("\na:" + a);
                 /*
                  * Calculamos a^s (mod (numero impar))
@@ -70,19 +72,20 @@ public class Funciones {
                 System.out.println("a elevada:" + a);
                 if (a.equals(new BigInteger("1")) || a.equals(new BigInteger("-1"))) {
                     //return 1;
+                    primo++;
                     banderaverdad = true;
                 } else {
                     banderaverdad = false;//|| banderaverdad != true 
                     for (int i = 1; i <= u - 1;) {
                         //a = (a.modPow(new BigInteger("2"), impar));
                         if (a.equals(impar.subtract(new BigInteger("1")))) {
-                            System.out.print("saleeee");
+                            // System.out.print("saleeee");
                             salida = false;
                             i = u + 1;
                         }
                         a = potenciaModular(a, new BigInteger("2"), impar);
                         if (a.equals(impar.subtract(new BigInteger("1")))) {
-                            System.out.print("saleeee");
+                            // System.out.print("saleeee");
                             salida = false;
                             i = u + 1;
                         }
@@ -90,11 +93,10 @@ public class Funciones {
                         //System.out.print(a+" --- "+impar.subtract(new BigInteger("1")));
 
                         if (a.equals(new BigInteger("1")) && salida == true) {
-                            System.out.print("MAL");
                             return 0;
                         } else if (a.equals(new BigInteger("-1")) && salida == true) {
-                            System.out.print("MAL");
                             // return 1;
+                            primo++;
                             banderaverdad = true;
                         } else {
                             i++;
@@ -107,7 +109,7 @@ public class Funciones {
                     }
                 }
             }
-            System.out.println(Lista);
+            System.out.println("---" + Lista + "---" + "\nPrimo: " + primo);
             return 1;
 
         }
