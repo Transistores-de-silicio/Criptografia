@@ -145,7 +145,7 @@ public class Funciones {
         if (q.mod(new BigInteger("2")).equals(new BigInteger("0"))) {
             q = q.subtract(new BigInteger("1"));
         }
-        System.out.println("Impares: " + q + " \n" + p);
+        //System.out.println("Impares: " + q + " \n" + p);
         boolean sal = false, sal1 = false;
         while (!sal || !sal1) {
             if (millerRabin(p) == 0 && sal == false) {
@@ -160,19 +160,19 @@ public class Funciones {
                 sal1 = true;
             }
         }
-        System.out.print(q + " \n" + p);
+       // System.out.print(q + " \n" + p);
 
         n = p.multiply(q);
         pq = p.subtract(new BigInteger("1")).multiply((q.subtract(new BigInteger("1"))));
-        System.out.println("n= " + n);
-        System.out.println("pq= " + pq);
+        //System.out.println("n= " + n);
+        //System.out.println("pq= " + pq);
         for (BigInteger i = new BigInteger("2"); salida != true; i = i.add(new BigInteger("1"))) {
             //System.out.println("\nEntramos" + i);
             BigInteger mcd = i.gcd(pq);
             if (mcd.equals(new BigInteger("1"))) {
                 e = i;
                 salida = true;
-                System.out.println("e= " + e);
+                //System.out.println("e= " + e);
             }
 
             // System.out.println(i.gcd(pq).equals(new BigInteger("1")));
@@ -180,7 +180,8 @@ public class Funciones {
         ClavePublica.add(n);
         ClavePublica.add(e);
         salida = false;
-
+       /* System.out.println("pq: "+pq);
+        System.out.println("inverso de "+e+"modulo "+pq+"es");*/
         d=inverso( pq, e);
         ClavePrivada.add(d);
         Salida.add(ClavePublica);
@@ -191,21 +192,28 @@ public class Funciones {
     }
 
     public static BigInteger inverso(BigInteger n, BigInteger a) {
-        BigInteger r, c, y, v, aux;
+        BigInteger r, c, y, v, aux,nn,aa;
         y = new BigInteger("0");
         v = new BigInteger("1");
-        r = n.mod(a);
+        nn=n;
+        aa=a;
+        r = nn.mod(a);
+        //System.out.print("inverso de "+aa+"modulo "+nn+"es");
         while (!r.equals(new BigInteger("0"))) {
-            c = n.divide(a);
+            c = nn.divide(a);
             aux = v;
             v = y.subtract(v.multiply(c));
             y = aux;
-            n = a;
-            a = r;
-            r = n.mod(a);
+            nn = aa;
+            aa = r;
+            r = nn.mod(aa);
         }
-        if (!a.equals(new BigInteger("1"))) {
+        if (!aa.equals(new BigInteger("1"))) {
             System.err.print("ERROR No existe Inverso");
+        }
+        
+        if(v.compareTo(new BigInteger("0"))==-1){   
+            v=v.add(n);     
         }
         return v;
 
