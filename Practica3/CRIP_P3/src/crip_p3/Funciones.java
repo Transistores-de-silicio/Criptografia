@@ -24,7 +24,7 @@ public class Funciones {
         Random aleatorio = new Random();
         int primo = 0;
 
-        //System.out.println(impar.mod(new BigInteger("2")));
+      
         //|| impar.compareTo(new BigInteger("5")) == -1
         if (impar.mod(new BigInteger("2")).equals(new BigInteger("0"))) {
             return -1;
@@ -43,12 +43,12 @@ public class Funciones {
                 }
                 u = i;
             }
-            System.out.println("u:" + u + "\ns:" + s + "\nPrimo:" + impar);
+           ////////////// System.out.println("u:" + u + "\ns:" + s + "\nPrimo:" + impar);
 
             a = new BigInteger("0");
             // System.err.println(impar);
             for (int contador = 0; contador < 50; contador++) {
-                System.out.println("Lista: " + Lista);
+                //////////////////////System.out.println("Lista: " + Lista);
                 banderaverdad = false;
                 salida = true;
                 while (!(a.compareTo(new BigInteger("1")) == 1 && a.compareTo(impar.subtract(new BigInteger("2"))) == -1)) {
@@ -68,14 +68,14 @@ public class Funciones {
                 /*
                  * Calculamos a^s (mod (numero impar))
                  */
-                System.out.println("\na:" + a);
+              /////////////////////////  System.out.println("\na:" + a);
                 a = potenciaModular(a, s, impar);
-                System.out.println("a elevada:" + a);
+               ////////////////////////// System.out.println("a elevada:" + a);
                 if (a.equals(new BigInteger("1")) || a.equals(new BigInteger("-1"))) {
                     //return 1;
                     primo++;
                     banderaverdad = true;
-                } else if(!a.equals(impar.subtract(new BigInteger("1")))) {
+                } else if (!a.equals(impar.subtract(new BigInteger("1")))) {
                     banderaverdad = false;//|| banderaverdad != true 
                     for (int i = 1; i <= u - 1;) {
                         //a = (a.modPow(new BigInteger("2"), impar));
@@ -90,7 +90,7 @@ public class Funciones {
                             salida = false;
                             i = u + 1;
                         }
-                        System.out.println("a elevada2:" + a);
+                    ////////////////////    System.out.println("a elevada2:" + a);
                         //System.out.print(a+" --- "+impar.subtract(new BigInteger("1")));
 
                         if (a.equals(new BigInteger("1")) && salida == true) {
@@ -105,12 +105,12 @@ public class Funciones {
 
                     }
                     if (banderaverdad == false && salida == true) {
-                        System.out.println("\nSale al final");
+                   /////////////////     System.out.println("\nSale al final");
                         return 0;
                     }
                 }
             }
-            System.out.println("---" + Lista + "---" + "\nPrimo: " + primo);
+          //////////////  System.out.println("---" + Lista + "---" + "\nPrimo: " + primo);
             return 1;
 
         }
@@ -132,8 +132,9 @@ public class Funciones {
         ArrayList<ArrayList> Salida = new ArrayList();
         ArrayList<BigInteger> ClavePublica;
         ArrayList<BigInteger> ClavePrivada;
-        BigInteger p, q, n;
-        int e;
+        BigInteger p, q, n, pq;
+        BigInteger e;
+        boolean salida=false;
         Random Aleatorio = new Random();
 
         p = new BigInteger(40, Aleatorio);
@@ -147,13 +148,13 @@ public class Funciones {
         System.out.println("Impares: " + q + " \n" + p);
         boolean sal = false, sal1 = false;
         while (!sal || !sal1) {
-            if (millerRabin(p) == 0 && sal==false) {
+            if (millerRabin(p) == 0 && sal == false) {
                 p = p.add(new BigInteger("2"));
 
             } else {
                 sal = true;
             }
-            if (millerRabin(q) == 0 && sal1==false) {
+            if (millerRabin(q) == 0 && sal1 == false) {
                 q = q.add(new BigInteger("2"));
             } else {
                 sal1 = true;
@@ -161,6 +162,23 @@ public class Funciones {
         }
         System.out.print(q + " \n" + p);
 
+        n = p.multiply(q);
+        pq = p.subtract(new BigInteger("1")).multiply((q.subtract(new BigInteger("1"))));
+        System.out.println("n= " + n);
+        System.out.println("pq= " + pq);
+        for (BigInteger i = new BigInteger("2"); salida!=true; i=i.add(new BigInteger("1"))) {
+            System.out.println("\nEntramos"+i);
+            BigInteger mcd=i.gcd(pq);
+            if ( mcd.equals(new BigInteger("1"))) {
+                e=i;
+                salida=true;
+                System.out.println("e= " + e);
+            }
+            System.out.println(i.gcd(pq));
+            System.out.println(i.gcd(pq) == new BigInteger("1"));
+        }
+        
+        
 
         return Salida;
 
