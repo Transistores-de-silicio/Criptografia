@@ -161,9 +161,9 @@ public class Interfaz extends javax.swing.JFrame {
     private void millerRabinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_millerRabinActionPerformed
         BigInteger numero=new BigInteger("1");
         String cadena = numeroImpar.getText();
-        if (Funciones.isInteger(cadena)) {
+       // if (Funciones.isInteger(cadena)) {
             numero = new BigInteger(cadena);
-        }
+        //}
         int primo = Funciones.millerRabin(numero);
         if (primo == 1) {
             JOptionPane.showMessageDialog(null, "primo",
@@ -181,7 +181,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_millerRabinActionPerformed
 
     private void GenerarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarClaveActionPerformed
-        // TODO add your handling code here:
+       Funciones.RSA();
     }//GEN-LAST:event_GenerarClaveActionPerformed
 
     private void ClavePublicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClavePublicaActionPerformed

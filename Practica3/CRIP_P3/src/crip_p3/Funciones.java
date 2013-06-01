@@ -25,7 +25,8 @@ public class Funciones {
         int primo = 0;
 
         //System.out.println(impar.mod(new BigInteger("2")));
-        if (impar.mod(new BigInteger("2")).equals(new BigInteger("0")) || impar.compareTo(new BigInteger("5")) == -1) {
+        //|| impar.compareTo(new BigInteger("5")) == -1
+        if (impar.mod(new BigInteger("2")).equals(new BigInteger("0"))) {
             return -1;
         } else {
             //Calculamos u, s	(numero impar)-1=(2^u)*s
@@ -52,8 +53,8 @@ public class Funciones {
                 salida = true;
                 while (!(a.compareTo(new BigInteger("1")) == 1 && a.compareTo(impar.subtract(new BigInteger("2"))) == -1)) {
                     //System.err.println("dentro:" + a);
-                    a = new BigInteger(impar.intValue(), aleatorio);
-                    a = a.mod(impar.subtract(new BigInteger("1")));
+                    a = new BigInteger(600, aleatorio);
+                    a = a.mod(impar.subtract(new BigInteger("2")));
                     if (!Lista.isEmpty()) {
                         if (Lista.indexOf(a) != -1) {
                             a = new BigInteger("0");
@@ -74,7 +75,7 @@ public class Funciones {
                     //return 1;
                     primo++;
                     banderaverdad = true;
-                } else {
+                } else if(!a.equals(impar.subtract(new BigInteger("1")))) {
                     banderaverdad = false;//|| banderaverdad != true 
                     for (int i = 1; i <= u - 1;) {
                         //a = (a.modPow(new BigInteger("2"), impar));
@@ -125,6 +126,45 @@ public class Funciones {
             esEntero = false;
         }
         return esEntero;
+    }
+
+    public static ArrayList<ArrayList> RSA() {
+        ArrayList<ArrayList> Salida = new ArrayList();
+        ArrayList<BigInteger> ClavePublica;
+        ArrayList<BigInteger> ClavePrivada;
+        BigInteger p, q, n;
+        int e;
+        Random Aleatorio = new Random();
+
+        p = new BigInteger(40, Aleatorio);
+        q = new BigInteger(40, Aleatorio);
+        if (p.mod(new BigInteger("2")).equals(new BigInteger("0"))) {
+            p = p.subtract(new BigInteger("1"));
+        }
+        if (q.mod(new BigInteger("2")).equals(new BigInteger("0"))) {
+            q = q.subtract(new BigInteger("1"));
+        }
+        System.out.println("Impares: " + q + " \n" + p);
+        boolean sal = false, sal1 = false;
+        while (!sal || !sal1) {
+            if (millerRabin(p) == 0 && sal==false) {
+                p = p.add(new BigInteger("2"));
+
+            } else {
+                sal = true;
+            }
+            if (millerRabin(q) == 0 && sal1==false) {
+                q = q.add(new BigInteger("2"));
+            } else {
+                sal1 = true;
+            }
+        }
+        System.out.print(q + " \n" + p);
+
+
+        return Salida;
+
+
     }
 
     public static BigInteger potenciaModular(BigInteger a, BigInteger b, BigInteger m) {
