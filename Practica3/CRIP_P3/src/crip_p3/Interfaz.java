@@ -5,8 +5,8 @@
 package crip_p3;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -89,6 +89,7 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         ClavePublica.setEditable(false);
+        ClavePublica.setText("Clave");
         ClavePublica.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         ClavePublica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,23 +103,21 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(GenerarClave)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 220, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ClavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ClavePublica, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100))
+                .addGap(0, 23, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(GenerarClave)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(ClavePublica, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                        .addComponent(ClavePrivada)))
+                .addGap(73, 73, 73))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(65, 65, 65)
                 .addComponent(GenerarClave)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(ClavePublica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ClavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,21 +158,21 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_numeroImparActionPerformed
 
     private void millerRabinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_millerRabinActionPerformed
-        BigInteger numero=new BigInteger("1");
+        BigInteger numero = new BigInteger("1");
         String cadena = numeroImpar.getText();
-       // if (Funciones.isInteger(cadena)) {
-            numero = new BigInteger(cadena);
+        // if (Funciones.isInteger(cadena)) {
+        numero = new BigInteger(cadena);
         //}
         int primo = Funciones.millerRabin(numero);
         if (primo == 1) {
             JOptionPane.showMessageDialog(null, "primo",
                     "primalidad", JOptionPane.INFORMATION_MESSAGE);
         }
-         if (primo == 0) {
+        if (primo == 0) {
             JOptionPane.showMessageDialog(null, "no primo",
                     "primalidad", JOptionPane.INFORMATION_MESSAGE);
         }
-         if (primo == -1) {
+        if (primo == -1) {
             JOptionPane.showMessageDialog(null, "no es impar",
                     "primalidad", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -181,7 +180,10 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_millerRabinActionPerformed
 
     private void GenerarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarClaveActionPerformed
-       Funciones.RSA();
+        ArrayList<ArrayList> s = Funciones.RSA();
+        ClavePublica.setText("("+s.get(0).get(0).toString() + "," + s.get(0).get(0).toString()+")");
+        ClavePrivada.setText("("+s.get(1).get(0).toString()+")");
+        System.err.println(s.get(0).get(0));
     }//GEN-LAST:event_GenerarClaveActionPerformed
 
     private void ClavePublicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClavePublicaActionPerformed

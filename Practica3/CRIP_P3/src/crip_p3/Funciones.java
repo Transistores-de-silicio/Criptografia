@@ -24,7 +24,7 @@ public class Funciones {
         Random aleatorio = new Random();
         int primo = 0;
 
-      
+
         //|| impar.compareTo(new BigInteger("5")) == -1
         if (impar.mod(new BigInteger("2")).equals(new BigInteger("0"))) {
             return -1;
@@ -43,7 +43,7 @@ public class Funciones {
                 }
                 u = i;
             }
-           ////////////// System.out.println("u:" + u + "\ns:" + s + "\nPrimo:" + impar);
+            ////////////// System.out.println("u:" + u + "\ns:" + s + "\nPrimo:" + impar);
 
             a = new BigInteger("0");
             // System.err.println(impar);
@@ -68,9 +68,9 @@ public class Funciones {
                 /*
                  * Calculamos a^s (mod (numero impar))
                  */
-              /////////////////////////  System.out.println("\na:" + a);
+                /////////////////////////  System.out.println("\na:" + a);
                 a = potenciaModular(a, s, impar);
-               ////////////////////////// System.out.println("a elevada:" + a);
+                ////////////////////////// System.out.println("a elevada:" + a);
                 if (a.equals(new BigInteger("1")) || a.equals(new BigInteger("-1"))) {
                     //return 1;
                     primo++;
@@ -90,7 +90,7 @@ public class Funciones {
                             salida = false;
                             i = u + 1;
                         }
-                    ////////////////////    System.out.println("a elevada2:" + a);
+                        ////////////////////    System.out.println("a elevada2:" + a);
                         //System.out.print(a+" --- "+impar.subtract(new BigInteger("1")));
 
                         if (a.equals(new BigInteger("1")) && salida == true) {
@@ -105,12 +105,12 @@ public class Funciones {
 
                     }
                     if (banderaverdad == false && salida == true) {
-                   /////////////////     System.out.println("\nSale al final");
+                        /////////////////     System.out.println("\nSale al final");
                         return 0;
                     }
                 }
             }
-          //////////////  System.out.println("---" + Lista + "---" + "\nPrimo: " + primo);
+            //////////////  System.out.println("---" + Lista + "---" + "\nPrimo: " + primo);
             return 1;
 
         }
@@ -130,13 +130,13 @@ public class Funciones {
 
     public static ArrayList<ArrayList> RSA() {
         ArrayList<ArrayList> Salida = new ArrayList();
-        ArrayList<BigInteger> ClavePublica;
-        ArrayList<BigInteger> ClavePrivada;
-        BigInteger p, q, n, pq;
-        BigInteger e;
-        boolean salida=false;
+        ArrayList<BigInteger> ClavePublica = new ArrayList();
+        ArrayList<BigInteger> ClavePrivada = new ArrayList();
+        BigInteger p, q, n, pq, e, d;
+        boolean salida = false;
         Random Aleatorio = new Random();
-
+        e = new BigInteger("2");
+        d = new BigInteger("2");
         p = new BigInteger(40, Aleatorio);
         q = new BigInteger(40, Aleatorio);
         if (p.mod(new BigInteger("2")).equals(new BigInteger("0"))) {
@@ -166,22 +166,48 @@ public class Funciones {
         pq = p.subtract(new BigInteger("1")).multiply((q.subtract(new BigInteger("1"))));
         System.out.println("n= " + n);
         System.out.println("pq= " + pq);
-        for (BigInteger i = new BigInteger("2"); salida!=true; i=i.add(new BigInteger("1"))) {
-            System.out.println("\nEntramos"+i);
-            BigInteger mcd=i.gcd(pq);
-            if ( mcd.equals(new BigInteger("1"))) {
-                e=i;
-                salida=true;
+        for (BigInteger i = new BigInteger("2"); salida != true; i = i.add(new BigInteger("1"))) {
+            //System.out.println("\nEntramos" + i);
+            BigInteger mcd = i.gcd(pq);
+            if (mcd.equals(new BigInteger("1"))) {
+                e = i;
+                salida = true;
                 System.out.println("e= " + e);
             }
-            System.out.println(i.gcd(pq));
-            System.out.println(i.gcd(pq) == new BigInteger("1"));
-        }
-        
-        
 
+            // System.out.println(i.gcd(pq).equals(new BigInteger("1")));
+        }
+        ClavePublica.add(n);
+        ClavePublica.add(e);
+        salida = false;
+
+        d=inverso( pq, e);
+        ClavePrivada.add(d);
+        Salida.add(ClavePublica);
+        Salida.add(ClavePrivada);
         return Salida;
 
+
+    }
+
+    public static BigInteger inverso(BigInteger n, BigInteger a) {
+        BigInteger r, c, y, v, aux;
+        y = new BigInteger("0");
+        v = new BigInteger("1");
+        r = n.mod(a);
+        while (!r.equals(new BigInteger("0"))) {
+            c = n.divide(a);
+            aux = v;
+            v = y.subtract(v.multiply(c));
+            y = aux;
+            n = a;
+            a = r;
+            r = n.mod(a);
+        }
+        if (!a.equals(new BigInteger("1"))) {
+            System.err.print("ERROR No existe Inverso");
+        }
+        return v;
 
     }
 
