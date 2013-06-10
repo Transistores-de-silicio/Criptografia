@@ -20,16 +20,19 @@ public class Funciones {
         int u = 0;
         BigInteger s, a;
         ArrayList<BigInteger> Lista = new ArrayList();
-        boolean banderaverdad, salida = true;
+        boolean banderaverdad, salida;
         Random aleatorio = new Random();
         int primo = 0;
+        int contador = 0;
 
 
-        //|| impar.compareTo(new BigInteger("5")) == -1
+
         if (impar.mod(new BigInteger("2")).equals(new BigInteger("0"))) {
             return -1;
         } else {
-            //Calculamos u, s	(numero impar)-1=(2^u)*s
+            /*
+             * Calculamos u, s	(numero impar)-1=(2^u)*s
+             */
             BigInteger Par = impar.subtract(new BigInteger("1"));
             boolean bandera = false;
             s = Par;
@@ -43,74 +46,82 @@ public class Funciones {
                 }
                 u = i;
             }
-            ////////////// System.out.println("u:" + u + "\ns:" + s + "\nPrimo:" + impar);
 
             a = new BigInteger("0");
-            // System.err.println(impar);
-            for (int contador = 0; contador < 50; contador++) {
-                //////////////////////System.out.println("Lista: " + Lista);
-                banderaverdad = false;
+            int max = 0;
+            if (impar.subtract(new BigInteger("3")).compareTo(new BigInteger("20")) == 1) {
+                max = 20;
+            } else {
+                max = impar.intValue() - 4;
+            }
+
+            for (contador = 0; contador < max; contador++) {
                 salida = true;
-                while (!(a.compareTo(new BigInteger("1")) == 1 && a.compareTo(impar.subtract(new BigInteger("2"))) == -1)) {
-                    //System.err.println("dentro:" + a);
+                while (!(a.compareTo(new BigInteger("1")) == 1 && a.compareTo(impar.subtract(new BigInteger("1"))) == -1)) {
                     a = new BigInteger(600, aleatorio);
                     a = a.mod(impar.subtract(new BigInteger("2")));
+
                     if (!Lista.isEmpty()) {
                         if (Lista.indexOf(a) != -1) {
                             a = new BigInteger("0");
                         }
                     }
-                    //a=impar.subtract(new BigInteger("1"));
 
                 }
                 Lista.add(a);
-                // System.out.println("\na:" + a);
                 /*
                  * Calculamos a^s (mod (numero impar))
                  */
-                /////////////////////////  System.out.println("\na:" + a);
                 a = potenciaModular(a, s, impar);
-                ////////////////////////// System.out.println("a elevada:" + a);
+
                 if (a.equals(new BigInteger("1")) || a.equals(new BigInteger("-1"))) {
-                    //return 1;
+
                     primo++;
                     banderaverdad = true;
+
                 } else if (!a.equals(impar.subtract(new BigInteger("1")))) {
-                    banderaverdad = false;//|| banderaverdad != true 
+
+                    banderaverdad = false;
                     for (int i = 1; i <= u - 1;) {
-                        //a = (a.modPow(new BigInteger("2"), impar));
+
                         if (a.equals(impar.subtract(new BigInteger("1")))) {
-                            // System.out.print("saleeee");
+
                             salida = false;
                             i = u + 1;
+
                         }
                         a = potenciaModular(a, new BigInteger("2"), impar);
+
                         if (a.equals(impar.subtract(new BigInteger("1")))) {
-                            // System.out.print("saleeee");
+
                             salida = false;
                             i = u + 1;
                         }
-                        ////////////////////    System.out.println("a elevada2:" + a);
-                        //System.out.print(a+" --- "+impar.subtract(new BigInteger("1")));
 
                         if (a.equals(new BigInteger("1")) && salida == true) {
+
                             return 0;
+
                         } else if (a.equals(new BigInteger("-1")) && salida == true) {
-                            // return 1;
+
                             primo++;
                             banderaverdad = true;
+
                         } else {
+
                             i++;
+
                         }
 
                     }
                     if (banderaverdad == false && salida == true) {
-                        /////////////////     System.out.println("\nSale al final");
+
                         return 0;
+
                     }
                 }
             }
-            //////////////  System.out.println("---" + Lista + "---" + "\nPrimo: " + primo);
+
             return 1;
 
         }
@@ -160,7 +171,7 @@ public class Funciones {
                 sal1 = true;
             }
         }
-       // System.out.print(q + " \n" + p);
+        // System.out.print(q + " \n" + p);
 
         n = p.multiply(q);
         pq = p.subtract(new BigInteger("1")).multiply((q.subtract(new BigInteger("1"))));
@@ -180,9 +191,9 @@ public class Funciones {
         ClavePublica.add(n);
         ClavePublica.add(e);
         salida = false;
-       /* System.out.println("pq: "+pq);
-        System.out.println("inverso de "+e+"modulo "+pq+"es");*/
-        d=inverso( pq, e);
+        /* System.out.println("pq: "+pq);
+         System.out.println("inverso de "+e+"modulo "+pq+"es");*/
+        d = inverso(pq, e);
         ClavePrivada.add(d);
         Salida.add(ClavePublica);
         Salida.add(ClavePrivada);
@@ -192,11 +203,11 @@ public class Funciones {
     }
 
     public static BigInteger inverso(BigInteger n, BigInteger a) {
-        BigInteger r, c, y, v, aux,nn,aa;
+        BigInteger r, c, y, v, aux, nn, aa;
         y = new BigInteger("0");
         v = new BigInteger("1");
-        nn=n;
-        aa=a;
+        nn = n;
+        aa = a;
         r = nn.mod(a);
         //System.out.print("inverso de "+aa+"modulo "+nn+"es");
         while (!r.equals(new BigInteger("0"))) {
@@ -211,9 +222,9 @@ public class Funciones {
         if (!aa.equals(new BigInteger("1"))) {
             System.err.print("ERROR No existe Inverso");
         }
-        
-        if(v.compareTo(new BigInteger("0"))==-1){   
-            v=v.add(n);     
+
+        if (v.compareTo(new BigInteger("0")) == -1) {
+            v = v.add(n);
         }
         return v;
 
