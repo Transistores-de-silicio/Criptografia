@@ -190,9 +190,8 @@ public class Funciones {
         }
         ClavePublica.add(n);
         ClavePublica.add(e);
-        salida = false;
-        /* System.out.println("pq: "+pq);
-         System.out.println("inverso de "+e+"modulo "+pq+"es");*/
+         System.out.println("pq: "+pq);
+         System.out.println("inverso de "+e+"modulo "+pq+"es");
         d = inverso(pq, e);
         ClavePrivada.add(d);
         Salida.add(ClavePublica);
@@ -211,7 +210,7 @@ public class Funciones {
         r = nn.mod(a);
         //System.out.print("inverso de "+aa+"modulo "+nn+"es");
         while (!r.equals(new BigInteger("0"))) {
-            c = nn.divide(a);
+            c = nn.divide(aa);
             aux = v;
             v = y.subtract(v.multiply(c));
             y = aux;

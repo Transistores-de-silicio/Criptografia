@@ -181,7 +181,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void GenerarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarClaveActionPerformed
         ArrayList<ArrayList> s = Funciones.RSA();
-        ClavePublica.setText("("+s.get(0).get(0).toString() + "," + s.get(0).get(0).toString()+")");
+        ClavePublica.setText("("+s.get(0).get(0).toString() + "," + s.get(0).get(1).toString()+")");
         ClavePrivada.setText("("+s.get(1).get(0).toString()+")");
         System.err.println(s.get(0).get(0));
     }//GEN-LAST:event_GenerarClaveActionPerformed
