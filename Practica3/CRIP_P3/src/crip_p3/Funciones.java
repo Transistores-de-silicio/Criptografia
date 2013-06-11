@@ -305,11 +305,25 @@ public class Funciones {
         return resultado;
     }
 
-    public static String cifrar(String texto,BigInteger n,BigInteger e) {
+    public static String cifrar(String texto, BigInteger n, BigInteger e) {
         String salida;
         BigInteger cifrado, textoCifrar = new BigInteger(texto);
-        cifrado=textoCifrar.pow(e.intValue()).mod(n);
-        salida=cifrado.toString();
+        cifrado = textoCifrar.pow(e.intValue()).mod(n);
+        salida = cifrado.toString();
+        return salida;
+    }
+
+    static String descifrar(String text, BigInteger publicaN, BigInteger publicaE, BigInteger privada) {
+        String salida;
+        BigInteger cifrado=new BigInteger(text);
+        salida=potenciaModular(cifrado, privada, publicaN).toString();
+        
+        /*if(cifrado.gcd(publicaN)==new BigInteger("1")){
+           
+        
+        }else{
+        
+        }*/
         return salida;
     }
 }
