@@ -16,6 +16,7 @@ import java.math.*;
  */
 public class Funciones {
 
+    
     public static int millerRabin(BigInteger impar) {
         int u = 0;
         BigInteger s, a;

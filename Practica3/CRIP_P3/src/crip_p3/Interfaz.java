@@ -15,9 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class Interfaz extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Interfaz
+    private BigInteger publicaN;
+    private BigInteger publicaE;
+    private BigInteger privada;
+    /* Creates new form Interfaz
      */
+
     public Interfaz() {
         initComponents();
     }
@@ -39,6 +42,13 @@ public class Interfaz extends javax.swing.JFrame {
         GenerarClave = new javax.swing.JButton();
         ClavePublica = new javax.swing.JTextField();
         ClavePrivada = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        CifrarDescifrar = new javax.swing.JButton();
+        texto = new javax.swing.JTextField();
+        Cifrado = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +75,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(numeroImpar)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(217, Short.MAX_VALUE)
+                .addContainerGap(228, Short.MAX_VALUE)
                 .addComponent(millerRabin)
                 .addGap(27, 27, 27))
         );
@@ -89,39 +99,84 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         ClavePublica.setEditable(false);
-        ClavePublica.setText("Clave");
         ClavePublica.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        ClavePublica.addActionListener(new java.awt.event.ActionListener() {
+
+        ClavePrivada.setEditable(false);
+
+        jLabel1.setText("Clave Publica");
+
+        jLabel2.setText("Clave Privada");
+
+        CifrarDescifrar.setText("Cifra/Descrifra");
+        CifrarDescifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClavePublicaActionPerformed(evt);
+                CifrarDescifrarActionPerformed(evt);
             }
         });
 
-        ClavePrivada.setEditable(false);
+        jLabel3.setText("Texto plano");
+
+        jLabel4.setText("Texto cifrado");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 23, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GenerarClave)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(ClavePublica, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                        .addComponent(ClavePrivada)))
-                .addGap(73, 73, 73))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(GenerarClave)
+                        .addGap(301, 301, 301))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ClavePublica, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ClavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(CifrarDescifrar))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(texto, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                                    .addComponent(Cifrado))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(28, 28, 28)
                 .addComponent(GenerarClave)
                 .addGap(18, 18, 18)
-                .addComponent(ClavePublica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClavePublica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ClavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ClavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CifrarDescifrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(texto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Cifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Clave publica (C. elipticas)", jPanel2);
@@ -130,7 +185,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,14 +236,22 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void GenerarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarClaveActionPerformed
         ArrayList<ArrayList> s = Funciones.RSA();
-        ClavePublica.setText("("+s.get(0).get(0).toString() + "," + s.get(0).get(1).toString()+")");
-        ClavePrivada.setText("("+s.get(1).get(0).toString()+")");
-        System.err.println(s.get(0).get(0));
+        publicaE = new BigInteger(s.get(0).get(1).toString());
+        publicaN = new BigInteger(s.get(0).get(0).toString());
+        privada = new BigInteger(s.get(1).get(0).toString());
+        ClavePublica.setText("(" + s.get(0).get(0).toString() + "," + s.get(0).get(1).toString() + ")");
+        ClavePrivada.setText("(" + s.get(1).get(0).toString() + ")");
+
     }//GEN-LAST:event_GenerarClaveActionPerformed
 
-    private void ClavePublicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClavePublicaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ClavePublicaActionPerformed
+    private void CifrarDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CifrarDescifrarActionPerformed
+    
+      if(texto.equals("")){
+      /*
+       * Cifrado
+       */
+      }
+    }//GEN-LAST:event_CifrarDescifrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,14 +288,21 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Cifrado;
+    private javax.swing.JButton CifrarDescifrar;
     private javax.swing.JTextField ClavePrivada;
     private javax.swing.JTextField ClavePublica;
     private javax.swing.JButton GenerarClave;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton millerRabin;
     private javax.swing.JTextField numeroImpar;
+    private javax.swing.JTextField texto;
     // End of variables declaration//GEN-END:variables
 }
