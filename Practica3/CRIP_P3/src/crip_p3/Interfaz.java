@@ -262,7 +262,7 @@ public class Interfaz extends javax.swing.JFrame {
          * Cifrado
          */
         if (!texto.equals("")) {
-            BigInteger a= new BigInteger(texto.getText());
+            //BigInteger a= new BigInteger(texto.getText());
             Cifrado.setText(Funciones.cifrar(texto.getText(),publicaN,publicaE));
             
         }

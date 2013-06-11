@@ -307,23 +307,45 @@ public class Funciones {
 
     public static String cifrar(String texto, BigInteger n, BigInteger e) {
         String salida;
-        BigInteger cifrado, textoCifrar = new BigInteger(texto);
+        String Ascii = "";
+        for (int x = 0; x < texto.length(); x++) {
+            Ascii += texto.codePointAt(x)+"0";
+            System.out.println(texto.charAt(x) + " = " + texto.codePointAt(x));
+        }
+        //texto=texto.getBytes().toString();
+        System.out.println(Ascii);
+        BigInteger cifrado, textoCifrar = new BigInteger(Ascii);
         cifrado = textoCifrar.pow(e.intValue()).mod(n);
         salida = cifrado.toString();
         return salida;
     }
 
     static String descifrar(String text, BigInteger publicaN, BigInteger publicaE, BigInteger privada) {
-        String salida;
-        BigInteger cifrado=new BigInteger(text);
-        salida=potenciaModular(cifrado, privada, publicaN).toString();
-        
+        String salida,sal="";
+        String Ascii = "";
+
+        /*
+         * int i = 64;
+         String aChar = new Character((char)i).toString();
+         */
+        BigInteger cifrado = new BigInteger(text);
+        salida = potenciaModular(cifrado, privada, publicaN).toString();
+
+        for (int x = 0; x < salida.length(); x++) {
+            String aux="";
+            while(salida.charAt(x)!='0'){
+            aux+=salida.charAt(x);
+            x++;
+            }
+            int numeroAscii=Integer.parseInt(aux);
+            sal+=new Character((char)numeroAscii).toString();
+        }
         /*if(cifrado.gcd(publicaN)==new BigInteger("1")){
            
         
-        }else{
+         }else{
         
-        }*/
-        return salida;
+         }*/
+        return sal;
     }
 }
