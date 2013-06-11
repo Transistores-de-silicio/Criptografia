@@ -16,7 +16,6 @@ import java.math.*;
  */
 public class Funciones {
 
-    
     public static int millerRabin(BigInteger impar) {
         int u = 0;
         BigInteger s, a;
@@ -191,8 +190,8 @@ public class Funciones {
         }
         ClavePublica.add(n);
         ClavePublica.add(e);
-         System.out.println("pq: "+pq);
-         System.out.println("inverso de "+e+"modulo "+pq+"es");
+        System.out.println("pq: " + pq);
+        System.out.println("inverso de " + e + "modulo " + pq + "es");
         d = inverso(pq, e);
         ClavePrivada.add(d);
         Salida.add(ClavePublica);
@@ -304,5 +303,13 @@ public class Funciones {
             }
         }
         return resultado;
+    }
+
+    public static String cifrar(String texto,BigInteger n,BigInteger e) {
+        String salida;
+        BigInteger cifrado, textoCifrar = new BigInteger(texto);
+        cifrado=textoCifrar.pow(e.intValue()).mod(n);
+        salida=cifrado.toString();
+        return salida;
     }
 }

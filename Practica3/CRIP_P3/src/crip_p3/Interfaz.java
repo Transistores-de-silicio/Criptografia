@@ -245,12 +245,15 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_GenerarClaveActionPerformed
 
     private void CifrarDescifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CifrarDescifrarActionPerformed
-    
-      if(texto.equals("")){
-      /*
-       * Cifrado
-       */
-      }
+
+        /*
+         * Cifrado
+         */
+        if (!texto.equals("")) {
+            BigInteger a= new BigInteger(texto.getText());
+            Cifrado.setText(Funciones.cifrar(texto.getText(),publicaN,publicaE));
+            
+        }
     }//GEN-LAST:event_CifrarDescifrarActionPerformed
 
     /**
