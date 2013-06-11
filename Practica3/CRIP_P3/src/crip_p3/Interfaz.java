@@ -4,9 +4,12 @@
  */
 package crip_p3;
 
-import java.math.BigInteger;
+import java.io.UnsupportedEncodingException;
+import java.math.*;
+import java.security.*;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,13 +17,14 @@ import javax.swing.JOptionPane;
  * @author Alex
  */
 public class Interfaz extends javax.swing.JFrame {
-
+    
     private BigInteger publicaN;
     private BigInteger publicaE;
     private BigInteger privada;
+    private BigInteger[] cifrado;
     /* Creates new form Interfaz
      */
-
+    
     public Interfaz() {
         initComponents();
     }
@@ -38,6 +42,11 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         numeroImpar = new javax.swing.JTextField();
         millerRabin = new javax.swing.JButton();
+        m = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        resultadoPrimo = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         GenerarClave = new javax.swing.JButton();
         ClavePublica = new javax.swing.JTextField();
@@ -51,14 +60,12 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         Descrifra = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        Generar = new javax.swing.JButton();
+        genFirma = new javax.swing.JButton();
+        verFirma = new javax.swing.JButton();
+        textFirma = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        numeroImpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numeroImparActionPerformed(evt);
-            }
-        });
 
         millerRabin.setText("Comprobacion Primalidad");
         millerRabin.addActionListener(new java.awt.event.ActionListener() {
@@ -67,27 +74,60 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Numero: ");
+
+        jLabel6.setText("Rondas: ");
+
+        resultadoPrimo.setEditable(false);
+
+        jLabel7.setText("Resultado");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(numeroImpar)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(numeroImpar)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(m, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 287, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(millerRabin))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(278, Short.MAX_VALUE)
-                .addComponent(millerRabin)
-                .addGap(27, 27, 27))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(resultadoPrimo, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
-                .addComponent(numeroImpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numeroImpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addComponent(millerRabin)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(resultadoPrimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(53, 53, 53))
         );
 
         jTabbedPane1.addTab("Test de Miller-Rabin", jPanel1);
@@ -137,7 +177,7 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ClavePublica, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ClavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,15 +232,50 @@ public class Interfaz extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Clave publica (C. elipticas)", jPanel2);
 
+        Generar.setText("Generacion de Claves");
+        Generar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerarActionPerformed(evt);
+            }
+        });
+
+        genFirma.setText("Generacion Firma");
+        genFirma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genFirmaActionPerformed(evt);
+            }
+        });
+
+        verFirma.setText("Verificacion ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Generar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(genFirma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(verFirma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(290, Short.MAX_VALUE)
+                .addComponent(textFirma, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(Generar)
+                .addGap(2, 2, 2)
+                .addComponent(textFirma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(genFirma)
+                .addGap(35, 35, 35)
+                .addComponent(verFirma)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Firma digital (C. elipticas)", jPanel3);
@@ -219,32 +294,32 @@ public class Interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void numeroImparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroImparActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numeroImparActionPerformed
-
     private void millerRabinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_millerRabinActionPerformed
-        BigInteger numero = new BigInteger("1");
+        BigInteger numero;
         String cadena = numeroImpar.getText();
         // if (Funciones.isInteger(cadena)) {
         numero = new BigInteger(cadena);
-        //}
-        int primo = Funciones.millerRabin(numero);
-        if (primo == 1) {
-            JOptionPane.showMessageDialog(null, "primo",
-                    "primalidad", JOptionPane.INFORMATION_MESSAGE);
+        double probablidad;
+        double rondas;
+        if (!isNumeric(m.getText())) {
+            resultadoPrimo.setText("El dato introducido no es un numero");
+        } else {
+            rondas = Integer.parseInt(m.getText());
+            int primo = Funciones.millerRabin(numero, rondas);
+            probablidad = ((double) ((Math.pow(rondas, 4.0)) - 1) )/( (double) (Math.pow(rondas, 4.0)));;
+            if (primo == 1) {
+                resultadoPrimo.setText(("primo con probablidad:" + probablidad));
+            }
+            if (primo == 0) {
+                
+                resultadoPrimo.setText("no primo");
+            }
+            if (primo == -1) {
+                resultadoPrimo.setText("no es impar");
+                
+            }
         }
-        if (primo == 0) {
-            JOptionPane.showMessageDialog(null, "no primo",
-                    "primalidad", JOptionPane.INFORMATION_MESSAGE);
-        }
-        if (primo == -1) {
-            JOptionPane.showMessageDialog(null, "no es impar",
-                    "primalidad", JOptionPane.INFORMATION_MESSAGE);
-        }
-
     }//GEN-LAST:event_millerRabinActionPerformed
-
     private void GenerarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarClaveActionPerformed
         ArrayList<ArrayList> s = Funciones.RSA();
         publicaE = new BigInteger(s.get(0).get(1).toString());
@@ -252,32 +327,74 @@ public class Interfaz extends javax.swing.JFrame {
         privada = new BigInteger(s.get(1).get(0).toString());
         ClavePublica.setText("(" + s.get(0).get(0).toString() + "," + s.get(0).get(1).toString() + ")");
         ClavePrivada.setText("(" + s.get(1).get(0).toString() + ")");
-
+        
     }//GEN-LAST:event_GenerarClaveActionPerformed
-
+    
     private void CifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CifrarActionPerformed
 
-        
+
         /*
          * Cifrado
          */
-        if (!texto.equals("")) {
+        if (!texto.getText().isEmpty()) {
             //BigInteger a= new BigInteger(texto.getText());
-            Cifrado.setText(Funciones.cifrar(texto.getText(),publicaN,publicaE));
+            cifrado = Funciones.cifrar(texto.getText().getBytes(), publicaN, publicaE);
+            String puesta = "";
+            for (int i = 0; i < cifrado.length; i++) {
+                puesta += cifrado[i].toString();
+            }
+            Cifrado.setText(puesta);
             
         }
     }//GEN-LAST:event_CifrarActionPerformed
-
+    
     private void DescrifraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescrifraActionPerformed
         /*
          * Descifrado
          */
-        if (!Cifrado.equals("")) {
-            BigInteger a= new BigInteger(Cifrado.getText());
-            texto.setText(Funciones.descifrar(Cifrado.getText(),publicaN,publicaE,privada));
+        if (!Cifrado.getText().isEmpty()) {
+            BigInteger a = new BigInteger(Cifrado.getText());
+            texto.setText(Funciones.descifrar(cifrado, publicaN, publicaE, privada));
             
         }
     }//GEN-LAST:event_DescrifraActionPerformed
+    
+    private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
+        ArrayList<ArrayList> s = Funciones.RSA();
+        publicaE = new BigInteger(s.get(0).get(1).toString());
+        publicaN = new BigInteger(s.get(0).get(0).toString());
+        privada = new BigInteger(s.get(1).get(0).toString());
+    }//GEN-LAST:event_GenerarActionPerformed
+    
+    private void genFirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFirmaActionPerformed
+        byte[] bytesOfMessage;
+        MessageDigest md;
+        byte[] thedigest;
+        BigInteger [] a;
+        try {
+            bytesOfMessage = textFirma.getText().getBytes("UTF-8");
+            md = MessageDigest.getInstance("MD5");
+            thedigest = md.digest(bytesOfMessage);
+            a=Funciones.cifrar(thedigest, privada, privada);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_genFirmaActionPerformed
+    
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -293,21 +410,28 @@ public class Interfaz extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+                    
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Interfaz.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Interfaz().setVisible(true);
             }
@@ -319,17 +443,26 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTextField ClavePrivada;
     private javax.swing.JTextField ClavePublica;
     private javax.swing.JButton Descrifra;
+    private javax.swing.JButton Generar;
     private javax.swing.JButton GenerarClave;
+    private javax.swing.JButton genFirma;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField m;
     private javax.swing.JButton millerRabin;
     private javax.swing.JTextField numeroImpar;
+    private javax.swing.JTextField resultadoPrimo;
+    private javax.swing.JTextField textFirma;
     private javax.swing.JTextField texto;
+    private javax.swing.JButton verFirma;
     // End of variables declaration//GEN-END:variables
 }
