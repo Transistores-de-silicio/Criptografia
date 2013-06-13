@@ -4,12 +4,19 @@
  */
 package crip_p3;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.*;
 import java.security.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,16 +24,19 @@ import java.util.logging.Logger;
  * @author Alex
  */
 public class Interfaz extends javax.swing.JFrame {
-    
+
+    JFileChooser chooser = new JFileChooser();
+    JFileChooser chooser2 = new JFileChooser();
     private BigInteger publicaN;
     private BigInteger publicaE;
     private BigInteger privada;
     private BigInteger[] cifrado;
     /* Creates new form Interfaz
      */
-    
+
     public Interfaz() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,6 +47,7 @@ public class Interfaz extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -47,6 +58,8 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         resultadoPrimo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         GenerarClave = new javax.swing.JButton();
         ClavePublica = new javax.swing.JTextField();
@@ -59,6 +72,20 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Descrifra = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        ruta = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        ruta2 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         Generar = new javax.swing.JButton();
         genFirma = new javax.swing.JButton();
@@ -66,6 +93,16 @@ public class Interfaz extends javax.swing.JFrame {
         textFirma = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 392;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel1.add(numeroImpar, gridBagConstraints);
 
         millerRabin.setText("Comprobacion Primalidad");
         millerRabin.addActionListener(new java.awt.event.ActionListener() {
@@ -73,162 +110,308 @@ public class Interfaz extends javax.swing.JFrame {
                 millerRabinActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(15, 5, 5, 5);
+        jPanel1.add(millerRabin, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 115;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel1.add(m, gridBagConstraints);
 
         jLabel5.setText("Numero: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel1.add(jLabel5, gridBagConstraints);
 
         jLabel6.setText("Rondas: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel1.add(jLabel6, gridBagConstraints);
 
         resultadoPrimo.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 260;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel1.add(resultadoPrimo, gridBagConstraints);
 
-        jLabel7.setText("Resultado");
+        jLabel7.setText("Resultado:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel1.add(jLabel7, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(numeroImpar)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(m, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 287, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(millerRabin))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(resultadoPrimo, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numeroImpar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(m, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addComponent(millerRabin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(resultadoPrimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(53, 53, 53))
-        );
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText("Test de Miller-Rabin");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel1.add(jLabel8, gridBagConstraints);
+
+        jSeparator1.setPreferredSize(new java.awt.Dimension(100, 2));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        jPanel1.add(jSeparator1, gridBagConstraints);
 
         jTabbedPane1.addTab("Test de Miller-Rabin", jPanel1);
 
-        GenerarClave.setText("Generar");
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        GenerarClave.setText("Generar claves");
         GenerarClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GenerarClaveActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(GenerarClave, gridBagConstraints);
 
         ClavePublica.setEditable(false);
-        ClavePublica.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        ClavePublica.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 293;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(ClavePublica, gridBagConstraints);
 
         ClavePrivada.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 293;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(ClavePrivada, gridBagConstraints);
 
-        jLabel1.setText("Clave Publica");
+        jLabel1.setText("Clave Publica:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel2.add(jLabel1, gridBagConstraints);
 
-        jLabel2.setText("Clave Privada");
+        jLabel2.setText("Clave Privada:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel2.add(jLabel2, gridBagConstraints);
 
-        Cifrar.setText("Cifrar");
+        Cifrar.setText("Cifrar texto o archivo");
         Cifrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CifrarActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(Cifrar, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(texto, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(Cifrado, gridBagConstraints);
 
-        jLabel3.setText("Texto plano");
+        jLabel3.setText("O escriba texto plano:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel2.add(jLabel3, gridBagConstraints);
 
-        jLabel4.setText("Texto cifrado");
+        jLabel4.setText("Texto cifrado:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel2.add(jLabel4, gridBagConstraints);
 
-        Descrifra.setText("Descrifrar");
+        Descrifra.setText("Descrifrar texto o archivo");
         Descrifra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DescrifraActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(Descrifra, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ClavePublica, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ClavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(158, 158, 158)
-                                .addComponent(GenerarClave)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(37, 37, 37)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(texto, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                                            .addComponent(Cifrado)))
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Cifrar)))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Descrifra))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(GenerarClave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(ClavePublica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ClavePrivada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(texto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Cifrar))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Descrifra)
-                    .addComponent(Cifrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel9.setText("Clave Publica");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel2.add(jLabel9, gridBagConstraints);
+
+        jSeparator2.setPreferredSize(new java.awt.Dimension(100, 2));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        jPanel2.add(jSeparator2, gridBagConstraints);
+
+        jLabel10.setText("Busque el archivo de texto a descifrar:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel2.add(jLabel10, gridBagConstraints);
+
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jButton1, gridBagConstraints);
+
+        jSeparator3.setPreferredSize(new java.awt.Dimension(100, 2));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        jPanel2.add(jSeparator3, gridBagConstraints);
+
+        ruta.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 293;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(ruta, gridBagConstraints);
+
+        jButton2.setText("Descartar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jButton2, gridBagConstraints);
+
+        jLabel11.setText("Texto descifrado:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel2.add(jLabel11, gridBagConstraints);
+
+        jTextField1.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(jTextField1, gridBagConstraints);
+
+        jLabel13.setText("Busque el archivo de texto a cifrar:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 5);
+        jPanel2.add(jLabel13, gridBagConstraints);
+
+        ruta2.setEditable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 293;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel2.add(ruta2, gridBagConstraints);
+
+        jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jButton3, gridBagConstraints);
+
+        jButton4.setText("Descartar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel2.add(jButton4, gridBagConstraints);
+
+        jSeparator4.setPreferredSize(new java.awt.Dimension(100, 2));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        jPanel2.add(jSeparator4, gridBagConstraints);
 
         jTabbedPane1.addTab("Clave publica (C. elipticas)", jPanel2);
 
@@ -260,7 +443,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(verFirma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(290, Short.MAX_VALUE)
+                .addContainerGap(578, Short.MAX_VALUE)
                 .addComponent(textFirma, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
@@ -275,21 +458,12 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(genFirma)
                 .addGap(35, 35, 35)
                 .addComponent(verFirma)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Firma digital (C. elipticas)", jPanel3);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
-        );
+        getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -306,17 +480,17 @@ public class Interfaz extends javax.swing.JFrame {
         } else {
             rondas = Integer.parseInt(m.getText());
             int primo = Funciones.millerRabin(numero, rondas);
-            probablidad = ((double) ((Math.pow(rondas, 4.0)) - 1) )/( (double) (Math.pow(rondas, 4.0)));;
+            probablidad = ((double) ((Math.pow(rondas, 4.0)) - 1)) / ((double) (Math.pow(rondas, 4.0)));
             if (primo == 1) {
                 resultadoPrimo.setText(("primo con probablidad:" + probablidad));
             }
             if (primo == 0) {
-                
+
                 resultadoPrimo.setText("no primo");
             }
             if (primo == -1) {
                 resultadoPrimo.setText("no es impar");
-                
+
             }
         }
     }//GEN-LAST:event_millerRabinActionPerformed
@@ -325,68 +499,146 @@ public class Interfaz extends javax.swing.JFrame {
         publicaE = new BigInteger(s.get(0).get(1).toString());
         publicaN = new BigInteger(s.get(0).get(0).toString());
         privada = new BigInteger(s.get(1).get(0).toString());
-        ClavePublica.setText("(" + s.get(0).get(0).toString() + "," + s.get(0).get(1).toString() + ")");
-        ClavePrivada.setText("(" + s.get(1).get(0).toString() + ")");
-        
+        ClavePublica.setText(s.get(0).get(0).toString() + " -- " + s.get(0).get(1).toString());
+        ClavePrivada.setText(s.get(1).get(0).toString());
+
     }//GEN-LAST:event_GenerarClaveActionPerformed
-    
+
     private void CifrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CifrarActionPerformed
-
-
         /*
          * Cifrado
          */
-        if (!texto.getText().isEmpty()) {
-            //BigInteger a= new BigInteger(texto.getText());
-            cifrado = Funciones.cifrar(texto.getText().getBytes(), publicaN, publicaE);
-            String puesta = "";
-            for (int i = 0; i < cifrado.length; i++) {
-                puesta += cifrado[i].toString();
+        if (!texto.isEnabled()) {
+            cifrado = Funciones.cifrar(obtenerBytesTextoArchivo(), publicaN, publicaE);
+
+            FileWriter fichero = null;
+            try {
+                String nombArchivo = chooser.getSelectedFile().getName();
+                fichero = new FileWriter("(" + nombArchivo + ") cifrado.txt", true);
+                PrintWriter pw = new PrintWriter(fichero);
+                for (int i = 0; i < cifrado.length; i++) {
+                    pw.print(cifrado[i].toString());
+                }
+                JOptionPane.showMessageDialog(null, "Solucion guardada en: " + System.getProperty("user.dir"),
+                        "OK", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se ha podido guardar el fichero: " + e.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try {
+                    fichero.close();
+                } catch (Exception e2) {
+                    JOptionPane.showMessageDialog(null, "No se ha podido cerrar el fichero: " + e2.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
-            Cifrado.setText(puesta);
-            
+        } else {
+            if (!texto.getText().isEmpty()) {
+                cifrado = Funciones.cifrar(texto.getText().getBytes(), publicaN, publicaE);
+                String puesta = "";
+                for (int i = 0; i < cifrado.length; i++) {
+                    puesta += cifrado[i].toString();
+                }
+                Cifrado.setText(puesta);
+            }
         }
     }//GEN-LAST:event_CifrarActionPerformed
-    
+
     private void DescrifraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescrifraActionPerformed
         /*
          * Descifrado
          */
-        if (!Cifrado.getText().isEmpty()) {
-            BigInteger a = new BigInteger(Cifrado.getText());
-            texto.setText(Funciones.descifrar(cifrado, publicaN, publicaE, privada));
-            
+        if (!texto.isEnabled()) {
+
+            FileWriter fichero = null;
+            try {
+                String nombArchivo = chooser.getSelectedFile().getName();
+                fichero = new FileWriter("(" + nombArchivo + ") descifrado.txt", true);
+                PrintWriter pw = new PrintWriter(fichero);
+                pw.print(Funciones.descifrar(cifrado, publicaN, publicaE, privada));
+                JOptionPane.showMessageDialog(null, "Solucion guardada en: " + System.getProperty("user.dir"),
+                        "OK", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se ha podido guardar el fichero: " + e.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                try {
+                    fichero.close();
+                } catch (Exception e2) {
+                    JOptionPane.showMessageDialog(null, "No se ha podido cerrar el fichero: " + e2.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            if (!Cifrado.getText().isEmpty()) {
+                BigInteger a = new BigInteger(Cifrado.getText());
+                jTextField1.setText(Funciones.descifrar(cifrado, publicaN, publicaE, privada));
+            }
         }
     }//GEN-LAST:event_DescrifraActionPerformed
-    
+
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
         ArrayList<ArrayList> s = Funciones.RSA();
         publicaE = new BigInteger(s.get(0).get(1).toString());
         publicaN = new BigInteger(s.get(0).get(0).toString());
         privada = new BigInteger(s.get(1).get(0).toString());
     }//GEN-LAST:event_GenerarActionPerformed
-    
+
     private void genFirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFirmaActionPerformed
         byte[] bytesOfMessage;
         MessageDigest md;
         byte[] thedigest;
-        BigInteger [] a;
+        BigInteger[] a;
         try {
             bytesOfMessage = textFirma.getText().getBytes("UTF-8");
             md = MessageDigest.getInstance("MD5");
             thedigest = md.digest(bytesOfMessage);
-            a=Funciones.cifrar(thedigest, privada, privada);
+            a = Funciones.cifrar(thedigest, privada, privada);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        
+
+
+
+
     }//GEN-LAST:event_genFirmaActionPerformed
-    
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int returnVal = chooser.showOpenDialog(chooser);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            ruta.setText(chooser.getSelectedFile().getPath());
+            texto.setEnabled(false);
+            jLabel3.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ruta.setText("");
+        texto.setEnabled(true);
+        jLabel3.setEnabled(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int returnVal = chooser2.showOpenDialog(chooser2);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            ruta2.setText(chooser2.getSelectedFile().getPath());
+            Cifrado.setEnabled(false);
+            jLabel4.setEnabled(false);
+            jLabel11.setEnabled(false);
+            jTextField1.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        ruta2.setText("");
+        Cifrado.setEnabled(true);
+        jLabel4.setEnabled(true);
+        jLabel11.setEnabled(true);
+        jTextField1.setEnabled(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private static boolean isNumeric(String cadena) {
         try {
             Integer.parseInt(cadena);
@@ -410,8 +662,8 @@ public class Interfaz extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
-                    
+
+
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -446,23 +698,57 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton Generar;
     private javax.swing.JButton GenerarClave;
     private javax.swing.JButton genFirma;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField m;
     private javax.swing.JButton millerRabin;
     private javax.swing.JTextField numeroImpar;
     private javax.swing.JTextField resultadoPrimo;
+    private javax.swing.JTextField ruta;
+    private javax.swing.JTextField ruta2;
     private javax.swing.JTextField textFirma;
     private javax.swing.JTextField texto;
     private javax.swing.JButton verFirma;
     // End of variables declaration//GEN-END:variables
+
+    private byte[] obtenerBytesTextoArchivo() {
+        String textoArchivo = "";
+        FileReader f;
+        try {
+            f = new FileReader(chooser.getSelectedFile());
+            int caracter = f.read();
+            while (caracter != -1) {
+                textoArchivo += String.valueOf((char) caracter);
+                caracter = f.read();
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return textoArchivo.getBytes();
+    }
 }

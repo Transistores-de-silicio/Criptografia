@@ -16,14 +16,14 @@ import java.util.Random;
  */
 public class Funciones {
 
-    public static int millerRabin(BigInteger impar,double max) {
+    public static int millerRabin(BigInteger impar, double max) {
         int u = 0;
         BigInteger s, a;
         ArrayList<BigInteger> Lista = new ArrayList();
         boolean banderaverdad, salida;
         Random aleatorio = new Random();
         int primo = 0;
-        int contador = 0;
+        int contador;
 
 
 
@@ -48,10 +48,10 @@ public class Funciones {
             }
 
             a = new BigInteger("0");
-            
+
             if (!(impar.subtract(new BigInteger("3")).compareTo(new BigInteger("20")) == 1)) {
                 max = impar.intValue() - 4;
-            } 
+            }
             for (contador = 0; contador < max; contador++) {
                 salida = true;
                 while (!(a.compareTo(new BigInteger("1")) == 1 && a.compareTo(impar.subtract(new BigInteger("1"))) == -1)) {
@@ -74,7 +74,6 @@ public class Funciones {
                 if (a.equals(new BigInteger("1")) || a.equals(new BigInteger("-1"))) {
 
                     primo++;
-                    banderaverdad = true;
 
                 } else if (!a.equals(impar.subtract(new BigInteger("1")))) {
 
@@ -155,13 +154,13 @@ public class Funciones {
         //System.out.println("Impares: " + q + " \n" + p);
         boolean sal = false, sal1 = false;
         while (!sal || !sal1) {
-            if (millerRabin(p,20) == 0 && sal == false) {
+            if (millerRabin(p, 20) == 0 && sal == false) {
                 p = p.add(new BigInteger("2"));
 
             } else {
                 sal = true;
             }
-            if (millerRabin(q,20) == 0 && sal1 == false) {
+            if (millerRabin(q, 20) == 0 && sal1 == false) {
                 q = q.add(new BigInteger("2"));
             } else {
                 sal1 = true;
@@ -186,8 +185,8 @@ public class Funciones {
         }
         ClavePublica.add(n);
         ClavePublica.add(e);
-       // System.out.println("pq: " + pq);
-       // System.out.println("inverso de " + e + "modulo " + pq + "es");
+        // System.out.println("pq: " + pq);
+        // System.out.println("inverso de " + e + "modulo " + pq + "es");
         d = inverso(pq, e);
         ClavePrivada.add(d);
         Salida.add(ClavePublica);
@@ -302,48 +301,42 @@ public class Funciones {
     }
 
     public static BigInteger[] cifrar(byte[] digitos, BigInteger n, BigInteger e) {
-        String salida;
-        /*String Ascii = "";
-        for (int x = 0; x < texto.length(); x++) {
-            Ascii += texto.codePointAt(x)+"000";
-            //System.out.println(texto.charAt(x) + " = " + texto.codePointAt(x));
-        }*/
-        //texto=texto.getBytes().toString();
-        
-        //System.out.println(Ascii);
         int i;
-		byte[] temp = new byte[1];
-		BigInteger[] bigdigitos = new BigInteger[digitos.length];
- 
-		for(i=0; i<bigdigitos.length;i++){
-			temp[0] = digitos[i];
-			bigdigitos[i] = new BigInteger(temp);
-		}
- 
-		BigInteger[] cifrado = new BigInteger[bigdigitos.length];
- 
-		for(i=0; i<bigdigitos.length; i++)
-			cifrado[i] = bigdigitos[i].modPow(e,n);
- 
-		return(cifrado);
-                
-                
-                
-        
+        byte[] temp = new byte[1];
+        BigInteger[] bigdigitos = new BigInteger[digitos.length];
+
+        for (i = 0; i < bigdigitos.length; i++) {
+            temp[0] = digitos[i];
+            bigdigitos[i] = new BigInteger(temp);
+        }
+
+        BigInteger[] cifrado = new BigInteger[bigdigitos.length];
+
+        for (i = 0; i < bigdigitos.length; i++) {
+            cifrado[i] = bigdigitos[i].modPow(e, n);
+        }
+
+        return (cifrado);
+
+
+
+
     }
 
     public static String descifrar(BigInteger[] cifrado, BigInteger publicaN, BigInteger publicaE, BigInteger privada) {
-       
-       BigInteger[] descifrado = new BigInteger[cifrado.length];
- 
-		for(int i=0; i<descifrado.length; i++)
-			descifrado[i] = cifrado[i].modPow(privada,publicaN);
- 
-		char[] charArray = new char[descifrado.length];
- 
-		for(int i=0; i<charArray.length; i++)
-			charArray[i] = (char) (descifrado[i].intValue());
- 
-		return(new String(charArray));
+
+        BigInteger[] descifrado = new BigInteger[cifrado.length];
+
+        for (int i = 0; i < descifrado.length; i++) {
+            descifrado[i] = cifrado[i].modPow(privada, publicaN);
+        }
+
+        char[] charArray = new char[descifrado.length];
+
+        for (int i = 0; i < charArray.length; i++) {
+            charArray[i] = (char) (descifrado[i].intValue());
+        }
+
+        return (new String(charArray));
     }
 }
