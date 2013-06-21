@@ -5,6 +5,8 @@
 package crip_p3;
 
 import java.math.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -236,14 +238,6 @@ public class Funciones {
         return result;
     }
 
-    /* public BigInteger aleatorio(BigInteger a) {
-     while(){
-     a.divide(new BigInteger("2")).equals(a)
-     }
-     Random ran = new Random();
-     BigInteger resultado = new BigInteger(, ran);
-     return resultado;
-     }*/
     public static ArrayList<BigInteger[]> puntosCurvasElipticas(BigInteger a, BigInteger b, BigInteger p) {
         if ((a.pow(3).multiply(new BigInteger("4")).add(b.pow(2).multiply(new BigInteger("27")))).compareTo(BigInteger.ZERO) == 0) {
         }
@@ -338,5 +332,17 @@ public class Funciones {
         }
 
         return (new String(charArray));
+    }
+
+    public static BigInteger Firmar(byte[] cadena) throws NoSuchAlgorithmException {
+        BigInteger salida = new BigInteger("0");
+        MessageDigest algoritmo = MessageDigest.getInstance("MD5");
+        algoritmo.reset();
+        algoritmo.update(cadena);
+        byte[] clave = algoritmo.digest();
+        cifrar(clave, salida, salida);
+
+
+        return salida;
     }
 }
