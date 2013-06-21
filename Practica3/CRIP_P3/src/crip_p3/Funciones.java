@@ -334,15 +334,12 @@ public class Funciones {
         return (new String(charArray));
     }
 
-    public static BigInteger Firmar(byte[] cadena) throws NoSuchAlgorithmException {
-        BigInteger salida = new BigInteger("0");
+    public static BigInteger[] Firmar(byte[] mensaje, BigInteger n, BigInteger Privada) throws NoSuchAlgorithmException {
         MessageDigest algoritmo = MessageDigest.getInstance("MD5");
         algoritmo.reset();
-        algoritmo.update(cadena);
-        byte[] clave = algoritmo.digest();
-        cifrar(clave, salida, salida);
-
-
-        return salida;
+        algoritmo.update(mensaje);
+        byte[] resumen = algoritmo.digest();
+        BigInteger[] firma = cifrar(resumen, n, Privada);
+        return firma;
     }
 }
