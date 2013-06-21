@@ -336,7 +336,7 @@ public class Funciones {
     }
 
     public static BigInteger[] Firmar(byte[] mensaje, BigInteger n, BigInteger Privada) throws NoSuchAlgorithmException {
-        MessageDigest algoritmo = MessageDigest.getInstance("SHA1");//sha1
+        MessageDigest algoritmo = MessageDigest.getInstance("MD5");//sha1
         algoritmo.reset();
         algoritmo.update(mensaje);
         byte[] resumen = algoritmo.digest();
@@ -351,38 +351,39 @@ public class Funciones {
         for (int i = 0; i < descifrado.length; i++) {
             descifrado[i] = firma[i].modPow(PublicaE, publicaN);
         }
-        
-        /* 
-
-        char[] charArray = new char[descifrado.length];
-
-        for (int i = 0; i < charArray.length; i++) {
-            charArray[i] = (char) (descifrado[i].intValue());
-        }
-
-        return (new String(charArray));
-        */
-
 
         byte[] Array = new byte[descifrado.length];
 
         for (int i = 0; i < Array.length; i++) {
             Array[i] = (byte) (descifrado[i].intValue());
         }
-        MessageDigest algoritmo = MessageDigest.getInstance("SHA1");
+        /*MessageDigest algoritmo = MessageDigest.getInstance("MD5");
         algoritmo.reset();
-       // algoritmo.update(charArray);
-       byte[] clave = algoritmo.digest(Array);
-       //String salida=algoritmo.
+        algoritmo.update(Array);
+        byte[] clave = algoritmo.digest(Array);*/
+        MessageDigest algoritmo = MessageDigest.getInstance("MD5");
+        algoritmo.reset();
+        algoritmo.update(Array);
+        byte[] clave = algoritmo.digest();
+        StringBuilder hexString = new StringBuilder();
+        for (int i = 0; i < clave.length; i++) {
+            String hex = Integer.toHexString(0xFF & clave[i]);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+
+        return hexString.toString();
+        //String salida=algoritmo.
        /* char[] charArray = new char[clave.length];
 
-        for (int i = 0; i < charArray.length; i++) {
-            charArray[i] = (char) (clave.[i]);
-        }*/
+         for (int i = 0; i < charArray.length; i++) {
+         charArray[i] = (char) (clave.[i]);
+         }*/
 
-       
-       
-        return (new String(clave,"UTF-8"));
+
+        //return (new String(clave, "UTF-8"));
 
     }
 }
