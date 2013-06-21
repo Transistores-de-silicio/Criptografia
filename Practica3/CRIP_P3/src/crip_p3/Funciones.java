@@ -4,6 +4,7 @@
  */
 package crip_p3;
 
+import java.io.UnsupportedEncodingException;
 import java.math.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -335,11 +336,53 @@ public class Funciones {
     }
 
     public static BigInteger[] Firmar(byte[] mensaje, BigInteger n, BigInteger Privada) throws NoSuchAlgorithmException {
-        MessageDigest algoritmo = MessageDigest.getInstance("MD5");
+        MessageDigest algoritmo = MessageDigest.getInstance("SHA1");//sha1
         algoritmo.reset();
         algoritmo.update(mensaje);
         byte[] resumen = algoritmo.digest();
         BigInteger[] firma = cifrar(resumen, n, Privada);
         return firma;
+    }
+
+    public static String VerificarFirma(BigInteger[] firma, BigInteger publicaN, BigInteger PublicaE) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+
+        BigInteger[] descifrado = new BigInteger[firma.length];
+
+        for (int i = 0; i < descifrado.length; i++) {
+            descifrado[i] = firma[i].modPow(PublicaE, publicaN);
+        }
+        
+        /* 
+
+        char[] charArray = new char[descifrado.length];
+
+        for (int i = 0; i < charArray.length; i++) {
+            charArray[i] = (char) (descifrado[i].intValue());
+        }
+
+        return (new String(charArray));
+        */
+
+
+        byte[] Array = new byte[descifrado.length];
+
+        for (int i = 0; i < Array.length; i++) {
+            Array[i] = (byte) (descifrado[i].intValue());
+        }
+        MessageDigest algoritmo = MessageDigest.getInstance("SHA1");
+        algoritmo.reset();
+       // algoritmo.update(charArray);
+       byte[] clave = algoritmo.digest(Array);
+       //String salida=algoritmo.
+       /* char[] charArray = new char[clave.length];
+
+        for (int i = 0; i < charArray.length; i++) {
+            charArray[i] = (char) (clave.[i]);
+        }*/
+
+       
+       
+        return (new String(clave,"UTF-8"));
+
     }
 }
