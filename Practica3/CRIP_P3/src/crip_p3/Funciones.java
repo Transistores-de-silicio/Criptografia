@@ -157,19 +157,22 @@ public class Funciones {
         //System.out.println("Impares: " + q + " \n" + p);
         boolean sal = false, sal1 = false;
         while (!sal || !sal1) {
-            if (millerRabin(p, 20) == 0 && sal == false) {
+            BigInteger aux;
+            //aux=p.subtract(new BigInteger("1")).divide(new BigInteger("2"));
+            if (millerRabin(p, 20) == 0  && sal == false) {//&& millerRabin(aux, 25)==0
                 p = p.add(new BigInteger("2"));
 
             } else {
                 sal = true;
             }
-            if (millerRabin(q, 20) == 0 && sal1 == false) {
+            //aux=q.subtract(new BigInteger("1")).divide(new BigInteger("2"));
+            if (millerRabin(q, 20) == 0  && sal1 == false) {//&& millerRabin(aux, 25)==0
                 q = q.add(new BigInteger("2"));
             } else {
                 sal1 = true;
             }
         }
-        // System.out.print(q + " \n" + p);
+         System.out.print("prime"+q + " \nsegundo" + p);
 
         n = p.multiply(q);
         pq = p.subtract(new BigInteger("1")).multiply((q.subtract(new BigInteger("1"))));
@@ -307,14 +310,13 @@ public class Funciones {
 
         BigInteger[] cifrado = new BigInteger[bigdigitos.length];
 
+        System.out.println("antes del cifrado: " + bigdigitos[0]);
+
         for (i = 0; i < bigdigitos.length; i++) {
             cifrado[i] = bigdigitos[i].modPow(e, n);
         }
 
         return (cifrado);
-
-
-
 
     }
 
@@ -335,55 +337,58 @@ public class Funciones {
         return (new String(charArray));
     }
 
-    public static BigInteger[] Firmar(byte[] mensaje, BigInteger n, BigInteger Privada) throws NoSuchAlgorithmException {
-        MessageDigest algoritmo = MessageDigest.getInstance("MD5");//sha1
-        algoritmo.reset();
-        algoritmo.update(mensaje);
-        byte[] resumen = algoritmo.digest();
+    public static BigInteger[] Firmar(byte[] resumen, BigInteger n, BigInteger Privada) throws NoSuchAlgorithmException {
         BigInteger[] firma = cifrar(resumen, n, Privada);
         return firma;
     }
 
-    public static String VerificarFirma(BigInteger[] firma, BigInteger publicaN, BigInteger PublicaE) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static boolean VerificarFirma(byte[] mensaje, BigInteger[] firma, BigInteger publicaN, BigInteger PublicaE) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+
+        /* MessageDigest algoritmo = MessageDigest.getInstance("SHA1");//sha1
+         algoritmo.reset();
+         algoritmo.update(mensaje);
+         byte[] resumen = algoritmo.digest();*/
 
         BigInteger[] descifrado = new BigInteger[firma.length];
+        BigInteger[] bigMensaje = new BigInteger[mensaje.length];
+        byte[] Array = new byte[descifrado.length];
 
         for (int i = 0; i < descifrado.length; i++) {
             descifrado[i] = firma[i].modPow(PublicaE, publicaN);
+            // Array[i] = (byte) firma[i].modPow(PublicaE, publicaN).byteValue();//
         }
+        byte[] temp = new byte[1];
+        for (int i = 0; i < bigMensaje.length; i++) {
+            temp[0] = mensaje[i];
+            bigMensaje[i] = new BigInteger(temp);
+        }
+        
+        /* for (int i = 0; i < mensaje.length; i++) {
+            temp[0] = mensaje[i];
+            bigMensaje[i] = new BigInteger(temp);
+        }*/
 
-        byte[] Array = new byte[descifrado.length];
-
+        /* for (int i = 0; i < Array.length; i++) {
+         = (byte) (descifrado[i].intValue());
+         }*/
+        //System.out.println(Array.toString());
+        System.out.println("descifra" + descifrado[0]);
+        System.out.println("descifra" + descifrado[1]);
+        boolean salida = true;
         for (int i = 0; i < Array.length; i++) {
-            Array[i] = (byte) (descifrado[i].intValue());
-        }
-        /*MessageDigest algoritmo = MessageDigest.getInstance("MD5");
-        algoritmo.reset();
-        algoritmo.update(Array);
-        byte[] clave = algoritmo.digest(Array);*/
-        MessageDigest algoritmo = MessageDigest.getInstance("MD5");
-        algoritmo.reset();
-        algoritmo.update(Array);
-        byte[] clave = algoritmo.digest();
-        StringBuilder hexString = new StringBuilder();
-        for (int i = 0; i < clave.length; i++) {
-            String hex = Integer.toHexString(0xFF & clave[i]);
-            if (hex.length() == 1) {
-                hexString.append('0');
+            if (!(bigMensaje == null ? mensaje.toString() == null : Array.toString().equals(mensaje.toString()))) {
+                salida = false;
             }
-            hexString.append(hex);
         }
+        return salida;
+        /*if (Array.equals(resumen)) {
+         return true;
 
-        return hexString.toString();
-        //String salida=algoritmo.
-       /* char[] charArray = new char[clave.length];
-
-         for (int i = 0; i < charArray.length; i++) {
-         charArray[i] = (char) (clave.[i]);
+         } else {
+         return false;
          }*/
 
 
-        //return (new String(clave, "UTF-8"));
 
     }
 }

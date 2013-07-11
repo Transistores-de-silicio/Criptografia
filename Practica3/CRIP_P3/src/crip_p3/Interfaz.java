@@ -32,6 +32,7 @@ public class Interfaz extends javax.swing.JFrame {
     private BigInteger privada;
     private BigInteger[] cifrado;
     BigInteger[] aux;
+    byte[] aux1;
     /* Creates new form Interfaz
      */
 
@@ -93,6 +94,14 @@ public class Interfaz extends javax.swing.JFrame {
         verFirma = new javax.swing.JButton();
         textFirma = new javax.swing.JTextField();
         Verificacion = new javax.swing.JTextField();
+        BotonElegir = new javax.swing.JButton();
+        CalvePublicaFirma = new javax.swing.JTextField();
+        ClavePrivadaFirma = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        ClaveFirmaN = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -438,36 +447,89 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        BotonElegir.setText("Elegir");
+        BotonElegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonElegirActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("publica");
+
+        jLabel14.setText("privada");
+
+        jLabel15.setText("E");
+
+        jLabel16.setText("N");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(66, 70, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BotonElegir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Generar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(genFirma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(verFirma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(59, 59, 59)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textFirma)
-                    .addComponent(Verificacion, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(textFirma)
+                        .addComponent(Verificacion, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(51, 51, 51))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ClavePrivadaFirma)
+                            .addComponent(CalvePublicaFirma)
+                            .addComponent(ClaveFirmaN, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))))
+                .addGap(207, 207, 207))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(Generar)
-                .addGap(28, 28, 28)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CalvePublicaFirma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ClaveFirmaN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ClavePrivadaFirma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(BotonElegir)
+                                .addGap(36, 36, 36)
+                                .addComponent(Generar)))))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genFirma)
                     .addComponent(textFirma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(41, 41, 41)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(verFirma)
                     .addComponent(Verificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Firma digital (C. elipticas)", jPanel3);
@@ -508,6 +570,7 @@ public class Interfaz extends javax.swing.JFrame {
         publicaE = new BigInteger(s.get(0).get(1).toString());
         publicaN = new BigInteger(s.get(0).get(0).toString());
         privada = new BigInteger(s.get(1).get(0).toString());
+
         ClavePublica.setText(s.get(0).get(0).toString() + " -- " + s.get(0).get(1).toString());
         ClavePrivada.setText(s.get(1).get(0).toString());
 
@@ -546,7 +609,7 @@ public class Interfaz extends javax.swing.JFrame {
                 cifrado = Funciones.cifrar(texto.getText().getBytes(), publicaN, publicaE);
                 String puesta = "";
                 for (int i = 0; i < cifrado.length; i++) {
-                    puesta += cifrado[i].toString();
+                    puesta += cifrado[i].toString() + " ";
                 }
                 Cifrado.setText(puesta);
             }
@@ -581,61 +644,30 @@ public class Interfaz extends javax.swing.JFrame {
             }
         } else {
             if (!Cifrado.getText().isEmpty()) {
-                BigInteger a = new BigInteger(Cifrado.getText());
-                jTextField1.setText(Funciones.descifrar(cifrado, publicaN, publicaE, privada));
+                String auxstring = Cifrado.getText();
+                ArrayList<BigInteger> biginte = new ArrayList<BigInteger>();
+                String s = "";
+                for (int i = 0; i < auxstring.length(); i++) {
+                    if (auxstring.charAt(i) != ' ') {
+                        s += auxstring.charAt(i);
+                    } else {
+                        biginte.add(new BigInteger(s));
+                        s = "";
+                    }
+
+                }
+                BigInteger a[] = new BigInteger[biginte.size()];
+                for (int i = 0; biginte.size() > i; i++) {
+                    a[i] = biginte.get(i);
+                    System.out.println(a[i]);
+                }
+                System.out.println(biginte);
+                System.out.println(a);
+
+                jTextField1.setText(Funciones.descifrar(a, publicaN, publicaE, privada));
             }
         }
     }//GEN-LAST:event_DescrifraActionPerformed
-
-    private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
-        ArrayList<ArrayList> s = Funciones.RSA();
-        publicaE = new BigInteger(s.get(0).get(1).toString());
-        publicaN = new BigInteger(s.get(0).get(0).toString());
-        privada = new BigInteger(s.get(1).get(0).toString());
-    }//GEN-LAST:event_GenerarActionPerformed
-
-    private void genFirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFirmaActionPerformed
-        byte[] bytesOfMessage;
-
-        BigInteger[] a = new BigInteger[2];
-        try {
-            bytesOfMessage = textFirma.getText().getBytes("UTF-8");
-            System.out.println("el texto es" + textFirma.getText());
-            a = Funciones.Firmar(bytesOfMessage, publicaN, privada);
-            aux = a;
-
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        FileWriter fichero = null;
-        try {
-            //String nombArchivo = chooser.getSelectedFile().getName();
-            fichero = new FileWriter(" firma.txt", true);
-            PrintWriter pw = new PrintWriter(fichero);
-            for (int i = 0; i < a.length; i++) {
-                pw.print(a[i].toString());
-            }
-            JOptionPane.showMessageDialog(null, "firma guardada en: " + System.getProperty("user.dir"),
-                    "OK", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se ha podido guardar el fichero: " + e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            try {
-                fichero.close();
-            } catch (Exception e2) {
-                JOptionPane.showMessageDialog(null, "No se ha podido cerrar el fichero: " + e2.getMessage(),
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-
-
-
-    }//GEN-LAST:event_genFirmaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int returnVal = chooser.showOpenDialog(chooser);
@@ -671,10 +703,22 @@ public class Interfaz extends javax.swing.JFrame {
         jTextField1.setEnabled(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void BotonElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonElegirActionPerformed
+
+        publicaE = new BigInteger(CalvePublicaFirma.getText());
+        publicaN = new BigInteger(ClaveFirmaN.getText());
+        privada = new BigInteger(ClavePrivadaFirma.getText());
+
+    }//GEN-LAST:event_BotonElegirActionPerformed
+
     private void verFirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFirmaActionPerformed
         try {
-
-            Verificacion.setText(Funciones.VerificarFirma(aux, publicaN, publicaE));
+            boolean auxbool = Funciones.VerificarFirma(aux1, aux, publicaN, publicaE);
+            if (auxbool == true) {
+                Verificacion.setText("verificacion correcta");
+            } else {
+                Verificacion.setText("verificacion incorrecta");
+            }
 
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
@@ -682,6 +726,64 @@ public class Interfaz extends javax.swing.JFrame {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_verFirmaActionPerformed
+
+    private void genFirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genFirmaActionPerformed
+        byte[] bytesOfMessage;
+
+        BigInteger[] a = new BigInteger[2];
+        try {
+            bytesOfMessage = textFirma.getText().getBytes("UTF-8");
+            System.out.println("el texto es" + textFirma.getText());
+            MessageDigest algoritmo = MessageDigest.getInstance("MD5");//sha1
+            algoritmo.reset();
+            algoritmo.update(bytesOfMessage);
+            byte[] resumen = algoritmo.digest();
+            System.out.println(resumen.toString());
+            a = Funciones.Firmar(resumen, publicaN, privada);
+            aux = a;
+            System.out.println("La a: " + a[0]);
+            System.out.println("La a: " + a[1]);
+            aux1 = resumen;
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        FileWriter fichero = null;
+        try {
+            //String nombArchivo = chooser.getSelectedFile().getName();
+            fichero = new FileWriter(" firma.txt", true);
+            PrintWriter pw = new PrintWriter(fichero);
+            for (int i = 0; i < a.length; i++) {
+                pw.print(a[i].toString());
+            }
+            JOptionPane.showMessageDialog(null, "firma guardada en: " + System.getProperty("user.dir"),
+                    "OK", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se ha podido guardar el fichero: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                fichero.close();
+            } catch (Exception e2) {
+                JOptionPane.showMessageDialog(null, "No se ha podido cerrar el fichero: " + e2.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }//GEN-LAST:event_genFirmaActionPerformed
+
+    private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
+        ArrayList<ArrayList> s = Funciones.RSA();
+        publicaE = new BigInteger(s.get(0).get(1).toString());
+        publicaN = new BigInteger(s.get(0).get(0).toString());
+        privada = new BigInteger(s.get(1).get(0).toString());
+
+        ClavePrivadaFirma.setText(privada.toString());
+        CalvePublicaFirma.setText(publicaE.toString());
+        ClaveFirmaN.setText(publicaN.toString());
+    }//GEN-LAST:event_GenerarActionPerformed
 
     private static boolean isNumeric(String cadena) {
         try {
@@ -734,9 +836,13 @@ public class Interfaz extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonElegir;
+    private javax.swing.JTextField CalvePublicaFirma;
     private javax.swing.JTextField Cifrado;
     private javax.swing.JButton Cifrar;
+    private javax.swing.JTextField ClaveFirmaN;
     private javax.swing.JTextField ClavePrivada;
+    private javax.swing.JTextField ClavePrivadaFirma;
     private javax.swing.JTextField ClavePublica;
     private javax.swing.JButton Descrifra;
     private javax.swing.JButton Generar;
@@ -750,7 +856,11 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
